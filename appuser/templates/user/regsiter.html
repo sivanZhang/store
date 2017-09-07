@@ -7,20 +7,17 @@
     <input class="form-control" type="text" placeholder="用户名" name="username" id="username" value="{{username}}" />
 
     <input class="form-control" type="email" placeholder="邮箱" name="email" id="email" value="{{email}}" />
-    <input class="form-control" type="text" placeholder="邮箱验证码" name="emailcode" id="emailcode"  />
+    <input class="form-control" type="text" placeholder="邮箱验证码" name="emailcode" id="emailcode" />
 
-    <input class="form-control" type="password"  placeholder="密码" name="password" id="password" />
+    <input class="form-control" type="password" placeholder="密码" name="password" id="password" />
 
-    <input  class="form-control" type="password" placeholder="再次输入密码" name="confirm_password" id="confirm_password"  >
+    <input class="form-control" type="password" placeholder="再次输入密码" name="confirm_password" id="confirm_password">
 
-    <button type="submit" class="btn btn-sm btn-block ">注册</button>
-    {% if result  %}
-        {% if result == 'ok' %}
-            <div class="alert alert-success" role="alert">{{msg}}</div>
-        {% else %}
-            <div class="alert alert-danger" role="alert">{{msg}}</div>
-        {% endif %}
-    {% endif %}
+    <button type="submit" class="btn btn-block">注册</button> {% if result %} {% if result == 'ok' %}
+    <div class="alert alert-success" role="alert">{{msg}}</div>
+    {% else %}
+    <div class="alert alert-danger" role="alert">{{msg}}</div>
+    {% endif %} {% endif %}
     <div class="msg"></div>
 </form>
 

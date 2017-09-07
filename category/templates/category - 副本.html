@@ -1,0 +1,59 @@
+{% extends 'base.html' %} {% block css %}
+
+<link href="/static/category/css/category.css" rel="stylesheet"> {% endblock %} {% block content %}
+
+<header>
+    <button class="pull-left btn btn-info plus">
+        添加分类<i class="fa fa-plus-square-o " aria-hidden="true"></i>
+    </button>
+    <button class="btn btn-danger delete">
+        删除分类<i class="fa fa-minus-square-o" aria-hidden="true"></i>
+    </button>
+    <button class="pull-right btn btn-default edit ">
+        编辑分类<i class="fa fa-pencil-square-o " aria-hidden="true "></i>
+    </button>
+</header>
+<div id="main">
+</div>
+
+</span> {% endblock %} {% block js %}
+<script type="text/javascript " src="/static/js/shop.js "></script>
+<script>
+    $('.plus').click(function() { 
+        if($('.bb').length > 0){
+             $('.bb').after('<div class="btn-info plus-childs ">123</div>');
+        }
+        else{
+           $('#main').append("<div class='btn block btn-default plus-btns'>分类</div>");
+        }
+    });
+
+    $('#main').on('click', 'div', function() {
+        $('.bb').removeClass('bb');
+        var has = $(this).hasClass('bb');
+        if(has){
+            //有bb类，remove掉
+             $(this).removeClass('bb');
+
+        }else{
+            //没有bb类，add 
+            $(this).addClass('bb');
+        }
+
+        
+    });
+
+
+    $(document).on('click', '.delete', function() {
+        $('.bb').remove();
+    })
+
+    $(document).on('click', '.bb', function() {
+       
+        
+    });
+
+  
+</script>
+
+{% endblock %}

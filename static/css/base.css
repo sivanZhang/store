@@ -1,52 +1,55 @@
-  /* 初始化区域 */
-  
-  body {
-      font-size: 12px;
-      margin: 0px;
-      padding: 0px;
-  }
-  
-  a {
-      color: inherit;
-  }
-  
-  ul {
-      margin: 0px;
-      padding: 0px;
-  }
-  /* 通用样式区域 */
-  
-  div.nav div.pull-left {
-      text-align: center;
-      box-sizing: border-box;
-      width: 25%;
-  }
-  
-  div.nav {
-      background-color: #fff;
-      color: #17324D;
-      z-index: 1;
-      position: fixed;
-      top: 100%;
-      width: 100%;
-      transform: translateY(-100%);
-      border-top: 1px solid #eee;
-      padding-top: 2px;
-  }
-  /*反复使用区*/
-  
-  .activate {
-      color: rgb(254, 112, 60);
-  }
-  
-  .block {
-      display: block;
-  }
-  
-  .il-block {
-      display: inline-block;
-  }
-  
-  .font-sm {
-      font-size: 10px;
-  }
+/*font-sm = 12px */
+
+
+/* 初始化区域 */
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+a {
+    color: inherit;
+}
+
+input {
+    -webkit-appearance: none;
+    /*delete ISO browser shadow*/
+}
+
+
+/* 通用样式区域 */
+
+div.nav div.pull-left {
+    text-align: center;
+    box-sizing: border-box;
+    width: 25%;
+}
+
+div.nav {
+    background-color: #fff;
+    color: #17324D;
+    z-index: 1;
+    position: fixed;
+    top: 100%;
+    width: 100%;
+    transform: translateY(-100%);
+    border-top: 1px solid #eee;
+    padding-top: 2px;
+}
+
+.activate {
+    color: rgb(254, 112, 60);
+}
+
+.block {
+    display: block;
+}
+
+.i-block {
+    display: inline-block;
+}
+
+.font-sm {
+    font-size: 12px;
+}

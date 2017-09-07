@@ -2,8 +2,17 @@ li {
     display: inline;
 }
 
+
+/* 
+input.form-control {
+    border-radius: 0px;
+    border-left-style: none;
+    border-right-style: none;
+}
+ */
+
 form {
-    margin: 0 10%;
+    margin: 0 5%;
 }
 
 button.btn {
@@ -13,13 +22,9 @@ button.btn {
     color: #fff;
 }
 
-ul {
-    font-size: 14px;
-}
-
 .btn,
 .form-control {
-    height: 40px;
+    height: 47px;
 }
 
 #app-name {
@@ -28,13 +33,9 @@ ul {
 
 label.error {
     color: #d9534f;
-    margin: 0PX;
+    margin: 0px;
 }
 
 input.error {
     border-color: #d9534f;
-}
-
-.input-margin {
-    margin: 30px auto;
 }

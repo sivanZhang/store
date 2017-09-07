@@ -11,12 +11,12 @@
             </div>
         </a>
 
-        <div class="search il-block col-xs-8">
+        <div class="search i-block col-xs-8">
             <i class="fa fa-search pull-left" aria-hidden="true"></i>
             <input class="inp-search" type="text" placeholder="search..." />
         </div>
 
-        <a href="javascript:;">
+        <a href="/">
             <div class="text-center col-xs-2"><i class="fa fa-commenting-o block fa-2x"></i> <span class="font-sm"> 消息</span>
             </div>
         </a>
@@ -38,19 +38,19 @@
 <div class="swiper-container swiper-container-2 subnav-wrap">
     <div class="swiper-wrapper">
         <div class="swiper-slide">
-            <a href="javascript:;">
+            <a href="{% url 'users:login' %}">
                 <div class="pull-left submenu">
-                    <img src="/static/img/demo.jpg"> 菜单名称
+                    <img src="/static/img/demo.jpg"> 登录
                 </div>
             </a>
-            <a href="javascript:;">
+            <a href="{% url 'users:register' %}">
                 <div class="pull-left submenu">
-                    <img src="/static/img/demo.jpg"> 菜单名称
+                    <img src="/static/img/demo.jpg"> 注册
                 </div>
             </a>
-            <a href="javascript:;">
+            <a href="{% url 'category:manage' %}">
                 <div class="pull-left submenu">
-                    <img src="/static/img/demo.jpg"> 菜单名称
+                    <img src="/static/img/demo.jpg"> 类别
                 </div>
             </a>
             <a href="javascript:;">
@@ -150,7 +150,7 @@
 </div>
 <!-- swiper2 end-->
 
-<div class="">wasdsad </div>
+<div class="">  </div>
 
 {% endblock %} {% block js %}
 
