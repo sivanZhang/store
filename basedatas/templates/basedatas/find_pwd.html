@@ -1,0 +1,54 @@
+{% extends "admin/base_site.html" %}
+{% block title %}重置密码{% endblock %}
+{% block extrahead %}{{ block.super }}
+    <script type="text/javascript" language="javascript" src="/static/js/find_pwd.js"></script>
+{{ media }}
+{% endblock %}
+{% block extrastyle %}{{ block.super }}
+ <style  type="text/css">
+.input{
+       width:200px;}
+ </style>
+{% endblock %}
+{% block coltype %}colM{% endblock %}
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-form{% endblock %}
+
+{% block content %}
+<form id="id_user_form"action="save_user" method="POST">
+ <table>
+        <tr  >
+            <td>
+                <label >输入注册时使用的邮箱：</label>
+            </td>
+            </tr>
+            <tr>
+            <td style="width:200px">
+                <input type="text" class="input" id="i_email"  name ="email" value=""/>
+            </td>
+        </tr>   
+        <tr  >
+        <td>
+            <input type="button" id="id_get_verify_code" value="获取邮箱验证码" />  
+         </td>
+        </tr>
+         <tr>
+            <td>
+                <label >邮箱验证码:</label>
+            </td>
+            </tr>   
+         <tr>
+            <td>
+            <input type="text" class="input" id="i_verify_code"  name ="verifycode" value=""/> 
+            </td>
+          
+        </tr>
+         <tr  >
+        <td>
+            <input type="button" id="i_reset_pwd" value="重置我的密码" />  
+         </td>
+        </tr>
+    </table>
+    <div class="div_err">
+        </div>
+</form>
+{% endblock %}

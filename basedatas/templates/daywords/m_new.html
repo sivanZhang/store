@@ -1,0 +1,31 @@
+{% extends "admin/m_base_site.html" %}
+{% block title %}{{ page }} 此时你在想什么... | {{ site_title|default:_(' ') }}{% endblock %}
+{% block extrahead %}{{ block.super }}
+{% load staticfiles %}
+<script type="text/javascript" language="javascript" src="{% static 'basedata/js/action-jquery.js'%}"></script>
+{{ media }}
+{% endblock %}
+ {% block keywords%}map2family 心事 每日一句 推荐{%endblock%}
+  {% block description%} 你的心事写在哪里呢 你也需要像map2family这样的一个地方，静静的写下你的心事{%endblock%}
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" type="text/css" media="screen" href="/static/heartbeat/css/m_heartbeat.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/static/heartbeat/css/m_new.css" />
+{% endblock %}
+{% block coltype %}colM{% endblock %}
+ 
+{% block content %}
+
+<form  action="" method="POST">
+    {% csrf_token %}
+         <ul>
+                <p class="circle"></p>
+                 <li> <textarea rows="5" cols="75" id="idwords" name="words"  placeholder="推荐你最喜爱的一句话，将会被显示在首页..." class="words" value=""></textarea></li>
+               
+                  <li class="li_save">  <input type="submit" class="m_circle_btn save" id="id_submit"   value="&#xf1d8;"  /> 
+        </li></ul>       
+</form>
+{% endblock %}
+ 
+{% block footer %}
+
+{% endblock %}

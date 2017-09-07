@@ -1,0 +1,52 @@
+{%load admin_static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title2%}商城{% endblock%}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link type="text/css" href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/static/css/base.css"> {% block css %} {% endblock %}
+    <script type="text/javascript" src="/static/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="/static/bootstrap/dist/js/bootstrap.js"></script>
+</head>
+
+<body>
+    {% block content %} {% endblock %} {% block menu %}
+    <!--menu-->
+    <div class="nav">
+
+        <a class=" {{home}}" href="home.html ">
+            <div class="pull-left ">
+                <i class="fa fa-home fa-2x " aria-hidden="true "></i>
+                <div>主页</div>
+            </div>
+        </a>
+        <a class=" {{category}}" href="首页.html ">
+            <div class="pull-left ">
+                <i class="fa fa-map-signs fa-2x " aria-hidden="true "></i>
+                <div>分类</div>
+            </div>
+        </a>
+        <a class=" {{trolly}}" href="首页.html ">
+            <div class="pull-left ">
+                <i class="fa fa-shopping-cart fa-2x " aria-hidden="true "></i>
+                <div>购物车</div>
+            </div>
+        </a>
+        <a  class="mine {{mine}}" href="# ">
+            <div class="pull-left ">
+                <i class="fa fa-user fa-2x " aria-hidden="true "></i>
+                <div>我的</div>
+            </div>
+        </a>
+    </div>
+    <!-- menu end-->
+    {% endblock %}
+    <script type="text/javascript" src="/static/js/swiper-3.4.2.jquery.min.js"></script>
+    {% block js %} {% endblock %}
+</body>
+
+</html>

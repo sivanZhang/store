@@ -1,0 +1,34 @@
+{% extends "admin/m_base_site.html" %}
+ {% block title %}所有组{% endblock %} 
+ {% load admin_static %}
+{% block extrahead %} {{ block.super }} 
+{{ media }}
+{% endblock %}
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static "admin/css/m_application.css" %}" />
+{% endblock %}
+ 
+ {% block coltype %}colM{% endblock %} 
+ {% block bodyclass %}{{ block.super }} 
+ app-{{ opts.app_label}} 
+ model-{{ opts.model_name }} 
+ change-form{% endblock %} 
+		
+{% block content %}
+ <div class="group_list"> 
+     
+     <a href="{% url 'kb:kb_list' 1  %}"> 
+      <p  class="application_name" >千言墙</p> 
+   </a> 
+   
+   
+  <a href="{% url 'kb:kb_list' 0  %}"> 
+      <p  class="application_name" >一文一图</p> 
+  </a> 
+  <a href="{% url 'kb:kb_list' 2  %}"> 
+      <p  class="application_name" >吃货行天下</p> 
+  </a>
+  
+   
+ </div> 
+ {% endblock %}

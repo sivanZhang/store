@@ -1,0 +1,52 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static %}
+{% block title %}修改用户信息{% endblock %}
+{% block extrahead %}{{ block.super }}
+{{ media }}
+{% endblock %}
+{% block extrastyle %}{{ block.super }}
+ <link rel="stylesheet" href="{% static "admin/css/change_user.css" %}"/>
+{% endblock %}
+{% block branding %}
+{% endblock %}
+{% block coltype %}colM{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-form{% endblock %}
+{% block content %}
+<form id="id_user_form"  action=""  method="POST" enctype="multipart/form-data">
+  
+ {% if saved %}
+               <ul class="messagelist">
+                    <li class="text-success" >已保存。</li>
+               </ul>
+{% endif %}
+ {% if not_granted %}
+<div>
+  <label class="errornote" >你没要权限做这件事情。</label>
+</div>
+ {% else %}
+ 
+         {% if  usernotexist %}
+             <div>
+              <label class="errornote" >用户不存在。</label>
+            </div>
+         {% else %}
+             {% if not validate %}
+                <div>
+                  <label class="errornote" >请输入必要的信息（红色字体标注的项）。</label>
+                </div>
+                 
+             {% else %}
+                  <table>
+                    {% csrf_token %} 
+                        {{ form }} 
+                   </table>
+                   
+                   <input type="submit" value="保存" />
+             {% endif %}
+      {% endif %}
+      
+  {% endif %}
+</form>
+{% endblock %}
+{% block footer %}{% endblock %}

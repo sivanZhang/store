@@ -1,0 +1,29 @@
+{% extends "admin/base_site.html" %}
+{% block title %}{{ page }} 我的心情| 我的秘密花园{% endblock %}
+{% block extrahead %}{{ block.super }}
+ 
+{{ media }}
+{% endblock %}
+{% block coltype %}colM{% endblock %}
+{% block extrastyle %}{{ block.super }} 
+<link rel="stylesheet" type="text/css" media="screen"  href="/static/heartbeat/css/heartbeat.css" />
+<link rel="stylesheet" type="text/css" media="screen"  href="/static/heartbeat/css/index.css" />
+{% endblock %}
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-form{% endblock %}
+{% block content %}
+ 
+  <div    class="index_main_div">
+		{% if heartbeat_list %}	 
+			{% load tz %}
+			{% for heartbeat in heartbeat_list %} 
+			 <div    class="detail">
+             <ul>
+    		    <li><h3>{{ heartbeat.date  |date:" Y-m-d H:i:s"}}</h3></li> <li class="li_delete">  <a method="get" class="delete" href="{% url 'heartbeat:confirm_delete' heartbeat.id %}"><i class="fa fa-times-circle fa-2x"></i></a></lable></li> 
+    		    <li><label for="date" class="words" ><pre>{{ heartbeat.words }}</pre></lable><label for="date" id="heartbeatid" class="heartbeatid" name="heartbeatid" ></li>
+			 </ul>	
+		    </div>
+		{% endfor %}
+		{% endif %}
+	 
+ </div>
+{% endblock %}

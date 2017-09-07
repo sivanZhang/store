@@ -1,0 +1,41 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static %}
+{% block title %}组管理{% endblock %}
+{% block extrahead %}{{ block.super }} 
+{{ media }}
+{% endblock %}
+{% block extrastyle %}{{ block.super }}
+ <link rel="stylesheet" href="{% static "admin/css/group.css" %}"/>
+{% endblock %}
+{% block branding %}
+{% endblock %}
+{% block coltype %}colM{% endblock %}
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-form{% endblock %}
+
+{% block content %}
+<form id="id_user_form"  action=""  method="POST" enctype="multipart/form-data">
+{% if not_granted %}
+<div>
+  <label class="errornote" >你没要权限做这件事情。</label>
+</div>
+{% else %}
+{% if not validate %}
+<div>
+  <label class="errornote" >输入有误，请输入组Group名称或组名已存在。</label>
+</div>
+{% endif%}
+
+  <table>
+    {% csrf_token %} 
+        {{ form }} 
+   </table>
+   {% if saved %}
+   <ul class="messagelist">
+  <li class="text-success" >已保存。</li>
+</ul>
+   {% endif %}
+   <input type="submit" value="保存" />
+   {% endif%}
+</form>
+{% endblock %}
+{% block footer %}{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "admin/base_site.html" %}
+{% block title %}上传个人头像{% endblock %}
+{% block extrahead %}{{ block.super }}
+<script type="text/javascript"  src="/static/admin/js/upload_portrait.js"></script> 
+<script src="/static/plugins/cropper-master/dist/cropper.js"></script>
+{{ media }}
+{% endblock %}
+{% block extrastyle %}{{ block.super }}
+<link  href="/static/plugins/cropper-master/dist/cropper.css" rel="stylesheet">
+<link rel="stylesheet" href="/static/admin/css/change_portrait.css"/>
+{% endblock %}
+{% block coltype %}colM{% endblock %}
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-form{% endblock %}
+
+{% block content %}
+<form id="id_user_form"  action=""  method="POST" enctype="multipart/form-data">
+    <ul class="upload_portrait">
+    {% csrf_token %}
+    <label class="new_Btn">
+        {{ form }}
+        <div class="pop_ctrl pop_ctrl_upload"><div class="portrait portrait_upload_big" id="id_portrait_upload" > </div></div> </label>
+        <li class="li_upload"><input type="button" id="i_upload" class="upload_portrait_bnt" value="请先选取头像" /> </li>
+        <li class="tip">1、请选择真实头像；</li> 
+        <li class="tip">2、建议将头像先裁剪为正方形然后再上传...</li> 
+        <li><input type="hidden" id="mark" name="mark" value="0" /></li>
+    </ul>
+    <div class="div_err">
+        </div>
+</form>
+{% endblock %}
+{% block footer %}{% endblock %}

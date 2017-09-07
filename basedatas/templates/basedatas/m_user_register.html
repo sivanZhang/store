@@ -1,0 +1,76 @@
+{% extends "admin/m_base_site.html" %}
+{% block title %}{{page_title}}{% endblock %}
+{% block extrahead %}{{ block.super }}
+{% ifequal page "user_register" %}
+    <script type="text/javascript" language="javascript" src="/static/js/user-register.js"></script>
+    {% else %}
+    <script type="text/javascript" language="javascript" src="/static/js/find_pwd.js"></script>
+    {% endifequal%}
+{{ media }}
+{% endblock %}
+{% block extrastyle %}
+{{ block.super }}
+
+<link rel="stylesheet" type="text/css" href="/static/css/m_brand.css" />
+<link rel="stylesheet" type="text/css" media="screen"  href="/static/css/m_register.css" />
+{% endblock %}
+{% block coltype %}colM{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-form{% endblock %}
+{% block nav-global %}
+{% include 'map2family/m_page_brand.html' %}
+{% endblock %}
+{% block content %}
+<form id="id_user_form"action="save_user" method="POST">
+<div class="div_err">  </div>
+<div>
+ <ul>
+ <li> <label class="r_lable">电子邮箱:</label> 
+ </li>
+ <li><input type="text" class="input" id="id_email"  name ="email" value=""/> 
+ </li>
+ <li class="li_verify">
+ <input type="button" class="button verify_code"  id="{% ifequal page "user_register" %}id_get_verify_code{% else %}id_get_verify_code_fpwd{%endifequal%}" value="获取邮箱验证码" /> 
+ </li>
+</ul>
+<div id="div_register">
+ <ul>
+ <li>  <label  class="r_lable">邮箱验证码:</label>
+ </li>
+ <li><input type="text" class="input" id="id_verify_code"  name ="verifycode" value=""/>
+ </li>
+ {% ifequal page "user_register" %}
+ <li>
+ <label class="star" >*</label><label  class="r_lable">真实姓名:</label>
+ </li>
+ <li> <input type="text" class="input" id="id_name" name ="name"  value=""/> 
+ </li>
+ {% endifequal %}
+ <li><label class="star" >*</label><label  class="r_lable">输入{% ifequal page "find_password" %}新{% endifequal %}密码:</label>
+ </li>
+ <li><input type="password" class="input" id="id_pwd_1"  name ="pwd_1" value=""/> 
+ </li>
+ <li><label class="star" >*</label><label  class="r_lable">确认密码:</label>
+ </li>
+ <li><input type="password" class="input" id="id_pwd_2" name ="pwd_2"  value=""/> 
+ </li>
+ <li>
+ 
+ </li>
+ <li class="li_submit"><input type="submit" class="button sutmit_btn" id="id_submit_new_user" value="{% ifequal page "user_register" %}提交注册{% else %}修改密码{% endifequal %}" /></li>
+ <li><input type="hidden" name="page" id="page" value="{{page}}"/>  
+ </li>
+</ul>
+</div>
+ <ul>
+ 
+ </li>
+ </ul>
+
+       
+    <script type="text/javascript">
+        document.getElementById('id_email').focus();
+</script>
+</form>
+
+{% endblock %}

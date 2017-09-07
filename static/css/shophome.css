@@ -1,0 +1,60 @@
+header {
+    position: fixed;
+    top: 10px;
+    z-index: 10;
+    color: #fff;
+    width: 100%
+}
+
+.submenu {
+    width: 20%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.submenu img {
+    display: block;
+    margin: 10% auto 5%;
+    width: 50%;
+    border-radius: 50%;
+    border: 2px solid #eee;
+}
+
+.search {
+    background-color: #fff;
+    border: 1px solid #eee;
+    color: #000;
+    height: 30px;
+    ;
+}
+
+.pagination-2 {
+    position: relative;
+    top: 2px;
+    text-align: center;
+}
+
+#swiper-container img {
+    width: 100%;
+}
+
+.subnav-wrap {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    position: relative;
+    top: -20px;
+    z-index: 10;
+    background-color: #fff;
+}
+
+i.fa-2x+div {
+    font-size: 10px;
+}
+
+.search input {
+    border-width: 0px;
+    background: none;
+    outline: none;
+    width: 90%;
+    height: 100%;
+}

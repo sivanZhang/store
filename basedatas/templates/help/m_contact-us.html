@@ -1,0 +1,47 @@
+{% extends "admin/m_base_site.html" %}
+
+{% load admin_static %}
+
+{% block title %}联系我们| 获得支持{% endblock %}
+
+{% block keywords%}联系 我们， 获得来自map2family开发者的支持{%endblock%}
+{% block description%}在这里你可以找到map2family的开发者，你可以直接跟他们联系，其实程序员离生活很近，也渴望来自生活的问候.{%endblock%}
+
+{% block extrahead %}{{ block.super }}
+<script type="text/javascript"  src="{% static 'js/common.js' %}"></script>  
+{{ media }}
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'basedata/css/m_contact.css'%}" />
+{% endblock %} 
+
+
+{% block content %} 
+<div class="background_div"> 
+</div>
+<form >
+<div class="two_di_code"><img  src="{% static 'basedata/img/two_de_code.jpg'%}"/></div>
+    <ul >
+    <li class="title">版权所有：</li><i class="fa fa-copyright">张继伟</i>
+    <li class="title">电话号码:</li><li >18811082245</li>  
+    <li class="title">Email:</li><li >postmaster@map2family.com</li> 
+    </ul>
+    
+    <div class="help_message">任何bug或者其他事项都可通过发送邮件给我们获得快速支持，我们会在收到邮件24小时内给您进行反馈，同时欢迎加入我们，我们的宗旨是做一个经典的网站，用心做好。如果您也跟我们有同样的想法，欢迎发送您的简历到我们的邮箱：<strong>hr@map2family.com</strong>，邮件中写清楚您的优势即可，简洁明了的表达。</div>
+     
+</form>
+ 
+<script> 
+ $(document).ready(function() {
+      //$('.background_div').setBackgroundImg( 'url(/static/img/heartbeat1.JPG)'); 
+ }); 
+ </script> 
+<div id="sub_menu_footer"> 
+<div class="sub_menu_list_div"><a class="sub_menu_list_a" href="{% url 'ticket:openTicket'  %}"><i class="fa fa-paperclip sub_menu_list_i"></i><div class="sub_link_text">开Ticket</div></a></div> 	
+<div class="sub_menu_list_div"><a class="sub_menu_list_a" href="{% url 'ticket:index' %}"><i class="fa fa-list sub_menu_list_i"></i><div class="sub_link_text">ticket列表</div></a></div>
+ 	 		   
+</div>
+ 
+{% endblock %}
+

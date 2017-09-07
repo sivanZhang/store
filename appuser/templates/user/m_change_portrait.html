@@ -1,0 +1,98 @@
+{% extends "admin/m_base_site.html" %}
+{% block title %}上传个人头像{% endblock %}
+{% block extrahead %}{{ block.super }}
+
+
+{{ media }}
+{% endblock %}
+{% block extrastyle %}{{ block.super }} 
+<link  href="/static/plugins/cropper-master/dist/cropper.css" rel="stylesheet">
+<link  href="/static/plugins/cropper-master/dist/main.css" rel="stylesheet">
+<link rel="stylesheet" href="/static/admin/css/change_portrait.css"/>
+{% endblock %}
+{% block coltype %}colM{% endblock %}
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-form{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <!-- <h3 class="page-header">Demo:</h3> -->
+        <div class="img-container">
+          <img id="image" src="{{request.user.head_portrait }}" alt="Picture">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <!-- <h3 class="page-header">Preview:</h3> -->
+            <div class="docs-preview clearfix">
+               <div class="img-preview preview-lg"></div>
+              
+        <div class="row">
+            <div class="col-md-9 docs-buttons"> 
+            
+              <div class="btn-group"> 
+                 <button type="button" class="btn btn-primary" data-method="rotate" data-option="-30" title="Rotate Left"> 
+                     <span class="fa fa-rotate-left"></span> 
+                 </button>
+                  <button type="button" class="btn btn-primary" data-method="rotate" data-option="30" title="Rotate Right"> 
+                      <span class="fa fa-rotate-right"></span> 
+                  </button>
+              <label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
+                <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*">
+                <span class="docs-tooltip" data-toggle="tooltip" title="点击上传头像..">
+                  <span class="fa fa-upload">&nbsp;&nbsp;浏览</span>
+                </span>
+              </label>
+        </div>
+        
+              <div class="btn-group btn-group-crop"> 
+          <button type="button" class="btn btn-primary" data-method="getCroppedCanvas"> 
+            <i class="fa fa-floppy-o"></i> 保存裁剪 </span>
+          </button>
+        </div>
+        
+              <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="getCroppedCanvasTitle">预览</h4>
+              </div>
+              <div class="modal-body"></div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.png">Download</a>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.modal -->  
+            </div><!-- /.docs-buttons --> 
+        </div>
+        
+      </div>
+    </div>
+  </div>      
+ </div>     
+{% endblock %}
+{% block custom_footer_menu %} 
+<script src="/static/plugins/cropper-master/dist/cropper.js"></script>
+<script src="/static/plugins/cropper-master/dist/canvas-to-blob.min.js"></script>
+<script src="/static/plugins/cropper-master/dist/m_main.js"></script> 
+<script>
+    $(document).ready(function() {
+        $('.background_div').setBackgroundImg('url(/static/img/heartbeat1.JPG)');
+    }); 
+</script>
+{{block.super}} 
+ 
+{% if admin_granted %}
+<div id="sub_menu_footer"> 
+<div class="sub_menu_list_div"><a class="sub_menu_list_a" href="{% url 'user:grouplist'  %}"><i class="fa fa-sitemap sub_menu_list_i"></i><div class="sub_link_text">组管理</div></a></div>
+<div class="sub_menu_list_div"><a class="sub_menu_list_a" href="{% url 'blocks:list'  %}"><i class="fa fa-sitemap sub_menu_list_i"></i><div class="sub_link_text">板块管理</div></a></div> 	 	
+<div class="sub_menu_list_div"><a class="sub_menu_list_a" href="{% url 'user:admin_list_users' %}"><i class="fa fa-users sub_menu_list_i"></i><div class="sub_link_text">用户管理</div></a></div>
+<div class="sub_menu_list_div"><a class="sub_menu_list_a" href="{% url 'task:todolist' %}"><i class="fa fa-list sub_menu_list_i"></i><div class="sub_link_text">TODO List</div></a></div> 	 		   
+</div>
+ {% endif %}
+ {% endblock %}
+
+{% block footer %}{% endblock %}

@@ -1,0 +1,214 @@
+{% extends "admin/base_site.html" %}
+{% block title %}{{ page }} Fix| {{ site_title|default:_('L2 tools management') }}{% endblock %}
+{% block extrahead %}{{ block.super }}
+{{ media }}
+{% endblock %}
+{% block coltype %}colM{% endblock %}
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-form{% endblock %}
+{% block content %}
+<h1>Problem Guide</h1>
+<table >
+        <tr >
+            <td >Problem Workflow:
+ <img src="/static/guide/img/problem-workflow.png" alt="Problem Workflow" /> </td> </tr></table >
+<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 Create & change a Problem</h3>
+<form >
+    <table >
+        <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the host page, click 'Problem', then click the 'New a Problem' link get into the page to create a new Problem.</td>
+            </tr>
+            <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New a Problem: </td> </tr>
+            <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the page, first select a Product which this Problem related to 
+            and then input the other items as usual. </td> </tr><tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The button 'Save as Draft' let you save this Problem as draft which means 
+            that this draft Problem will not send to approve and cannot new a Fix based on this Problem. And this Problem is only visible to you.
+            </td> </tr>
+            <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The button 'Save to Approve' let you save this Problem as formal Problem which means 
+            that this Problem will not be sent to approver and can new a Fix based on this Problem.   And this Problem is visible to everyone who has permission to use this system.
+            </td> </tr><tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Change a Problem: </td> </tr>
+            <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the host page, click 'Problem' get into the Problem index page.</td>
+            </tr><tr ><td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the page, click the Problem title to view the Problem detail and change the Problem. Notes: If a Fix is created based on this 
+            Problem, the Product of this Problem cannot be changed. If the Problem has been approved by the approver, the Problem cannot be changed too.</td> </tr>
+    </table>
+</form>
+<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 Comment a Problem</h3>
+<form >
+    <table >
+        <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the host page, click 'Problem'  get into the Problem index page, click a certain Problem title to comment</td>
+            </tr>
+            <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In this detail page, anyone who has the permission to comment a Problem can 
+            comment the Problem at any time. </td> </tr>
+    </table>
+    </form>
+<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 Approve a Problem</h3>
+<form >
+    <table >
+        <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the host page, click 'Problem'  get into the Problem index page.</td>
+            </tr>
+            <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In this index page, the user who has the permission to approve a Problem can 
+            see a link 'Start Approval' on the right side of a Problem item. Click this item to approve a Problem</td> </tr><tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In approval page, the Opinion cannot be null, input it and click a certain button to finish this job</td> </tr>
+    </table>
+</form>
+<h3>&nbsp;&nbsp;&nbsp;<img src="/static/guide/img/icon_alert.gif" alt="alert" /></h3>
+<form >
+    <table ><tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a> Compared to the former system, the Problem is only related to Product information no Release information related in this system.</td> </tr><tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b> Compared to the former system, the relationship between Fix and Problem is n:1, which means that multiple Fixes can be created based on one Problem.</td> </tr><tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c> If you want to create a Fix, please create or find the related Problem first, because the Fix is based on a Problem.</td> </tr>
+    </table>
+</form>   
+    
+<h1>Fix Guide</h1>
+<table >
+        <tr >
+            <td >Entire Fix Workflow:
+ <img src="/static/guide/img/fix-workflow.png" alt="Fix Workflow" /> </td> </tr></table >
+<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 Create a Fix</h3>
+<form >
+    <table >
+       <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/static/guide/img/icon_alert.gif" alt="Fix Workflow" /> In this step, we assume that you have created the Problem. If not, please refer the Problem Guide in this page.</td>
+        </tr>
+        <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the host page, click 'Problem' link get into the Problem index page to select a Problem click the 'New Fix' on the right side of a Problem to create a new Fix.</td>
+            </tr>
+            <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the new Fix page, first select a Release version. After select a Release, you can save this Fix as a draft fix at any time 
+             or finish all items in this page and save to review to finish this job.</td> </tr><tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/static/guide/img/greenball.gif" alt="" /> 
+            'Primary Reviewer' is the one who confirm your Fix. Please input the reviewer's username, which is the former PMFKey, like 'zhaji25'. 
+            The system will auto-check the validation of the primary reviewer username.
+            </td> 
+            </tr>
+            <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/static/guide/img/greenball.gif" alt="" /> 
+            'Ticket No.' is from Zendesk platform. After inputting the Ticket #, System will auto-check the validation of your input with the Zendesk, so it will take more seconds than usual...
+            </td> </tr>
+            <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/static/guide/img/greenball.gif" alt="" /> 
+            'Component' could be more than one. So please click 'Add Component' to add your component into component list. System only check the components in the component list not in the select box.
+            </td> </tr>
+            <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/static/guide/img/greenball.gif" alt="" /> 
+            'prerequisite fix No.': If you have multiple prerequisite Fix No., separate them with ';', and you can check the validation manually by using button 'validation', it will tell you which Fix No. is invalid.
+            </td> </tr>
+            <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/static/guide/img/greenball.gif" alt="" /> 
+            'Binary File', 'Original Source File' and 'Modified Source File ': Please upload your different files separately. If you save to review this Fix, all these file lists cannot be null.
+            </td> </tr>
+            <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/static/guide/img/greenball.gif" alt="" />  'Save to Review' and 'Save as Draft': 'Save as Draft' let creator save a fix as a draft status, 
+            which means that this fix is only visible to the creator. So after creator selected a release, any other fields can be empty when save it as a draft, 
+            and the creator can edit it later.  'Save to Review' means that the creator save the fix and let others to review it, 
+            so the creator need to completely finish every field in that page.
+            </td> </tr>
+    </table>
+</form>
+<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 Change a Fix</h3>
+<form >
+    <table >
+    <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/static/guide/img/icon_alert.gif" alt=" " />You only can change the Fix which is created by you and the status of the Fix is 'created', 'Draft' or 'not Approved'.</td>
+        </tr>
+        <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the host page, click 'Fix' get into the Fix index page, click Fix title get into the Fix detail page and find the change Fix link to change Fix.</td>
+            </tr>
+    </table>
+    </form>
+<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 Review and Comment a Problem</h3>
+<form >
+    <table >
+         <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;After the Fix has been created, the Primary reviewer can receive an email and a message sent by system to notify to review the Fix.
+            An ordinary reviewer can review and comment.</td>
+         </tr>
+        <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the host page, click 'Fix' to find the Fix and click the title get into the detail page to review or to-do list link directly get into the detail page to review.</td>
+            </tr>
+            <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In this detail page, select 'confirmed' and click 'comment' to finish confirmation or don't select 'confirmed' and click 'comment', which means that you reviewed this Fix but not confirmed.</td> </tr><tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;After the Fix has been created, the Fix can be commented at any time if you have the comment permission</td> </tr>
+            <tr ><td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the Fix index page, you can click the button 'E-mail' to send this Fix to L2 group to review using email system in this system</td> </tr>
+    </table>
+    </form>
+    <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 Approve a Fix</h3>
+<form >
+    <table >
+         <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;After the Fix has been confirmed, the approver can approve the Fix. </td>
+         </tr>
+        <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the host page, click 'Fix' to find the Fix get into the index page or to-do list link directly get into the detail page to review.</td>
+            </tr>
+            <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In this index page, the user who has the permission to approve a Fix can 
+            see a link 'Start Approval' on the right side of a Fix item. Click this item to approve a Fix.</td> </tr><tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the approve page, input the opinion and click a certain button to finish this job</td> </tr>
+    </table>
+ </form>
+ <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5 Publish a Fix to Zendesk</h3>
+ <form >
+    <table >
+         <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/static/guide/img/icon_alert.gif" alt=" " />If this Fix need to be published to Zendesk platform, the creator of this Fix should work with the build team to get the formal binary files ready and upload them into our system.</td>
+         </tr>
+    </table>
+ </form>
+  <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.1 Change the Fix Status</h4>
+<form >
+    <table >
+        <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the host page, click 'Fix' to find the Fix  get into the index page.</td>
+            </tr>
+            <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In this index page, the user who has the permission to publish a Fix can 
+            see a link 'prepare to Create KB' on the right side of a Fix item. Click this button to notify the creator to work with the build team get the binary files ready.</td> </tr><tr >
+    </table>
+ </form>
+   <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.2 Creator upload the new binary files</h4>
+<form >
+    <table >
+        <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the host page, click 'Fix' to find the Fix and click the Fix title to get into the detail page or to-do list link directly get into the detail page to upload new binary files.</td>
+            </tr>
+            <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the bottom detail page, the user who has the permission to upload new a Fix can 
+            see the upload new binary files section. These new binary files should be confirmed by QA, so you need to input a QA using username, we use the PMFKey now.</td> </tr><tr >
+    </table>
+ </form>
+ <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.3 QA confirm the new binary files</h4>
+<form >
+    <table >
+        <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the host page, click 'Fix' to find the Fix and click the Fix title to get into the index page or to-do list link directly get into the detail page to confirm new binary files.</td>
+            </tr>
+            <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the bottom detail page, the user who has the permission to upload new a Fix can 
+            see the 'confirmed' check box. If confirmed, check the 'confirmed', input comments and click 'comment' button to finish confirmation job.</td> </tr><tr >
+    </table>
+ </form>
+  <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.4 Publish Fix to Zendesk</h4>
+<form >
+    <table >
+    <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;After QA confirmed, the Fix is ready to be published to Zendesk (you need permission to finish this job).</td>
+            </tr>
+        <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the host page, click 'Fix' to find the Fix or to-do list link directly get into the index page to publish</td>
+            </tr>
+            <tr >
+            <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the index page, the user who has the permission to publish Fix can 
+            see the 'Ready to Create KB' button. Click this button to publish the Fix to Zendesk, and this operation will take several seconds...</td> </tr><tr >
+    </table>
+ </form>
+{% endblock %}

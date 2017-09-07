@@ -1,0 +1,50 @@
+{% extends "admin/m_base_site.html" %}
+ {% block title %}所有用户{% endblock %} 
+ {% load admin_static %}
+{% block extrahead %} {{ block.super }} 
+<script type="text/javascript" language="javascript" src="{% static 'basedata/js/index.js'%}"></script>
+{{ media }}
+{% endblock %}
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" type="text/css" media="screen" href="/static/css/m_userlist.css" />
+{% endblock %}
+ 
+ {% block coltype %}colM{% endblock %} 
+ {% block bodyclass %}{{ block.super }} 
+ app-{{ opts.app_label}} 
+ model-{{ opts.model_name }} 
+ change-form{% endblock %} 
+		
+{% block content %}
+ {% if user_list %}
+ <div class="user_list"> 
+ {% for user in user_list %}
+ 
+  <a href="{% url 'user:modify_user' user.id %}">
+  <div class="portrait {{user.id}}_portrait" ><div class="{{user.id}}_portrait_intern">  
+    <p  {% if user.is_head_portrait %}class="username"{% endif%} >{{ user.name}}</p></div></div>
+    </a>
+ 
+ {% endfor %}
+ </div>
+  
+ {% endif%}
+ {% endblock %}
+ {% block footer_script %}{{ block.super}}
+ <script>
+    $(document).ready(function() {
+   {% for user in user_list %}
+    
+        $('.{{user.id}}_portrait').css("background-image", "url({{user.head_portrait }})");
+         
+ {% endfor %}
+    });
+ </script>
+ {% endblock %}
+ {% block custom_footer_menu %}
+{{block.super}} 
+<div id="sub_menu_footer"> 
+{% include "admin_user/submenu.html"%}
+</div>
+ {% endblock %}
+   {% block footer %} {% endblock %}

@@ -1,0 +1,40 @@
+{% extends "admin/m_base_site.html" %}
+ {% block title %}所有组{% endblock %} 
+ {% load admin_static %}
+{% block extrahead %} {{ block.super }} 
+{{ media }}
+{% endblock %}
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static "admin/css/m_grouplist.css" %}" />
+{% endblock %}
+ 
+ {% block coltype %}colM{% endblock %} 
+ {% block bodyclass %}{{ block.super }} 
+ app-{{ opts.app_label}} 
+ model-{{ opts.model_name }} 
+ change-form{% endblock %} 
+		
+{% block content %}
+ {% if group_list %}
+ <div class="group_list"> 
+ {% for group in group_list %}
+  <a href="{% url 'user:modify_group' group.id %}"> 
+      <p  class="groupname" >{{ group.name}}</p> 
+       </a>
+ {% endfor %}
+ </div>
+ {% else %} 
+ <a href="{% url 'user:newgroup' %}"> 
+ <p  class="groupname" >还未新建组，点击此处新建</p>
+  </a>
+ {% endif%}
+ {% endblock %}
+ {% block custom_footer_menu %}
+{{block.super}} 
+<div id="sub_menu_footer"> 
+<div class="sub_menu_list_div"><a class="sub_menu_list_a" href="{% url 'user:grouplist'  %}"><i class="fa fa-sitemap sub_menu_list_i"></i><div class="sub_link_text">组管理</div></a></div>	 
+ <div class="sub_menu_list_div"><a class="sub_menu_list_a" href="{% url 'user:newgroup'  %}"><i class="fa fa-plus sub_menu_list_i"></i><div class="sub_link_text">新建组</div></a></div>	 
+<div class="sub_menu_list_div"><a class="sub_menu_list_a" href="{% url 'user:admin_list_users' %}"><i class="fa fa-users sub_menu_list_i"></i><div class="sub_link_text">用户管理</div></a></div> 	 		   
+</div>
+ {% endblock %}
+   {% block footer %} {% endblock %}

@@ -1,0 +1,35 @@
+{% extends "admin/base_site.html" %}
+{% block title %}{{ page }} 此时你在想什么... | {{ site_title|default:_(' ') }}{% endblock %}
+{% block extrahead %}{{ block.super }}
+{% load staticfiles %}
+<script type="text/javascript" language="javascript" src="{% static 'heartbeat/js/action-jquery.js'%}"></script>
+{{ media }}
+{% endblock %}
+ {% block keywords%}map2family 心事 每日一句 推荐{%endblock%}
+  {% block description%} 你的心事写在哪里呢 你也需要像map2family这样的一个地方，静静的写下你的心事{%endblock%}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "heartbeat/css/new.css" %}" />{% endblock %}
+{% block coltype %}colM{% endblock %}
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-form{% endblock %}
+{% block content %}
+
+<form  action="" class="new_form" method="POST">
+    {% csrf_token %}
+        <table class="table_new">
+            <tr>
+               <td> 
+                   此时你在想什么... 
+               </td>
+               </tr>
+                <tr>
+               <td> 
+                  <textarea rows="5" cols="75" id="idwords" name="words" value=""></textarea>
+               </td>
+               </tr>
+               <tr>
+               <td >
+                    <input type="submit" id="id_submit" value="保存" /> 
+               </td>
+           </tr>
+        </table>
+</form>
+{% endblock %}

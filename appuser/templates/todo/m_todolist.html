@@ -1,0 +1,41 @@
+{% extends "admin/m_base_site.html" %}
+ {% block title %}所有组{% endblock %} 
+ {% load admin_static %}
+{% block extrahead %} {{ block.super }} 
+{{ media }}
+{% endblock %}
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static "admin/css/m_todolist.css" %}" />
+{% endblock %}
+ 
+ {% block coltype %}colM{% endblock %} 
+ {% block bodyclass %}{{ block.super }} 
+ app-{{ opts.app_label}} 
+ model-{{ opts.model_name }} 
+ change-form{% endblock %} 
+		
+{% block content %}
+ {% if group_list %}
+ <div class="group_list"> 
+ {% for group in group_list %}
+  <a href="{% url 'user:modify_group' group.id %}"> 
+      <p  class="groupname" >{{ group.name}}</p> 
+       </a>
+ {% endfor %}
+ </div>
+ {% else %} 
+ <a href="{% url 'user:newgroup' %}"> 
+ <p  class="groupname" >该功能正在做ing。<br />将来我们网站的TODO list将会列在这里，列出我们将要做的job，所有dev组的人都可以看到，如果感兴趣就可以接下来某个job，然后自己做，并通过评论功能来更新完成的状态。<br />
+ 本人也可以把想到的好的idea发布为新的job, 供自己或者别人做。</p>
+  </a>
+ {% endif%}
+ {% endblock %}
+ {% block custom_footer_menu %}
+{{block.super}} 
+<div id="sub_menu_footer"> 
+<div class="sub_menu_list_div"><a class="sub_menu_list_a" href="{% url 'user:grouplist'  %}"><i class="fa fa-sitemap sub_menu_list_i"></i><div class="sub_link_text">组管理</div></a></div>	 
+<div class="sub_menu_list_div"><a class="sub_menu_list_a" href="{% url 'user:admin_list_users' %}"><i class="fa fa-users sub_menu_list_i"></i><div class="sub_link_text">用户管理</div></a></div>
+<div class="sub_menu_list_div"><a class="sub_menu_list_a" href="{% url 'task:add'  %}"><i class="fa fa-plus sub_menu_list_i"></i><div class="sub_link_text">新建待办事项</div></a></div>	  	 		   
+</div>
+ {% endblock %}
+   {% block footer %} {% endblock %}

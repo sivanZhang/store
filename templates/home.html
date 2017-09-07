@@ -1,0 +1,172 @@
+{% extends 'base.html' %} {% block css %}
+
+<link href="/static/css/shophome.css" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.css"> {% endblock %} {% block content %}
+
+<header class="container">
+    <div class="row">
+        <a href="javascript:;">
+            <div class="text-center col-xs-2">
+                <i class="fa fa-qrcode block fa-2x"></i><span class="font-sm"> 扫码</span>
+            </div>
+        </a>
+
+        <div class="search il-block col-xs-8">
+            <i class="fa fa-search pull-left" aria-hidden="true"></i>
+            <input class="inp-search" type="text" placeholder="search..." />
+        </div>
+
+        <a href="javascript:;">
+            <div class="text-center col-xs-2"><i class="fa fa-commenting-o block fa-2x"></i> <span class="font-sm"> 消息</span>
+            </div>
+        </a>
+    </div>
+</header>
+
+<!-- swiper1 -->
+<div id="swiper-container" class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="/static/img/sli1.jpg"></div>
+        <div class="swiper-slide"><img src="/static/img/sli3.jpg"></div>
+        <div class="swiper-slide"><img src="/static/img/sli2.jpg"></div>
+    </div>
+</div>
+<!-- swiper1 end-->
+
+<!-- swiper2 -->
+
+<div class="swiper-container swiper-container-2 subnav-wrap">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <a href="javascript:;">
+                <div class="pull-left submenu">
+                    <img src="/static/img/demo.jpg"> 菜单名称
+                </div>
+            </a>
+            <a href="javascript:;">
+                <div class="pull-left submenu">
+                    <img src="/static/img/demo.jpg"> 菜单名称
+                </div>
+            </a>
+            <a href="javascript:;">
+                <div class="pull-left submenu">
+                    <img src="/static/img/demo.jpg"> 菜单名称
+                </div>
+            </a>
+            <a href="javascript:;">
+                <div class="pull-left submenu">
+                    <img src="/static/img/demo.jpg"> 菜单名称
+                </div>
+            </a>
+            <a href="javascript:;">
+                <div class="pull-left submenu">
+                    <img src="/static/img/demo.jpg"> 菜单名称
+                </div>
+            </a>
+            <a href="javascript:;">
+                <div class="pull-left submenu">
+                    <img src="/static/img/demo.jpg"> 菜单名称
+                </div>
+            </a>
+            <a href="javascript:;">
+                <div class="pull-left submenu">
+                    <img src="/static/img/demo.jpg"> 菜单名称
+                </div>
+            </a>
+            <a href="javascript:;">
+                <div class="pull-left submenu">
+                    <img src="/static/img/demo.jpg"> 菜单名称
+                </div>
+            </a>
+            <a href="javascript:;">
+                <div class="pull-left submenu">
+                    <img src="/static/img/demo.jpg"> 菜单名称
+                </div>
+            </a>
+            <a href="javascript:;">
+                <div class="pull-left submenu">
+                    <img src="/static/img/demo.jpg"> 菜单名称
+                </div>
+            </a>
+
+
+        </div>
+        <div class="swiper-slide">
+            <a href="javascript:;">
+                <div class="pull-left submenu">
+                    <img src="/static/img/demo.jpg"> 菜单名称
+                </div>
+            </a>
+            <a href="javascript:;">
+                <div class="pull-left submenu">
+                    <img src="/static/img/demo.jpg"> 菜单名称
+                </div>
+            </a>
+            <a href="javascript:;">
+                <div class="pull-left submenu">
+                    <img src="/static/img/demo.jpg"> 菜单名称
+                </div>
+            </a>
+            <a href="javascript:;">
+                <div class="pull-left submenu">
+                    <img src="/static/img/demo.jpg"> 菜单名称
+                </div>
+            </a>
+            <a href="javascript:;">
+                <div class="pull-left submenu">
+                    <img src="/static/img/demo.jpg"> 菜单名称
+                </div>
+            </a>
+            <a href="javascript:;">
+                <div class="pull-left submenu">
+                    <img src="/static/img/demo.jpg"> 菜单名称
+                </div>
+            </a>
+            <a href="javascript:;">
+                <div class="pull-left submenu">
+                    <img src="/static/img/demo.jpg"> 菜单名称
+                </div>
+            </a>
+            <a href="javascript:;">
+                <div class="pull-left submenu">
+                    <img src="/static/img/demo.jpg"> 菜单名称
+                </div>
+            </a>
+            <a href="javascript:;">
+                <div class="pull-left submenu">
+                    <img src="/static/img/demo.jpg"> 菜单名称
+                </div>
+            </a>
+            <a href="javascript:;">
+                <div class="pull-left submenu">
+                    <img src="/static/img/demo.jpg"> 菜单名称
+                </div>
+            </a>
+
+
+        </div>
+    </div>
+    <div class="swiper-pagination2 pagination-2"></div>
+</div>
+<!-- swiper2 end-->
+
+<div class="">wasdsad </div>
+
+{% endblock %} {% block js %}
+
+<script type="text/javascript" src="/static/js/shop.js"></script>
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        prevButton: '.swiper-button-prev',
+        nextButton: '.swiper-button-next',
+        autoplay: 3000,
+        speed: 300,
+    });
+    var mySwiper2 = new Swiper('.swiper-container-2', {
+        pagination: '.swiper-pagination2',
+        prevButton: '.swiper-button-prev2',
+        nextButton: '.swiper-button-next2',
+    });
+</script>
+{% endblock %}

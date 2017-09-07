@@ -1,0 +1,93 @@
+{% extends "admin/base_site.html" %}
+{% block title %}{{page_title}}{% endblock %}
+{% block extrahead %}{{ block.super }}
+    {% ifequal page "user_register" %}
+    <script type="text/javascript" language="javascript" src="/static/js/user-register.js"></script>
+    {% else %}
+    <script type="text/javascript" language="javascript" src="/static/js/find_pwd.js"></script>
+    {% endifequal%}
+{{ media }}
+{% endblock %}
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" media="screen"  href="/static/css/register.css" />
+{% endblock %}
+{% block coltype %}colM{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-form{% endblock %}
+{% block page_title_h1 %} | {{page_title}}{% endblock %}
+{% block content %}
+<form id="id_user_form"action="save_user" method="POST">
+<div class="main_content">
+ <table>
+        <tr  >
+            <td>
+                <label >登录邮箱:</label>
+            </td>
+            <td style="width:200px">
+                <input type="text" class="form-control input"  id="id_email"  name ="email" value=""/>
+            </td>
+            </tr>
+        <tr>
+         <td></td>
+            <td><input class="btn btn-primary" type="button" id="{% ifequal page "user_register" %}id_get_verify_code{% else %}id_get_verify_code_fpwd{%endifequal%}" value="获取邮箱验证码" /></td>
+        </tr>
+        </table>
+        <div id="div_register">
+        <table>
+        <tr>
+       
+            <td>
+                <label >邮箱验证码:</label>
+            </td>
+            <td>
+            <input type="text" class="form-control input"  id="id_verify_code"  name ="verifycode" value=""/> 
+            </td>
+            <td class="star" >*</td>
+        </tr>
+         {% ifequal page "user_register" %}
+        <tr  >
+            <td>
+                <label >姓名：</label>
+            </td>
+            <td>
+            <input type="text" class="form-control input"  id="id_name" name ="name"  value=""/> 
+            </td>
+            <td class="star" >*</td>
+        </tr>
+        {% endifequal %}
+       <tr>
+            <td>
+                <label >输入{% ifequal page "find_password" %}新{% endifequal %}密码:</label>
+            </td>
+            <td>
+            <input type="password" class="form-control input"  id="id_pwd_1"  name ="pwd_1" value=""/> 
+            </td>
+            <td class="star" >*</td>
+        </tr>
+        <tr  >
+            <td>
+                <label >再次输入密码：</label>
+            </td>
+            <td>
+            <input type="password" class="form-control input"  id="id_pwd_2" name ="pwd_2"  value=""/> 
+            </td>
+            <td class="star" >*</td>
+        </tr>
+        <tr  >
+        <td>
+            <input type="submit" class="btn btn-primary" id="id_submit_new_user" value="{% ifequal page "user_register" %}提交注册{% else %}修改密码{% endifequal %}" />  
+         </td>
+        </tr>
+       
+    </table>
+     </div>
+        <div class="div_err">
+              
+        </div>
+        </div>
+    <script type="text/javascript">
+        document.getElementById('id_email').focus();
+</script>
+</form>
+{% endblock %}
