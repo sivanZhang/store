@@ -46,4 +46,6 @@ class CodeManager(models.Manager):
             return True
         except self.model.DoesNotExist:
             return False
-         
+
+class AdaptorCodeManager(CodeManager):
+    pass

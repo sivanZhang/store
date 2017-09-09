@@ -5,8 +5,8 @@ from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser,PermissionsMixin
 )
 from store.models import BaseDate
-from appuser.usermanager import UserManager
-from appuser.codemanager import CodeManager
+from appuser.usermanager import AdaptorUserManager
+from appuser.codemanager import AdaptorCodeManager
 
 class BaseUser(BaseDate, AbstractBaseUser, PermissionsMixin):
     """
@@ -107,7 +107,7 @@ class BaseUser(BaseDate, AbstractBaseUser, PermissionsMixin):
         return self.name
 
 class AdaptorUser(BaseUser):
-    objects  = UserManager()
+    objects  = AdaptorUserManager()
     class Meta:
         db_table = 'user'
 
@@ -141,4 +141,4 @@ class VerifyCode(models.Model):
     #type = 1, the code used to find password
     type = models.CharField( u'type',max_length=5,default='0')
 
-    objects = CodeManager()
+    objects = AdaptorCodeManager()

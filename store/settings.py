@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'appuser',
     'category',
+    'product',
 ]
 
 MIDDLEWARE = [
@@ -171,3 +172,5 @@ SMTP_SERVER_PWD     ='Youxiang889886'
 
 
 PROJECTNAME = '共享商城'
+
+LOGIN_URL = '/users/login/'

@@ -33,7 +33,7 @@
         var warningAlert = $('<div class="alert alert-warning alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong></strong><span class="alert-content"></span> </div> ');
         var dangerAlert = $('<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong></strong><span class="alert-content"></span> </div> ');
 
-        var createInput = $('<div class="input-group"><input type="text" class="form-control"><span class="input-group-btn"><button type="button" class="btn btn-default btn-success confirm"></button> </span><span class="input-group-btn"><button type="button" class="btn btn-default cancel"></button> </span> </div> ');
+        var createInput = $('<div class="input-group"><input type="text" class="form-control form-controladd"><span class="input-group-btn"><button type="button" class="btn btn-default btn-success confirm confirmadd"></button> </span><span class="input-group-btn"><button type="button" class="btn btn-default cancel"></button> </span> </div> ');
 
     options = $.extend(defaults, options);
 
@@ -76,8 +76,48 @@
                     $(createInput).find('.confirm').click(function () {
                         if ($(createInput).find('input').val() === '')
                             return;
+                        
+                        //向数据库添加数据开始
+                        var categoryid;
+                        var newname = $('.form-controladd').val();
+                        if ($('.li_selected').length) {
+                            var id = $('.li_selected').attr('categoryid');
+                            
+                            $.ajax({
+                                url: "/category/categories/",
+                                type: "post",
+                                data: {
+                                    'name': newname,
+                                    'parentid': id,
+                
+                                },
+                                context: document.body,
+                                success: function(data) {
+                                    categoryid  = data['id'];
+                                    window.location.reload();
+                                }
+                            });
+                            //window.location.reload();
+                  
+                        } else {
+                            $.ajax({
+                                url: "/category/categories/",
+                                type: "post",
+                                data: {
+                                    'name': newname,
+                                },
+                                context: document.body,
+                                success: function(data) {
+                                    categoryid  = data['id'];
+                                    window.location.reload();
+                                }
+                            });
+                            //window.location.reload();
+                        }
+                        
+                        //向数据库添加数据结束
                         var selected = getSelectedItems();
-                        var item = $('<li><span><span class="glyphicon glyphicon-file"></span><a href="javascript: void(0);">' + $(createInput).find('input').val() + '</a> </span></li>');
+                        var item = $('<li ><span><span class="glyphicon glyphicon-file"></span><a href="javascript: void(0);">' + $(createInput).find('input').val() + '</a> </span></li>');
                         $(item).find(' > span > span').attr('title', options.i18n.collapseTip);
                         $(item).find(' > span > a').attr('title', options.i18n.selectTip);
                         if (selected.length <= 0) {
@@ -130,6 +170,8 @@
 
                             });
                         }
+                        
+
                         $(createInput).remove();
                     });
                     $(createInput).find('.cancel').text(options.i18n.cancelButtonLabel);
@@ -216,7 +258,7 @@
                         .addClass('glyphicon-folder-open')
                         .removeClass('glyphicon-folder-close');
                 }
-                e.stopPropagation();
+               // e.stopPropagation();
             });
 
             // selectable, only single select
@@ -224,14 +266,20 @@
                 $(easyTree).find('li > span > a').attr('title', options.i18n.selectTip);
                 $(easyTree).find('li > span > a').click(function (e) {
                     var li = $(this).parent().parent();
+                    var categoryid ;
+                    categoryid = li.attr('categoryid');
                     if (li.hasClass('li_selected')) {
                         $(this).attr('title', options.i18n.selectTip);
                         $(li).removeClass('li_selected');
+                        
+                        
+                        $('#categoryid').val('');
                     }
                     else {
                         $(easyTree).find('li.li_selected').removeClass('li_selected');
                         $(this).attr('title', options.i18n.unselectTip);
-                        $(li).addClass('li_selected');
+                        $(li).addClass('li_selected');  
+                        $('#categoryid').val(categoryid);
                     }
 
                     if (options.deletable || options.editable || options.addable) {

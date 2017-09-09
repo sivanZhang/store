@@ -1,11 +1,9 @@
 from django.conf.urls import include, url
-from django.contrib import admin
 from django.conf import settings
-from django.conf.urls.static import static
-  
-from category import views_ui
+from django.contrib.auth.decorators import login_required
+from category.views_ui import CategoryView
+from django.views.decorators.csrf import csrf_exempt
 
-urlpatterns = [ 
-    url(r'^manage/$', views_ui.manage, name='manage'), 
-    url(r'^categories/$', views_ui.manage, name='manage'),   
+urlpatterns = [  
+    url(r'^categories/$', csrf_exempt(login_required(CategoryView.as_view())), name='categories'),   
 ]

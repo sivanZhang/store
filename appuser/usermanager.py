@@ -64,4 +64,5 @@ class UserManager(BaseUserManager):
         except self.model.MultipleObjectsReturned:
             return False
 
- 
+class AdaptorUserManager(UserManager):
+    pass

@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block css %}
+
+<link href="/static/products/css/products.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/static/plugins/simditor-2.3.6/css/simditor.css" />
+{% endblock %}
+
+{% block content %}
+ 
+    <textarea id="editor" placeholder="Balabala" autofocus></textarea>
+    {% endblock %}
+ 
+
+
+
+ {% block js %}
+<script type="text/javascript" src="/static/plugins/simditor-2.3.6/js/module.js"></script>
+<script type="text/javascript" src="/static/plugins/simditor-2.3.6/js/hotkeys.js"></script>
+<script type="text/javascript" src="/static/plugins/simditor-2.3.6/js/uploader.js"></script>
+<script type="text/javascript" src="/static/plugins/simditor-2.3.6/js/simditor.js"></script>
+<script src="/static/plugins/tinymce_4.6.6/tinymce/tinymce.min.js"></script>
+<script src="/static/plugins/tinymce_4.6.6/tinymce/languages/zh_CN.js"></script>
+<script>
+  
+    tinymce.init({
+  selector: 'textarea',
+  height: 500,
+  menubar: false,
+  plugins: [
+    'advlist autolink lists link image charmap print preview anchor textcolor',
+    'searchreplace visualblocks code fullscreen',
+    'insertdatetime media table contextmenu paste code help'
+  ],
+  toolbar: 'insert | undo redo |  styleselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+  content_css: [
+    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+    '//www.tinymce.com/css/codepen.min.css']
+});
+tinymce.addI18n('zh_CN', {
+  
+});
+</script>
+{% endblock %}

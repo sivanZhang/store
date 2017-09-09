@@ -17,3 +17,6 @@ class CategoryManager(models.Manager):
         获取类别对象item的同级类别
         """
         return self.filter(level = item.level)
+
+class AdaptorCategoryManager(CategoryManager):
+    pass

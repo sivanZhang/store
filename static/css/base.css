@@ -1,11 +1,10 @@
-/*font-sm = 12px */
-
-
 /* 初始化区域 */
 
 body {
     margin: 0px;
     padding: 0px;
+    font-family: Microsoft YaHei;
+    padding-bottom: 40px;
 }
 
 a {
@@ -50,6 +49,26 @@ div.nav {
     display: inline-block;
 }
 
-.font-sm {
+.f12 {
     font-size: 12px;
+}
+
+.f10 {
+    font-size: 10px;
+}
+
+.f14 {
+    font-size: 14px;
+}
+
+.f16 {
+    font-size: 16px;
+}
+
+.f18 {
+    font-size: 18px;
+}
+
+i.fa-2x+div {
+    font-size: 10px;
 }

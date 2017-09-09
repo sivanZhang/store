@@ -1,34 +1,18 @@
-{% extends 'base.html' %} {% block css %}
-
+{% extends 'base.html' %} {% block css %} {% load hierarchy %}
 <link href="/static/plugins/easy-tree/easyTree.css" rel="stylesheet">
 <link href="/static/category/css/category.css" rel="stylesheet"> {% endblock %} {% block content %}
 
-<div id="main">
-</div>
 <div class='easy-tree'>
     <ul>
-        <li>Example 1</li>
-        <li>Example 2
-            <ul>
-                <li>Example 1</li>
-                <li>Example 2</li>
-                <li>Example 3</li>
-                <li>Example 4</li>
-            </ul>
-        </li>
-        <li>Example 3</li>
-        <li>Example 4</li>
-        <ul>
+        {% for unit in categories %} {{unit|hierarchy|safe}} {% endfor %}
+    </ul>
 </div>
+<input type="hidden" value="" id="categoryid" />
+
 </span> {% endblock %} {% block js %}
 <script type="text/javascript " src="/static/js/shop.js "></script>
-<script type="text/javascript " src="/static/plugins/easy-tree/easyTree.js "></script>
-<script>
-    $('.easy-tree').EasyTree({
-        addable: true,
-        editable: true,
-        deletable: true
-    });
-</script>
 
+<script type="text/javascript " src="/static/plugins/easy-tree/easyTree.js "></script>
+
+<script type="text/javascript " src="/static/category/css/category.js "></script>
 {% endblock %}

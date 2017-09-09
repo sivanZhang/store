@@ -7,7 +7,7 @@
     <div class="row">
         <a href="javascript:;">
             <div class="text-center col-xs-2">
-                <i class="fa fa-qrcode block fa-2x"></i><span class="font-sm"> 扫码</span>
+                <i class="fa fa-qrcode block fa-2x"></i><span class="f12"> 扫码</span>
             </div>
         </a>
 
@@ -17,7 +17,7 @@
         </div>
 
         <a href="/">
-            <div class="text-center col-xs-2"><i class="fa fa-commenting-o block fa-2x"></i> <span class="font-sm"> 消息</span>
+            <div class="text-center col-xs-2"><i class="fa fa-commenting-o block fa-2x"></i> <span class="f12"> 消息</span>
             </div>
         </a>
     </div>
@@ -48,14 +48,14 @@
                     <img src="/static/img/demo.jpg"> 注册
                 </div>
             </a>
-            <a href="{% url 'category:manage' %}">
+            <a href="{% url 'category:categories' %}">
                 <div class="pull-left submenu">
                     <img src="/static/img/demo.jpg"> 类别
                 </div>
             </a>
-            <a href="javascript:;">
+            <a href="{% url 'product:products' %}">
                 <div class="pull-left submenu">
-                    <img src="/static/img/demo.jpg"> 菜单名称
+                    <img src="/static/img/demo.jpg"> 商品
                 </div>
             </a>
             <a href="javascript:;">
@@ -150,10 +150,10 @@
 </div>
 <!-- swiper2 end-->
 
-<div class="">  </div>
+<div class="aj"> </div>
 
 {% endblock %} {% block js %}
-
+<script type="text/javascript" src="/static/js/swiper-3.4.2.jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/shop.js"></script>
 <script>
     var mySwiper = new Swiper('.swiper-container', {

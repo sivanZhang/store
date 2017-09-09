@@ -23,6 +23,7 @@ urlpatterns = [
 
 
     url(r'^login/$', views_ui.login, name='login'),  
+    url(r'^logout/$', views_ui.logout, name='logout'),  
     url(r'^register/$', views_ui.register, name='register'),  
     #url(r'^save_portrait/$', views.save_portrait, name='save_portrait'),#save portrait
 ]

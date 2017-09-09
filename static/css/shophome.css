@@ -15,15 +15,15 @@ header {
 .submenu img {
     display: block;
     margin: 10% auto 5%;
-    width: 50%;
+    width: 55%;
     border-radius: 50%;
-    border: 2px solid #eee;
+    border: 1px solid #ccc;
 }
 
 .search {
-    background-color: #fff;
-    border: 1px solid #eee;
-    color: #000;
+    color: #fff;
+    background-color: rgba(225, 225, 225, 0.15);
+    border: 1px solid #ccc;
     height: 30px;
     ;
 }
@@ -45,10 +45,6 @@ header {
     top: -20px;
     z-index: 10;
     background-color: #fff;
-}
-
-i.fa-2x+div {
-    font-size: 10px;
 }
 
 .search input {

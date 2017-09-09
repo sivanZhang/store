@@ -40,7 +40,10 @@ def login(request):
             email       = request.POST['email']
             password      = request.POST['password']
             user = auth.authenticate(email=email, password=password)
-            next_url = request.POST.get('next')
+            if 'next' in request.GET: 
+                next_url = request.GET.get('next')
+            else:
+                next_url = request.POST.get('next')
             context ={} 
             if user:
                 # User is valid.  Set request.user and persist user in the session
@@ -49,13 +52,13 @@ def login(request):
                 auth.login(request, user)
                 # redirect to the value of next if it is entered, otherwise
                 # to settings.APP_WEB_PC_LOGIN_URL
-         
+                next_url
                 if next_url:
                     #after login, return to the previous page, but if the previous page is logout, 
                     #then return to the host page
                     if 'logout' not in str(next_url):
                          return redirect(next_url)
-              
+            
                 if isMble:
                     return render(request, 'home.html', context)
                 else:
@@ -84,7 +87,10 @@ def login(request):
             return render(request, 'user/m_login.html', context)
         else:  
             return render(request, 'user/login.html', context)
-            
+def logout(request):
+    auth.logout(request)
+    return render(request, 'home.html', {})
+   
 @csrf_exempt
 def register(request):
     content = {}
