@@ -7,16 +7,20 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from category.models import Category
 from product.models import AdaptorProduct
+from common.fileupload import FileUpload
+from django.utils.decorators import method_decorator
 
 class ProductView(View):
+    
     def get(self, request):
         content = {} 
-        products = AdaptorProduct.objects.get_published()
+        products = AdaptorProduct.objects.all()
         content['products'] = products
-        return render(request, 'new.html', content)
+        return render(request, 'detail.html', content)
 
-    @login_required
-    @csrf_exempt
+  
+    @method_decorator(login_required)
+    @method_decorator(csrf_exempt)
     def post(self, request):
         """
         新建产品
@@ -41,7 +45,8 @@ class ProductView(View):
                 # detail【可选字段】： 商品的详情
         """
         result = {}
-        user = request.user
+        pdb.set_trace()
+        
         if 'method' in request.POST:
             method = request.POST['method'].lower()
             if method == 'put':# 修改
@@ -50,9 +55,19 @@ class ProductView(View):
                 return self.delete(request)
             elif method == 'fallback': # 下架
                 return self.fallback(request)
-            
+            elif method == 'create': # 创建
+                return self.create(request)
+            elif method == 'detail_file': # 上传详情图片
+                return HttpResponse('geu')
+        else:
+            return self.create(request)
+        
+    
+    def create(self, request):
+        """创建"""
         # 新建商品
         # title\category字段是必须的
+        user = request.user
         if 'title' in request.POST and 'categoryid' in request.POST: 
             title = request.POST['title'].strip()
             categoryid = request.POST['categoryid'].strip()
@@ -87,9 +102,8 @@ class ProductView(View):
         else:
             result['status'] ='error'
             result['msg'] ='Need name in POST'
-   
-        return HttpResponse(json.dumps(result), content_type="application/json")
-    
+        return httpjson(result)
+
     def put(self, request):
         """
         修改分类名称

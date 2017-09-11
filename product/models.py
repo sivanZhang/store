@@ -4,7 +4,7 @@ from appuser.models import AdaptorUser as User
 from category.models import Category
 from django.utils.translation import ugettext_lazy as _
 from product.manager import AdaptorProductManager
-from store.models import BaseDate
+from basedatas.models import BaseDate
 
 class Product(BaseDate):
     DRAFT = 0

@@ -3,3 +3,4 @@
 */migrations/*
 /docs/*
 /static/plugins/
+*.json

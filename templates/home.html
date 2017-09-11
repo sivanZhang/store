@@ -1,8 +1,6 @@
 {% extends 'base.html' %} {% block css %}
-
-<link href="/static/css/shophome.css" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.css"> {% endblock %} {% block content %}
-
+<link href="/static/css/shophome.css" rel="stylesheet">
 <header class="container">
     <div class="row">
         <a href="javascript:;">
@@ -13,7 +11,7 @@
 
         <div class="search i-block col-xs-8">
             <i class="fa fa-search pull-left" aria-hidden="true"></i>
-            <input class="inp-search" type="text" placeholder="search..." />
+            <input class="inp-search" type="text" />
         </div>
 
         <a href="/">
@@ -35,7 +33,7 @@
 
 <!-- swiper2 -->
 
-<div class="swiper-container swiper-container-2 subnav-wrap">
+<div class="swiper-container swiper-container-2 subnav-wrap f12">
     <div class="swiper-wrapper">
         <div class="swiper-slide">
             <a href="{% url 'users:login' %}">
@@ -156,17 +154,7 @@
 <script type="text/javascript" src="/static/js/swiper-3.4.2.jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/shop.js"></script>
 <script>
-    var mySwiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        prevButton: '.swiper-button-prev',
-        nextButton: '.swiper-button-next',
-        autoplay: 3000,
-        speed: 300,
-    });
-    var mySwiper2 = new Swiper('.swiper-container-2', {
-        pagination: '.swiper-pagination2',
-        prevButton: '.swiper-button-prev2',
-        nextButton: '.swiper-button-next2',
-    });
+    //轮播图 宽高比
+    $('#swiper-container').height($('#swiper-container').width() * 0.6 + 'px');
 </script>
 {% endblock %}

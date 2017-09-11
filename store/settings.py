@@ -174,3 +174,6 @@ SMTP_SERVER_PWD     ='Youxiang889886'
 PROJECTNAME = '共享商城'
 
 LOGIN_URL = '/users/login/'
+
+FILE_MAX_SIZE = 512*1024 #
+FILE_COMPRESSION_RIO = 75 #75%, [0-100]

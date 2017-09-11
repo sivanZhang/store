@@ -1,0 +1,29 @@
+#swiper-container {
+    margin-top: 36px;
+}
+
+a {
+    display: inline-block;
+}
+
+.slide-1 {
+    background: url(/static/img/sli1.jpg) no-repeat fixed center/cover;
+}
+
+.slide-2 {
+    background: url(/static/img/sli2.jpg) fixed center center/cover;
+}
+
+.slide-3 {
+    background: url(/static/img/sli3.jpg) fixed center center/cover;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+ul li {
+    display: inline;
+}

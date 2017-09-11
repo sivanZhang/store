@@ -4,7 +4,7 @@ from django.contrib import auth
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser,PermissionsMixin
 )
-from store.models import BaseDate
+from basedatas.models import BaseDate
 from appuser.usermanager import AdaptorUserManager
 from appuser.codemanager import AdaptorCodeManager
 

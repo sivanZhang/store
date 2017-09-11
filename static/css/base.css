@@ -61,14 +61,33 @@ div.nav {
     font-size: 14px;
 }
 
-.f16 {
-    font-size: 16px;
+.f20 {
+    font-size: 20px;
 }
 
 .f18 {
     font-size: 18px;
 }
 
+.f24 {
+    font-size: 24px;
+}
+
 i.fa-2x+div {
     font-size: 10px;
+}
+
+.header {
+    position: fixed;
+    top: 0px;
+    background-color: #fff;
+    z-index: 10;
+    width: 100%;
+    height: 36px;
+    overflow: hidden;
+    padding: 0px 10px;
+}
+
+.cut-off {
+    border-bottom: 1px solid #ccc;
 }

@@ -3,19 +3,33 @@
 <link href="/static/products/css/products.css" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.css"> {% endblock %} {% block content %}
 
-<header class="font-18">
-    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+<header class="header f20">
+    <a class="pull-left" href="javascript:;"><i class="glyphicon glyphicon-menu-left" aria-hidden="true"></i></a>
+    <a class="pull-right" href="javascript:;"><i class="glyphicon glyphicon-share-alt"></i></a>
 </header>
 
 <!-- swiper1 -->
 <div id="swiper-container" class="swiper-container">
     <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="/static/img/sli1.jpg"></div>
-        <div class="swiper-slide"><img src="/static/img/sli3.jpg"></div>
-        <div class="swiper-slide"><img src="/static/img/sli2.jpg"></div>
+        <div class="swiper-slide slide-1"></div>
+        <div class="swiper-slide slide-2"></div>
+        <div class="swiper-slide slide-3"></div>
     </div>
 </div>
 <!-- swiper1 end-->
+
+<div class="item_name f24">
+    商品名称
+</div>
+<p>此处可以叠加一些简要说明</p>
+<div>￥188.8
+</div>
+<div class="cut-off"></div>
+<div>
+    商品规格选择
+    <i class="glyphicon glyphicon-option-horizontal"></i></div>
+<div class="cut-off"></div>
+
 
 
 
@@ -23,17 +37,19 @@
 <script type="text/javascript" src="/static/js/swiper-3.4.2.jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/shop.js"></script>
 <script>
-    var mySwiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        prevButton: '.swiper-button-prev',
-        nextButton: '.swiper-button-next',
-        autoplay: 3000,
-        speed: 300,
-    });
-    var mySwiper2 = new Swiper('.swiper-container-2', {
-        pagination: '.swiper-pagination2',
-        prevButton: '.swiper-button-prev2',
-        nextButton: '.swiper-button-next2',
-    });
+    $('#swiper-container').height($('#swiper-container').width() * 0.9 + 'px');
 </script>
+{% endblock %} {% block menu %}
+<!--menu-->
+<div class="nav">
+    <ul>
+        <li><i class="fa fa-heart-o" aria-hidden="true"></i></li>
+        <li><i class="glyphicon glyphicon-shopping-cart"></i></li>
+
+        <li><i class="glyphicon glyphicon-send"></i>
+        </li>
+    </ul>
+    <div></div>
+    <div>购买</div>
+</div>
 {% endblock %}
