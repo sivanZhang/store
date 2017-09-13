@@ -2,28 +2,84 @@
     margin-top: 36px;
 }
 
-a {
-    display: inline-block;
-}
-
-.slide-1 {
-    background: url(/static/img/sli1.jpg) no-repeat fixed center/cover;
-}
-
-.slide-2 {
-    background: url(/static/img/sli2.jpg) fixed center center/cover;
-}
-
-.slide-3 {
-    background: url(/static/img/sli3.jpg) fixed center center/cover;
-}
-
 ul {
     list-style-type: none;
     margin: 0px;
     padding: 0px;
 }
 
-ul li {
-    display: inline;
+li {
+    display: inline-block;
+}
+
+.swiper-slide img {
+    height: 100%;
+}
+
+.sub-nav {
+    position: relative;
+}
+
+nav {
+    height: 36px;
+    border-top: 1px solid #aaa;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: -37px;
+    z-index: 10;
+    color: #fff;
+    text-align: center;
+    width: 100%
+}
+
+nav ul {
+    height: 100%;
+}
+
+.header a {
+    height: 100%;
+    line-height: 36px;
+}
+
+nav li {
+    display: inline-block;
+    line-height: 36px;
+    width: 30%;
+}
+
+li.active {
+    position: relative;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de;
+}
+
+
+/*箭头选中效果  */
+
+.active::after {
+    border-style: solid;
+    border-width: 0px 6px 6px;
+    border-color: transparent;
+    border-bottom-color: #fff;
+    content: "";
+    display: inline-block;
+    margin: 0 auto;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+}
+
+.tb-wrap {
+    padding: 20px 3px 20px;
+}
+
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.msg {
+    color: #646A75;
 }

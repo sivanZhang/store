@@ -19,13 +19,13 @@ input {
 
 /* 通用样式区域 */
 
-div.nav div.pull-left {
+div.menu div.pull-left {
     text-align: center;
     box-sizing: border-box;
     width: 25%;
 }
 
-div.nav {
+div.menu {
     background-color: #fff;
     color: #17324D;
     z-index: 1;
@@ -33,7 +33,7 @@ div.nav {
     top: 100%;
     width: 100%;
     transform: translateY(-100%);
-    border-top: 1px solid #eee;
+    border-top: 1px solid #ddd;
     padding-top: 2px;
 }
 
@@ -69,10 +69,6 @@ div.nav {
     font-size: 18px;
 }
 
-.f24 {
-    font-size: 24px;
-}
-
 i.fa-2x+div {
     font-size: 10px;
 }
@@ -86,8 +82,9 @@ i.fa-2x+div {
     height: 36px;
     overflow: hidden;
     padding: 0px 10px;
+    border-bottom: 1px solid #ddd;
 }
 
 .cut-off {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ddd;
 }
