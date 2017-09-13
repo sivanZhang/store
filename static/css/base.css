@@ -5,9 +5,22 @@ body {
     padding: 0px;
     font-family: Microsoft YaHei;
     padding-bottom: 40px;
+    font-size: 12px;
 }
 
 a {
+    color: inherit;
+}
+
+a:link,
+a:visited {
+    text-decoration: none;
+}
+
+a:hover,
+a:focus,
+a:active {
+    text-decoration: none;
     color: inherit;
 }
 
@@ -33,12 +46,12 @@ div.menu {
     top: 100%;
     width: 100%;
     transform: translateY(-100%);
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #eee;
     padding-top: 2px;
 }
 
 .activate {
-    color: rgb(254, 112, 60);
+    color: #f84545;
 }
 
 .block {
@@ -63,6 +76,10 @@ div.menu {
 
 .f20 {
     font-size: 20px;
+}
+
+.f16 {
+    font-size: 16px;
 }
 
 .f18 {
