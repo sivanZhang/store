@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title2%}商城{% endblock%}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link type="text/css" href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/static/css/base.css"> {% block css %} {% endblock %}
+    <script type="text/javascript" src="/static/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="/static/bootstrap/dist/js/bootstrap.js"></script>
+</head>
+
+<body>
+
+    <body>
+
+        <!--页眉-->
+        <div class="header-wrap">
+            <header class="clearfix font-gray">
+                <ul class="pull-left">
+                    <a href="javascript:;">
+                        <li>官方网站</li>
+                    </a>
+                    <a href="javascript:;">
+                        <li>购买指南</li>
+                    </a>
+                    <li>订单满¥99顺丰包邮，支持支付宝、微信、银联、顺丰到付、分期支付。</li>
+                </ul>
+                <ul class="pull-right ">
+                    <a href="javascript:;">
+                        <li><i class="fa fa-shopping-cart" aria-hidden="true"></i>购物车<span class="badge">4</span></li>
+                    </a>
+                    <a href="javascript:;">
+                        <li class="bd-left">登录</li>
+                    </a>
+                    <a href="javascript:;">
+                        <li class="bd-left">注册</li>
+                    </a>
+                    <a href="javascript:;">
+                        <li class="bd-left">中国大陆 (简体中文 / ¥ CNY)</li>
+                    </a>
+                </ul>
+            </header>
+        </div>
+
+        <!--菜单开始-->
+        <div class="nav-wrap">
+            <nav class="clearfix">
+                <ul class="pull-left">
+                    <li class="logo"><img src="/static/img/logo.png" height="25px"> </li>
+                    <li>商品分类<i class="fa fa-angle-down" aria-hidden="true"></i></li>
+                    <li>使用场景<i class="fa fa-angle-down" aria-hidden="true"></i></li>
+                    <li>优惠<i class="fa fa-angle-down" aria-hidden="true"></i></li>
+                    <a href="javascript:;">
+                        <li>移动版商城</li>
+                    </a>
+                </ul>
+                <form id="search-form" class="pull-right">
+                    <input class="search" type="text" placeholder="搜索商品" />
+                    <button class="search pull-right" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </form>
+            </nav>
+        </div>
+        <!--菜单结束-->
+
+
+
+        <section>
+            <!-- 路径导航 -->
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Library</a></li>
+                <li class="active">Data</li>
+                <div class="title">发布商品 </div>
+            </ol>
+
+
+            <form action="" method="post" class="form-horizontal">
+                <div class="form-group">
+                    <label for="id" class="col-sm-2 control-label">商品类型：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name=id "" id="id" placeholder="">
+                    </div>
+                    <label for="id" class="col-sm-2 control-label">商品编号：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name=id "" id="id" placeholder="">
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">商品名称：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name=id "" id="id" placeholder="">
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="col-sm-2 control-label">商品简介：</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="message" rows="3">
+                        </textarea>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="id" class="col-sm-2 control-label">商品库存：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name=id "" id="id" placeholder="">
+                    </div>
+                    <label for="id" class="col-sm-2 control-label">计量单位：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name=id "" id="id" placeholder="">
+                    </div>
+
+                </div>
+                <div class="form-group bg-white">
+                    <label for="message" class="col-sm-2 control-label">规格设置：</label>
+                    <div class="col-sm-10 format">
+                        <div class="form-inline">
+
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" id="exampleInputName2" placeholder="名称">
+                            </div>
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" id="exampleInputEmail2" placeholder="规格">
+                            </div>
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" id="exampleInputName2" placeholder="价格">
+                            </div>
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" id="exampleInputEmail2" placeholder="库存">
+                            </div>
+                            <button type="submit" class="btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i></button>
+
+                        </div>
+                        <table class="table table-hover my-hover table-bordered">
+                            <tr>
+                                <th>名称</th>
+                                <th>型号</th>
+                                <th>价格</th>
+                                <th>库存</th>
+
+                                <th>删除</th>
+                            </tr>
+                            <tr>
+                                <td>鞋码</td>
+                                <td>37</td>
+                                <td>37元</td>
+                                <td>37</td>
+                                <td><a href="javascript;:"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>鞋码</td>
+                                <td>37</td>
+                                <td>37元</td>
+                                <td>37</td>
+                                <td><a href="javascript;:"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="form-group bg-white">
+                    <label for="message" class="col-sm-2 control-label">属性设置：</label>
+                    <div class="col-sm-10 format">
+                        <div class="form-inline">
+
+                            <div class="form-group">
+                                <label for="exampleInputName2">Name</label>
+                                <input type="text" class="form-control" id="exampleInputName2" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail2">velue</label>
+                                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="">
+                            </div>
+                            <button type="submit" class="btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i></button>
+
+                        </div>
+                        <table class="table table-hover table-bordered my-hover">
+                            <tr>
+                                <th>名称</th>
+                                <th>型号</th>
+                                <th>删除</th>
+                            </tr>
+                            <tr>
+                                <td>鞋码</td>
+                                <td>37</td>
+                                <td><a href="javascript;:"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>鞋码</td>
+                                <td>37</td>
+                                <td><a href="javascript;:"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </section>
+        <div class="submit">
+            <button type="button" class="btn btn-info my-btn">发表</button>
+
+            <span class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-default my-btn">存稿</button>
+                <button type="button" class="btn btn-default">
+                        <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                </button>
+
+            </span>
+        </div>
+
+        <script>
+            var oForm = document.getElementById('search-form');
+            var oInp = oForm.firstElementChild;
+            oInp.addEventListener('focus', addBottom, true);
+
+            function addBottom() {
+                oForm.style.cssText = 'border-bottom:1px solid #44a8f2';
+                oInp.style.cssText = 'outline:none';
+            }
+            oInp.addEventListener('blur', removeBottom, false);
+
+            function removeBottom() {
+                oForm.style.cssText = 'border-bottom:1px solid #FFF;'
+
+            }
+            $('fa-trash-o').click(function() {
+                $('fa-trash-o').parents.delete();
+
+            })
+        </script>
+
+    </body>
+</body>
+
+</html>

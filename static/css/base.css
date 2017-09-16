@@ -1,107 +1,104 @@
-/* 初始化区域 */
-
 body {
     margin: 0px;
     padding: 0px;
-    font-family: Microsoft YaHei;
-    padding-bottom: 40px;
-    font-size: 12px;
+    background-color: #f7f8f9;
+}
+
+li {
+    list-style-type: none;
+}
+
+ul {
+    padding-left: 0px;
+    margin-bottom: 0px;
 }
 
 a {
     color: inherit;
 }
 
-a:link,
-a:visited {
-    text-decoration: none;
-}
-
 a:hover,
 a:focus,
 a:active {
     text-decoration: none;
-    color: inherit;
 }
 
-input {
-    -webkit-appearance: none;
-    /*delete ISO browser shadow*/
+.bd-left {
+    border-left: 1px solid #ddd;
 }
 
-
-/* 通用样式区域 */
-
-div.menu div.pull-left {
-    text-align: center;
-    box-sizing: border-box;
-    width: 25%;
+header {
+    width: 1080px;
+    margin: 0px auto;
+    padding: 10px 0px;
 }
 
-div.menu {
-    background-color: #fff;
-    color: #17324D;
-    z-index: 1;
-    position: fixed;
-    top: 100%;
-    width: 100%;
-    transform: translateY(-100%);
-    border-top: 1px solid #eee;
-    padding-top: 2px;
+.header-wrap {
+    background-color: rgb(247, 248, 249);
 }
 
-.activate {
-    color: #f84545;
+nav {
+    width: 1080px;
+    height: 100%;
+    margin: 0px auto;
+    font-size: 14px;
+    line-height: 50px;
 }
 
-.block {
-    display: block;
+.font-gray {
+    color: #707473;
 }
 
-.i-block {
+.search {
+    border: 0px;
+    background-color: inherit;
+}
+
+li {
     display: inline-block;
 }
 
-.f12 {
-    font-size: 12px;
+header ul.pull-left li {
+    margin-right: 16px;
 }
 
-.f10 {
-    font-size: 10px;
+header ul.pull-right li {
+    padding: 0px 16px;
 }
 
-.f14 {
-    font-size: 14px;
+header ul.pull-right {
+    margin-right: -16px;
 }
 
-.f20 {
-    font-size: 20px;
+a:hover {
+    color: #f84545;
 }
 
-.f16 {
-    font-size: 16px;
+nav ul.pull-left li {
+    padding-right: 32px;
 }
 
-.f18 {
-    font-size: 18px;
+nav li:hover {
+    color: #f84545;
+    font-size: 15px;
 }
 
-i.fa-2x+div {
-    font-size: 10px;
-}
-
-.header {
-    position: fixed;
-    top: 0px;
+.nav-wrap {
     background-color: #fff;
-    z-index: 10;
     width: 100%;
-    height: 36px;
-    overflow: hidden;
-    padding: 0px 10px;
-    border-bottom: 1px solid #ddd;
 }
 
-.cut-off {
-    border-bottom: 1px solid #ddd;
+.fa-angle-down {
+    margin-left: 8px;
+}
+
+.fa-angle-right {
+    margin-left: 64px;
+}
+
+#search-form {
+    width: 280px;
+    padding: 0 10px;
+    line-height: 2;
+    margin-top: 10px;
 }

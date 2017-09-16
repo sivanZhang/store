@@ -9,14 +9,27 @@ from category.models import Category
 from product.models import AdaptorProduct
 from common.fileupload import FileUpload
 from django.utils.decorators import method_decorator
+from mobile.detectmobilebrowsermiddleware import DetectMobileBrowser
+
+dmb     = DetectMobileBrowser()
 
 class ProductView(View):
     
     def get(self, request):
+        isMble  = dmb.process_request(request)
         content = {} 
         products = AdaptorProduct.objects.all()
         content['products'] = products
-        return render(request, 'detail.html', content)
+        if 'new' in request.GET:
+            if isMble:
+                return render(request, 'm_new.html', content)
+            else:
+                return render(request, 'new.html', content)
+        else:
+            if isMble:
+                return render(request, 'm_detail.html', content)
+            else:
+                return render(request, 'detail.html', content)
 
   
     @method_decorator(login_required)

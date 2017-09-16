@@ -1,0 +1,85 @@
+section {
+    width: 1080px;
+    margin: 20px auto;
+}
+
+div.submit {
+    height: 50px;
+    position: fixed;
+    bottom: 0px;
+    border-top: 1px solid #ddd;
+    width: 100%;
+    text-align: center;
+    background-color: #fff;
+    padding-top: 8px;
+}
+
+.my-btn {
+    width: 150px;
+}
+
+span.btn-group {
+    display: inline-block;
+}
+
+i.fa-shopping-cart {
+    margin-right: 5px;
+}
+
+span.badge {
+    background-color: #f84545;
+}
+
+.breadcrumb {
+    width: 1080px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 0px;
+}
+
+.format {
+    padding: 12px 12px;
+    color: #333;
+}
+
+.gray-white {
+    background: linear-gradient(to bottom, #fff, #f7f8f9)
+}
+
+.title {
+    color: #f84545;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.form-horizontal .control-label {
+    text-align: center;
+}
+
+.btn-info {
+    margin-right: 100px;
+}
+
+.form-horizontal .form-group {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+table {
+    margin: 20px 0;
+}
+
+table:first-child {
+    text-align: center;
+}
+
+i.fa-trash-o,
+i.fa-plus {
+    color: #d9534f;
+}
+
+.fa-trash-o {
+    cursor: pointer;
+}

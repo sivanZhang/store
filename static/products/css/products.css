@@ -49,7 +49,7 @@
     
     li.active {
         position: relative;
-        font-weight: 700;
+        font-size: 16px;
     }
     /*箭头选中效果  */
     
@@ -70,7 +70,7 @@
     }
     
     .tb-wrap {
-        padding: 20px 3px 20px;
+        padding: 0px 3px 10px;
     }
     
     a:hover {
@@ -104,12 +104,14 @@
         border-top: 1px solid #ddd;
         border-bottom: 1px solid #ddd;
         margin-bottom: 10px;
-        box-shadow: 0px 5px 5px -2px #ddd;
         background-color: #fff;
     }
     
+    #main {
+        background-position: 0 -10px;
+    }
+    
     .main-top {
-        box-shadow: 0px 5px 5px -2px #ddd;
         border-top: 1px solid #ddd;
         border-bottom: 1px solid #ddd;
         margin-bottom: 10px;
@@ -118,7 +120,7 @@
     }
     
     footer {
-        height: 40px;
+        height: 50px;
         border: 0px;
         position: fixed;
         bottom: 0px;
@@ -126,6 +128,7 @@
         overflow: hidden;
         background-color: #fff;
         z-index: 100;
+        color: #646A75;
     }
     
     footer div {
@@ -133,7 +136,7 @@
     }
     
     .menu-left {
-        width: 75%;
+        width: 70%;
         border-top: 1px solid #ddd;
         padding-right: 20px;
         height: 100%;
@@ -146,21 +149,27 @@
     .menu-left li {
         width: 32%;
         height: 100%;
+        padding: 6px 0;
+    }
+    
+    .menu-left i {
+        margin-bottom: 3px;
     }
     
     .menu-right {
-        width: 25%;
+        width: 30%;
         background-color: #f84545;
         position: relative;
-        height: 40px;
-        line-height: 40px;
+        height: 100%;
+        line-height: 50px;
         color: #fff;
         font-size: 16px;
+        text-align: center;
     }
     
     .menu-right::after {
         border-style: solid;
-        border-width: 40px 12px 40px;
+        border-width: 50px 25px 50px;
         border-color: transparent;
         border-top-color: #f84545;
         border-right-color: #f84545;
@@ -176,7 +185,7 @@
     }
     
     #myTabContent {
-        margin-top: 10px;
+        padding-top: 10px;
     }
     
     #comment {
@@ -184,7 +193,9 @@
     }
     
     .discuss {
-        padding: 10px 0px;
+        padding: 10px 0px 0px;
+        border-bottom: 1px solid #ddd;
+        background-color: #fff;
     }
     
     .user-img img {
@@ -195,7 +206,6 @@
     
     .comment {
         margin-left: 50px;
-        border-bottom: 1px solid #ddd;
     }
     
     .rating {
@@ -217,4 +227,9 @@
     
     .thumbs-up i {
         margin-right: 6px;
+    }
+    
+    table {
+        margin-bottom: 0px;
+        background-color: #fff;
     }

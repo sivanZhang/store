@@ -1,0 +1,52 @@
+{%load admin_static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title2%}商城{% endblock%}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link type="text/css" href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/static/css/m_base.css"> {% block css %} {% endblock %}
+    <script type="text/javascript" src="/static/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="/static/bootstrap/dist/js/bootstrap.js"></script>
+</head>
+
+<body>
+    {% block content %} {% endblock %} {% block menu %}
+    <!--menu-->
+    <div class="menu">
+
+        <a class=" {{home}}" href="{% url 'home' %}">
+            <div class="menu-act pull-left ">
+                <img src="/static/img/m1.png">
+                <div>主页</div>
+            </div>
+        </a>
+        <a class=" {{category}}" href="">
+            <div class="pull-left ">
+                <img src="/static/img/if3.png">
+                <div>分类</div>
+            </div>
+        </a>
+        <a class=" {{trolly}}" href="">
+            <div class="pull-left ">
+                <img src="/static/img/if5.png">
+                <div>购物车</div>
+            </div>
+        </a>
+        <a class="mine {{mine}}" href="">
+            <div class="pull-left ">
+                <img src="/static/img/ic2.png">
+                <div>我的</div>
+            </div>
+        </a>
+    </div>
+    <!-- menu end-->
+    {% endblock %}
+    <!---->
+    {% block js %} {% endblock %}
+</body>
+
+</html>

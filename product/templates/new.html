@@ -1,22 +1,157 @@
 {% extends 'base.html' %} {% block css %}
 
-<link href="/static/products/css/products.css" rel="stylesheet">
-{% endblock %}
+<link href="/static/products/css/new.css" rel="stylesheet"> {% endblock %} {% block content %}
+<form action="" method="post">
+    {%csrf_token%}
+    <input type="file" name="" />
+    <input type="hidden" name="method" value="detail_file" />
+    <input type="submit" value="upload" />
+</form>
 
-{% block content %}
-    <form action="" method="post">
-        {%csrf_token%}
-       <input type="file" name="" />
-       <input type="hidden" name="method" value="detail_file" />
-       <input type="submit" value="upload" />
+<section>
+    <!-- 路径导航 -->
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="active">Data</li>
+        <div class="title">发布商品 </div>
+    </ol>
+
+
+    <form action="" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label for="id" class="col-sm-2 control-label">商品类型：</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name=id "" id="id" placeholder="">
+            </div>
+            <label for="id" class="col-sm-2 control-label">商品编号：</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name=id "" id="id" placeholder="">
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">商品名称：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name=id "" id="id" placeholder="">
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="message" class="col-sm-2 control-label">商品简介：</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" name="message" rows="3">
+                        </textarea>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="id" class="col-sm-2 control-label">商品库存：</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name=id "" id="id" placeholder="">
+            </div>
+            <label for="id" class="col-sm-2 control-label">计量单位：</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name=id "" id="id" placeholder="">
+            </div>
+
+        </div>
+        <div class="form-group gray-white">
+            <label for="message" class="col-sm-2 control-label">规格设置：</label>
+            <div class="col-sm-10 format">
+                <div class="form-inline">
+
+                    <div class="form-group">
+
+                        <input type="text" class="form-control" id="name" placeholder="名称">
+                    </div>
+                    <div class="form-group">
+
+                        <input type="text" class="form-control" id="rule" placeholder="规格">
+                    </div>
+                    <div class="form-group">
+
+                        <input type="text" class="form-control" id="price" placeholder="价格">
+                    </div>
+                    <div class="form-group">
+
+                        <input type="text" class="form-control" id="inventory" placeholder="库存">
+                    </div>
+                    <button type="button" class="btn btn-default btn-test"><i class="fa fa-plus" aria-hidden="true"></i></button>
+
+                </div>
+                <table class="table table-hover table-bordered" id="tb_rule">
+                    <tr>
+                        <th>名称</th>
+                        <th>型号</th>
+                        <th>价格</th>
+                        <th>库存</th>
+
+                        <th>删除</th>
+                    </tr>
+                    <tr>
+                        <td>鞋码</td>
+                        <td>37</td>
+                        <td>37元</td>
+                        <td>37</td>
+                        <td><i class="fa fa-trash-o " aria-hidden="true"></i></td>
+                    </tr>
+
+                </table>
+            </div>
+
+        </div>
+        <div class="form-group gray-white">
+            <label for="message" class="col-sm-2 control-label">属性设置：</label>
+            <div class="col-sm-10 format">
+                <div class="form-inline">
+
+                    <div class="form-group">
+                        <label for="exampleInputName2"> property</label>
+                        <input type="text" class="form-control" id="pro" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">value</label>
+                        <input type="text" class="form-control" id="val" placeholder="">
+                    </div>
+                    <button id="add-pro" type="button" class="btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i></button>
+
+                </div>
+                <table class="table table-hover table-bordered" id="my-tb">
+                    <tr>
+                        <th>名称</th>
+                        <th>型号</th>
+                        <th>删除</th>
+                    </tr>
+                    <tr>
+                        <td>鞋码</td>
+                        <td>37</td>
+                        <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
+                    </tr>
+
+                </table>
+            </div>
+
+        </div>
+
     </form>
-    <textarea id="editor" placeholder="Balabala" autofocus></textarea>
-{% endblock %}
- 
 
+</section>
+<div class="submit">
+    <button type="button" class="btn btn-info my-btn">发表</button>
 
+    <span class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-default my-btn">存稿</button>
+                <button type="button" class="btn btn-default">
+                        <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                </button>
 
- {% block js %}
+            </span>
+</div>
+{% endblock %} {% block js %}
 <script src="/static/plugins/tinymce_4.6.6/tinymce/tinymce.min.js"></script>
 <script src="/static/plugins/tinymce_4.6.6/tinymce/languages/zh_CN.js"></script>
 <script>
@@ -35,10 +170,13 @@
         toolbar: 'insert | undo redo |  styleselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
         content_css: [
             '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-            '//www.tinymce.com/css/codepen.min.css']
-        });
-        tinymce.addI18n('zh_CN', {
-        
-        });
+            '//www.tinymce.com/css/codepen.min.css'
+        ]
+    });
+    tinymce.addI18n('zh_CN', {
+
+    });
 </script>
+<script src="/static/products/js/new.js" rel="stylesheet"></script>
+
 {% endblock %}
