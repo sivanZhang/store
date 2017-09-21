@@ -9,7 +9,7 @@ from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import View
-from django.http import Http404
+from django.http import Http404, QueryDict
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from category.models import Category
@@ -36,10 +36,13 @@ def change(request, pk):
     isMble  = dmb.process_request(request)
     content = {}
     content['mediaroot'] = settings.MEDIA_URL
+    categories = Category.objects.all()  
+    content['categories'] = categories
+
     if request.method == 'GET':
         try:
              product = AdaptorProduct.objects.get(pk=pk)
-             content['product'] =product
+             content['product'] =product 
         except AdaptorProduct.DoesNotExist:
             raise Http404
         if 'pic' in request.GET:
@@ -47,7 +50,7 @@ def change(request, pk):
                 return render(request, 'm_pic.html', content)
             else:
                 return render(request, 'pic.html', content)
-        else:
+        else: 
             if isMble:
                 return render(request, 'm_new.html', content)
             else:
@@ -173,6 +176,8 @@ class ProductView(View):
                 # price【可选字段】： 商品的计量单位，如：个、只
                 # parameters【可选字段】： 商品的自定义规格，是一个寄送数据
                 # detail【可选字段】： 商品的详情
+        
+        修改产品
         """
         result = {} 
         
@@ -225,7 +230,7 @@ class ProductView(View):
                     status = request.POST['status'].strip()
                     product.status = status
                  
-                if 'rules' in request.POST: 
+                if 'rules' in request.POST:  
                     rules = request.POST['rules'].strip()
                     AdaptorRule.objects.mul_create(rules, product)
                 product.save()
@@ -245,7 +250,7 @@ class ProductView(View):
         修改分类名称
         """
         result = {}  
-        data = QueryDict(request.body.decode('utf-8')) 
+        data = QueryDict(request.body.decode('utf-8'))  
         if 'id' in data:
             productid = data['id']
             try:
@@ -272,9 +277,16 @@ class ProductView(View):
                 if 'parameters' in data:
                     parameters = data['parameters']
                     product.parameters = parameters 
+                if 'description' in request.POST:
+                    description = request.POST['description'].strip()
+                    product.description = description 
                 if 'detail' in data:
                     detail = data['detail']
-                    product.detail = detail
+                    product.detail = detail 
+                if 'rules' in request.POST:  
+                    product.adaptorrule_set.all().delete()
+                    rules = request.POST['rules'].strip()
+                    AdaptorRule.objects.mul_create(rules, product)
                 
                 product.save() 
                 result['status'] ='ok'

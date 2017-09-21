@@ -1,11 +1,13 @@
-{% extends 'base.html' %} {% block css %}
-
+{% extends 'base.html' %}
+{% block pagetitle%}修改商品信息{% endblock%}
+ {% block css %}
 <link href="/static/products/css/new.css" rel="stylesheet"> {% endblock %} {% block content %}
 <form action="" method="post">
-    {%csrf_token%}
-    <input type="file" name="" />
-    <input type="hidden" name="method" value="detail_file" />
-    <input type="submit" value="upload" />
+    {%csrf_token%} 
+    <input type="hidden" name="method" value="detail_file" /> 
+    {% if product %}
+    <input type="hidden" name="productid" id="productid" value="{{product.id}}" /> 
+    {% endif %}
 </form>
 
 <section>
@@ -18,13 +20,17 @@
     </ol>
 
 
-    <form action="" method="post" class="form-horizontal">
+    <div  class="form-horizontal">
         <div class="form-group">
             <label for="id" class="col-sm-2 control-label">商品类型：</label>
             <div class="col-sm-4">
                 <select class="form-control " id="sel-category">
                     {% for category in categories %}
-                            <option value ="{{category.id}}">{{category.name}}</option>
+                           {% if product.category.id == category.id %}
+                                <option value ="{{category.id}}" selected="selected">{{category.name}}</option>
+                                {% else %}
+                                <option value ="{{category.id}}"  >{{category.name}}</option>
+                           {% endif %}
                     {% endfor%}
                 </select>
             </div>
@@ -103,8 +109,7 @@
         <div class="form-group gray-white">
             <label for="message" class="col-sm-2 control-label">属性设置：</label>
             <div class="col-sm-10 format">
-                <div class="form-inline">
-
+                <div class="form-inline"> 
                     <div class="form-group">
                         <input type="text" class="form-control" id="pro" placeholder="属性名称">
                     </div>
@@ -112,65 +117,72 @@
 
                         <input type="text" class="form-control" id="val" placeholder="属性内容">
                     </div>
-                    <button id=" add-pro " type="button " class="btn btn-primary blue-btn"><i class="fa fa-plus " aria-hidden="true "></i></button>
+                    <button id="add-pro" type="button " class="btn btn-primary blue-btn">
+                        <i class="fa fa-plus " aria-hidden="true "></i>
+                    </button>
 
                 </div>
-                <table class="table table-hover table-bordered " id="pro-table ">
+                <table class="table table-hover table-bordered " id="pro-table">
                     <tr>
                         <th>名称</th>
                         <th>型号</th>
                         <th>删除</th>
                     </tr>
-                    <tr class="parameter_tr ">
-                        <td class="key ">鞋4码</td>
-                        <td class="value ">JK37</td>
-                        <td><i class="fa fa-trash-o " aria-hidden="true "></i></td>
-                    </tr>
-                    <tr class="parameter_tr ">
-                        {{product.parameters}}
-                    </tr>
+                    
                 </table>
             </div>
 
         </div>
 
-    </form>
+    </div>
     <div class="msg "> </div>
-    <div class="submit ">
-
-
+    <div class="submit "> 
         <span class="btn-group " role="group " aria-label="... ">
-                    <button type="button " class="btn btn-primary product-btn " status="1 ">发布</button>
-                    <button type="button " class="btn btn-default product-btn " status="0 ">存草稿</button>
-                    <button type="button " class="btn btn-default ">
-                            <i class="fa fa-file-text-o " aria-hidden="true "></i>
-                    </button>
+            <button type="button " class="btn btn-primary product-btn " status="1 ">发布</button>
+            <button type="button " class="btn btn-default product-btn " status="0 ">存草稿</button>
+            <button type="button " class="btn btn-default ">
+            <i class="fa fa-file-text-o " aria-hidden="true "></i>
+        </button>
      </span>
     </div>
 </section>
-
 {% endblock %} {% block js %}
 <script src="/static/plugins/tinymce_4.6.6/tinymce/tinymce.min.js "></script>
 <script src="/static/plugins/tinymce_4.6.6/tinymce/languages/zh_CN.js "></script>
+{% if product %}
+<script>
+    var items = {{product.parameters|safe}};
+    var html =''; 
+    for(var i = 0 ; i < items.length; i++){
+       html= ' <tr class="parameter_tr ">'+
+                '<td class="key ">'+items[i]['key']+'</td>'+
+                '<td class="value ">'+items[i]['value']+'</td>'+
+                '<td><i class="fa fa-trash-o " aria-hidden="true "></i></td>'+
+            '</tr>';
+        $('#pro-table>tbody').append(html);
+    }
+    
+</script>
+{% endif %}
 <script>
     tinymce.init({
-        selector: 'textarea',
-        height: 500,
-        menubar: false,
-        plugins: [
-            'advlist autolink lists link image charmap print preview anchor textcolor',
-            'searchreplace visualblocks code fullscreen',
-            'insertdatetime media table contextmenu paste code help'
-        ],
-        toolbar: 'insert | undo redo |  styleselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
-        content_css: [
-            '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-            '//www.tinymce.com/css/codepen.min.css'
-        ]
-    });
-    tinymce.addI18n('zh_CN', {
+    selector: 'textarea',
+    height: 500,
+    menubar: false,
+    plugins: [
+        'advlist autolink lists link image charmap print preview anchor textcolor',
+        'searchreplace visualblocks code fullscreen',
+        'insertdatetime media table contextmenu paste code help'
+    ],
+    toolbar: 'insert | undo redo |  styleselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+    content_css: [
+        '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+        '//www.tinymce.com/css/codepen.min.css'
+    ]
+});
+tinymce.addI18n('zh_CN', {
 
-    });
+});
 </script>
 <script src="/static/products/js/new.js " rel="stylesheet "></script>
 

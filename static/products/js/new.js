@@ -1,3 +1,5 @@
+
+
 //  搜索栏样式改变
 var oForm = document.getElementById('search-form');
 var oInp = oForm.firstElementChild;
@@ -94,12 +96,12 @@ $('.product-btn').click(function() {
     var obj_para = {};
     parameters_tr.each(function() {
         obj_para['key'] = $(this).find('.key').text();
-        obj_para['value'] = $(this).find('.value').text();
-
+        obj_para['value'] = $(this).find('.value').text(); 
         parameters.push(obj_para);
         obj_para = {};
     });
-
+  
+    
 
     data = {
         'method': 'create',
@@ -112,6 +114,12 @@ $('.product-btn').click(function() {
         'status': $(this).attr('status'),
         'csrfmiddlewaretoken': getCookie('csrftoken'),
     };
+    var product = $('#productid');
+    if (product.length > 0){
+        //3
+        data['id'] = product.val();
+        data['method'] = 'put'; //修改产品
+    }
 
     var html = '<div class="alert alert-danger" role="alert">####</div>';
     $.ajax({
@@ -167,3 +175,5 @@ $(".ta-wrap input").on('keyup input', function(event) {
     }
     count.text(len + "/50");
 });
+
+///以下是修改product时用到的js
