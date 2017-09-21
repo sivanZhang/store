@@ -3,7 +3,6 @@
 body {
     margin: 0px;
     padding: 0px;
-    font-family: Microsoft YaHei;
     padding-bottom: 40px;
     font-size: 12px;
 }
@@ -51,7 +50,7 @@ div.menu {
 }
 
 .activate {
-    color: #f84545;
+    color: #f44336;
 }
 
 .block {
@@ -79,11 +78,15 @@ div.menu {
 }
 
 .f16 {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .f18 {
-    font-size: 18px;
+    font-size: 16px;
+}
+
+.f26 {
+    font-size: 26px;
 }
 
 i.fa-2x+div {
@@ -93,10 +96,10 @@ i.fa-2x+div {
 .header {
     position: fixed;
     top: 0px;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.8);
     z-index: 10;
     width: 100%;
-    height: 36px;
+    height: 40px;
     overflow: hidden;
     padding: 0px 10px;
     border-bottom: 1px solid #ddd;

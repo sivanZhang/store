@@ -1,0 +1,1 @@
+$('.ware-img').height($('.ware-img').width() + 'px');

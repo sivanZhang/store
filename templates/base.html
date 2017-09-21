@@ -7,20 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link type="text/css" href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/static/css/m_jquery.message.css">
     <link type="text/css" rel="stylesheet" href="/static/css/base.css"> {% block css %} {% endblock %}
-    <script type="text/javascript" src="/static/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="/static/bootstrap/dist/js/bootstrap.js"></script>
+    
 </head>
 
 <body>
     {% block menu %}
     <!--页眉-->
     <div class="header-wrap">
-        <header class="clearfix font-gray">
+        <header class="clearfix">
             <ul class="pull-left">
-                <a href="{% url 'home' %}">
-                    <li>主页</li>
-                </a>
+
                 <a href="javascript:;">
                     <li>购买指南</li>
                 </a>
@@ -28,16 +26,16 @@
             </ul>
             <ul class="pull-right ">
                 <a href="javascript:;">
-                    <li><i class="fa fa-shopping-cart" aria-hidden="true"></i>购物车<span class="badge">4</span></li>
+                    <li><i class="fa fa-shopping-cart fa-shop" aria-hidden="true"></i>购物车<span class="badge">4</span></li>
                 </a>
                 <a href="javascript:;">
-                    <li class="bd-left">登录</li>
+                    <li>登录</li>
                 </a>
                 <a href="javascript:;">
-                    <li class="bd-left">注册</li>
+                    <li>注册</li>
                 </a>
                 <a href="javascript:;">
-                    <li class="bd-left">中国大陆 (简体中文 / ¥ CNY)</li>
+                    <li>中国大陆 (简体中文 / ¥ CNY)</li>
                 </a>
             </ul>
         </header>
@@ -48,8 +46,10 @@
         <nav class="clearfix">
             <ul class="pull-left">
                 <li class="logo"><img src="/static/img/logo.png" height="25px"> </li>
+                <a href="{% url 'home' %}">
+                    <li>主页</li>
+                </a>
                 <li>商品分类<i class="fa fa-angle-down" aria-hidden="true"></i></li>
-                <li>使用场景<i class="fa fa-angle-down" aria-hidden="true"></i></li>
                 <li>优惠<i class="fa fa-angle-down" aria-hidden="true"></i></li>
                 <a href="javascript:;">
                     <li>移动版商城</li>
@@ -63,10 +63,13 @@
     </div>
     <!--菜单结束-->
     {% endblock %} 
-    {% block content %} {% endblock %} 
+    {% block content %} {% endblock %}
+    {% block footer %} footer{% endblock %}
+    <script type="text/javascript" src="/static/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.message.js"></script>
 
-    {% block js %} {% endblock %}
-   
-</body> 
+    {% block js %} {% endblock %} 
+</body>
 
 </html>

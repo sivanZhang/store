@@ -8,11 +8,11 @@ class BaseDate(models.Model):
     class Meta:
         abstract = True
 
-def get_image_path(instance, filename):
-    return os.path.join('photos', str(instance.id), filename)
+ 
 
 class Pic(models.Model):
-    image = models.ImageField(upload_to=get_image_path) 
+    url = models.CharField(max_length=4096) 
+    name = models.CharField(max_length=4096, default='') 
     class Meta:
         abstract = True
         db_table = 'pic'

@@ -1,6 +1,9 @@
 *.pyc
 */__pycache__/*
 */migrations/*
-/docs/*
+/docs/
 /static/plugins/
+/media/
 *.json
+*/docs/*
+docs/通用商城设计文档.docx

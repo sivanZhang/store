@@ -1,22 +1,18 @@
-{% extends 'm_base.html' %} {% block css %}
-
+{% extends 'm_base.html' %} {% block css %} {% load staticfiles %}
 <link href="/static/products/css/products.css" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.css"> {% endblock %} {% block content %}
 
-<header class="header f20">
-    <a class="pull-left" href="http://192.168.1.102:8000/"><i class="glyphicon glyphicon-menu-left" aria-hidden="true"></i></a>
-    <a class="pull-right" href="javascript:;"><i class="glyphicon glyphicon-share-alt"></i></a>
+<header class="header">
+    <i class="fa fa-angle-left pull-left back f26" aria-hidden="true"></i>
+    <i class="fa fa-external-link pull-right f20"></i>
 </header>
-
 <!-- swiper -->
 <div id="swiper-container" class="swiper-container text-center">
     <div class="swiper-wrapper">
+        {% for pic in product.productpic_set.all %}
         <div class="swiper-slide slide-1">
-            <img src='/static/img/sexy.png' /> </div>
-        <div class="swiper-slide slide-2">
-            <img src='/static/img/sexy2.png' /> </div>
-        <div class="swiper-slide slide-3">
-            <img src='/static/img/sexy3.png' /> </div>
+            <img src='{{mediaroot}}{{pic.url}}' /> </div>
+        {% endfor %}
     </div>
 </div>
 <!-- swiper end-->
@@ -27,10 +23,7 @@
         <ul id="myTab">
 
             <li class="active"> <a href="#main" data-toggle="tab">商品 </a></li>
-
-
             <li><a href="#details" data-toggle="tab">详情</a></li>
-
 
             <li><a href="#comment" data-toggle="tab">评价</a></li>
 
@@ -48,10 +41,10 @@
     <div class="tab-pane fade in active" id="main">
         <div class="main-top">
             <div class="item_name f18">
-                商品名称
+                {{product.title}}
             </div>
-            <div class="msg">此处可以叠加一些简要说明</div>
-            <div class="price">￥188.8<s class="msg f12">￥288</s>
+            <div class="msg">{{product.description|default:''}} {{product.adaptorrule_set.all.0.name }} {{product.adaptorrule_set.all.0.unit }}</div>
+            <div class="price">￥{{product.adaptorrule_set.all.0.price }}
             </div>
         </div>
         <a href="javascript:;">
@@ -229,6 +222,9 @@
 <script type="text/javascript " src="/static/js/swiper-3.4.2.jquery.min.js "></script>
 <script type="text/javascript " src="/static/js/shop.js "></script>
 <script>
-    $('#swiper-container').height($('#swiper-container').width() * 0.9 + 'px');
+    $('#swiper-container').height($('#swiper-container').width() + 'px');
+    $('.back').click(function() {
+        history.back();
+    });
 </script>
 {% endblock %}

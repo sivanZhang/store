@@ -1,39 +1,56 @@
 {% extends 'base.html' %} {% block css %}
+{% load staticfiles %}
+<link href="/static/products/css/list.css" rel="stylesheet"> {% endblock %} {% block content %}
+<section>
+    <!-- 路径导航 -->
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li class="active">商品列表</li>
+        <div class="title">商品列表 </div>
+    </ol>
+    <div class="table-wrap">
+        <table class="table table-hover">
+            {% for product in products %}
+            <tr>
+                <td><a href="{% url 'product:detail' product.id %}">{{product.id}}</a></td>
+                <td rowspan="2"><a href="{% url 'product:detail' product.id %}">
+                    <img src="{{mediaroot}}{{product.thumbnail}}" class="thumbnail" /></a>
+                </td>
+                <td> {{product.adaptorrule_set.all.0.price}}</td>
+                <td> </td>
 
-<link href="/static/products/css/products.css" rel="stylesheet">
-<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.css"> {% endblock %} {% block content %}
-
-<header class="font-18">
-    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
-</header>
-
-<!-- swiper1 -->
-<div id="swiper-container" class="swiper-container">
-    <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="/static/img/sli1.jpg"></div>
-        <div class="swiper-slide"><img src="/static/img/sli3.jpg"></div>
-        <div class="swiper-slide"><img src="/static/img/sli2.jpg"></div>
+                <td> {{product.desc}}</td>
+                <td>
+                    <a href="{% url 'product:change' product.id %}">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'product:change' product.id %}?pic">
+                        编辑图片
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                    <td> </td>
+                     
+                    <td> <a href="{% url 'product:detail' product.id %}">{{product.title|truncatechars:'40'}}</a> </td>
+                    <td> </td>
+    
+                    <td> {{product.desc}}</td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
     </div>
-</div>
-<!-- swiper1 end-->
-
-
-
+</section>
 {% endblock %} {% block js %}
 <script type="text/javascript" src="/static/js/swiper-3.4.2.jquery.min.js"></script>
-<script type="text/javascript" src="/static/js/shop.js"></script>
-<script>
-    var mySwiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        prevButton: '.swiper-button-prev',
-        nextButton: '.swiper-button-next',
-        autoplay: 3000,
-        speed: 300,
-    });
-    var mySwiper2 = new Swiper('.swiper-container-2', {
-        pagination: '.swiper-pagination2',
-        prevButton: '.swiper-button-prev2',
-        nextButton: '.swiper-button-next2',
-    });
-</script>
+<script type="text/javascript" src="/static/js/list.js"></script>
+
 {% endblock %}

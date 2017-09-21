@@ -1,0 +1,69 @@
+{% extends 'm_base.html' %} {% block css %}
+
+<link href="/static/products/css/m_list.css" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.css"> {% endblock %} {% block content %}
+
+<header id="nav">
+    <i class="fa fa-angle-left pull-left back f26" aria-hidden="true"></i>
+    <div class="list-title">我是类别或者搜索结果</div>
+    <i class="fa fa-ellipsis-h pull-right f20" aria-hidden="true"></i>
+    <i class="fa fa-search pull-right f20" aria-hidden="true"></i>
+    <ul id="hide-ul">
+        <li><i class="fa fa-home" aria-hidden="true"></i>主页</li>
+        <li class="border-box "></li>
+        <li><i class="fa fa-shopping-cart" aria-hidden="true"></i>购物车</li>
+        <li class="border-box "></li>
+        <li><i class="fa fa-commenting" aria-hidden="true"></i>消息</li>
+    </ul>
+</header>
+
+<div class="select-menu">
+    <div class="col-xs-4 col-sm-4 active">
+        <button class="btn-sub" type="submit">全部</button>
+    </div>
+    <div class="col-xs-4 col-sm-4">
+        <button class="btn-sub" type="submit">推介</button>
+    </div>
+    <div class="col-xs-4 col-sm-4">
+        <button class="btn-sub" type="submit">筛选</button>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        {% for product in products %}
+        <div class="col-xs-6 col-sm-4">
+            <div class="ware-wrap">
+                <a href="{% url 'product:detail' product.id %} "> <img class="ware-img " src="{{mediaroot}}{{product.thumbnail}} " /></a>
+                <div class="ware-msg">
+                    <div class="ware_title">
+                        <a href="{% url 'product:detail' product.id %} ">{{product.title|truncatechars:'40'}}</a></div>
+                    <div class="price ">￥{{product.adaptorrule_set.all.0.price}}</div>
+                    <a href="# "><svg class="list-btn" height="18 " viewBox="0 0 24 24 " width="18 " xmlns="http://www.w3.org/2000/svg ">
+                        <circle cx="8 " cy="21 " fill="none " r="2 " stroke="#f44336 " stroke-linecap="round " stroke-linejoin="round " stroke-width="1.6 " />
+                        <circle cx="20 " cy="21 " fill="none " r="2 " stroke="#f44336 " stroke-linecap="round " stroke-linejoin="round " stroke-width="1.6 " />
+                        <path d="M5.67,6H23l-1.68,8.39a2,2,0,0,1-2,1.61H8.75a2,2,0,0,1-2-1.74L5.23,2.74A2,2,0,0,0,3.25,1H1 " fill="none " stroke="#f44336 " stroke-linecap="round " stroke-linejoin="round " stroke-width="1.6 " />
+                    </svg></a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% block menu %}{% endblock %} {% endblock %} {% block js %}
+<script>
+    $('.back').click(function() {
+        history.back();
+    });
+    $('.fa-ellipsis-h').click(function() {
+        var dPlay = $('#hide-ul').css('display');
+        if (dPlay == "none") {
+            $('#hide-ul').css('display', 'block');
+            $('.fa-ellipsis-h').css('color', '#4b9be0')
+        } else {
+            $('#hide-ul').css('display', 'none');
+            $('.fa-ellipsis-h').css('color', '#fff');
+        }
+    });
+</script>
+{% endblock %}

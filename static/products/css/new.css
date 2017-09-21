@@ -1,17 +1,10 @@
-section {
-    width: 1080px;
-    margin: 20px auto;
-}
-
 div.submit {
     height: 50px;
-    position: fixed;
-    bottom: 0px;
-    border-top: 1px solid #ddd;
     width: 100%;
     text-align: center;
     background-color: #fff;
     padding-top: 8px;
+    border: 1px solid #ddd;
 }
 
 .my-btn {
@@ -24,10 +17,6 @@ span.btn-group {
 
 i.fa-shopping-cart {
     margin-right: 5px;
-}
-
-span.badge {
-    background-color: #f84545;
 }
 
 .breadcrumb {
@@ -46,12 +35,6 @@ span.badge {
 
 .gray-white {
     background: linear-gradient(to bottom, #fff, #f7f8f9)
-}
-
-.title {
-    color: #f84545;
-    margin-top: 20px;
-    font-size: 20px;
 }
 
 .form-horizontal .control-label {
@@ -75,11 +58,22 @@ table:first-child {
     text-align: center;
 }
 
-i.fa-trash-o,
-i.fa-plus {
-    color: #d9534f;
+i.fa-trash-o {
+    color: #f44336;
 }
 
 .fa-trash-o {
     cursor: pointer;
+}
+
+.ta-wrap span {
+    position: absolute;
+    right: 20px;
+    bottom: 8px;
+    color: #AAA;
+}
+
+.alert-text {
+    color: red;
+    padding: 0 10px;
 }

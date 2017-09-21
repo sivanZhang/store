@@ -12,8 +12,8 @@
     <!-- 路径导航 -->
     <ol class="breadcrumb">
         <li><a href="#">Home</a></li>
-        <li><a href="#">Library</a></li>
-        <li class="active">Data</li>
+        <li><a href="{% url 'product:products' %}">商品列表</a></li>
+        <li class="active">发布商品</li>
         <div class="title">发布商品 </div>
     </ol>
 
@@ -22,47 +22,42 @@
         <div class="form-group">
             <label for="id" class="col-sm-2 control-label">商品类型：</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name=id "" id="id" placeholder="">
+                <select class="form-control " id="sel-category">
+                    {% for category in categories %}
+                            <option value ="{{category.id}}">{{category.name}}</option>
+                    {% endfor%}
+                </select>
             </div>
-            <label for="id" class="col-sm-2 control-label">商品编号：</label>
+            <label for="id" class="col-sm-2 control-label">商品名称：
+            </label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name=id "" id="id" placeholder="">
+                <input type="text" class="form-control" name="title" id="title" value="{{product.title}}" placeholder="">
             </div>
 
         </div>
 
         <div class="form-group">
-            <label for="name" class="col-sm-2 control-label">商品名称：</label>
+            <label for="name" class="col-sm-2 control-label">商品简介：</label>
+            <div class="col-sm-10 ta-wrap">
+                <input type="text" class="form-control" name="desc" value="{{product.description|default:''}}" id="desc" placeholder="">
+                <span>0/50</span>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="message" class="col-sm-2 control-label">商品详情：</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name=id "" id="id" placeholder="">
+                <textarea class="form-control" id="detail" rows="3">{{product.detail|default:''}}</textarea>
             </div>
 
         </div>
 
-        <div class="form-group">
-            <label for="message" class="col-sm-2 control-label">商品简介：</label>
-            <div class="col-sm-10">
-                <textarea class="form-control" name="message" rows="3">
-                        </textarea>
-            </div>
 
-        </div>
-
-        <div class="form-group">
-            <label for="id" class="col-sm-2 control-label">商品库存：</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" name=id "" id="id" placeholder="">
-            </div>
-            <label for="id" class="col-sm-2 control-label">计量单位：</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" name=id "" id="id" placeholder="">
-            </div>
-
-        </div>
         <div class="form-group gray-white">
             <label for="message" class="col-sm-2 control-label">规格设置：</label>
             <div class="col-sm-10 format">
-                <div class="form-inline">
+                <div class="form-inline add-inp">
 
                     <div class="form-group">
 
@@ -80,7 +75,7 @@
 
                         <input type="text" class="form-control" id="inventory" placeholder="库存">
                     </div>
-                    <button type="button" class="btn btn-default btn-test"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-primary add-rule blue-btn"><i class="fa fa-plus" aria-hidden="true"></i></button>
 
                 </div>
                 <table class="table table-hover table-bordered" id="tb_rule">
@@ -89,75 +84,75 @@
                         <th>型号</th>
                         <th>价格</th>
                         <th>库存</th>
-
                         <th>删除</th>
                     </tr>
-                    <tr>
-                        <td>鞋码</td>
-                        <td>37</td>
-                        <td>37元</td>
-                        <td>37</td>
+
+                    {% for rule in product.adaptorrule_set.all %}
+                    <tr class="tr_rule">
+                        <td class="name">{{rule.name}}</td>
+                        <td class="unit">{{rule.unit}}</td>
+                        <td class="price">{{rule.price}}</td>
+                        <td class="inv">{{rule.inventory}}</td>
                         <td><i class="fa fa-trash-o " aria-hidden="true"></i></td>
                     </tr>
-
+                    {% endfor %}
                 </table>
             </div>
-
         </div>
+
         <div class="form-group gray-white">
             <label for="message" class="col-sm-2 control-label">属性设置：</label>
             <div class="col-sm-10 format">
                 <div class="form-inline">
 
                     <div class="form-group">
-                        <label for="exampleInputName2"> property</label>
-                        <input type="text" class="form-control" id="pro" placeholder="">
+                        <input type="text" class="form-control" id="pro" placeholder="属性名称">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail2">value</label>
-                        <input type="text" class="form-control" id="val" placeholder="">
+
+                        <input type="text" class="form-control" id="val" placeholder="属性内容">
                     </div>
-                    <button id="add-pro" type="button" class="btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    <button id=" add-pro " type="button " class="btn btn-primary blue-btn"><i class="fa fa-plus " aria-hidden="true "></i></button>
 
                 </div>
-                <table class="table table-hover table-bordered" id="my-tb">
+                <table class="table table-hover table-bordered " id="pro-table ">
                     <tr>
                         <th>名称</th>
                         <th>型号</th>
                         <th>删除</th>
                     </tr>
-                    <tr>
-                        <td>鞋码</td>
-                        <td>37</td>
-                        <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
+                    <tr class="parameter_tr ">
+                        <td class="key ">鞋4码</td>
+                        <td class="value ">JK37</td>
+                        <td><i class="fa fa-trash-o " aria-hidden="true "></i></td>
                     </tr>
-
+                    <tr class="parameter_tr ">
+                        {{product.parameters}}
+                    </tr>
                 </table>
             </div>
 
         </div>
 
     </form>
+    <div class="msg "> </div>
+    <div class="submit ">
 
+
+        <span class="btn-group " role="group " aria-label="... ">
+                    <button type="button " class="btn btn-primary product-btn " status="1 ">发布</button>
+                    <button type="button " class="btn btn-default product-btn " status="0 ">存草稿</button>
+                    <button type="button " class="btn btn-default ">
+                            <i class="fa fa-file-text-o " aria-hidden="true "></i>
+                    </button>
+     </span>
+    </div>
 </section>
-<div class="submit">
-    <button type="button" class="btn btn-info my-btn">发表</button>
 
-    <span class="btn-group" role="group" aria-label="...">
-                <button type="button" class="btn btn-default my-btn">存稿</button>
-                <button type="button" class="btn btn-default">
-                        <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                </button>
-
-            </span>
-</div>
 {% endblock %} {% block js %}
-<script src="/static/plugins/tinymce_4.6.6/tinymce/tinymce.min.js"></script>
-<script src="/static/plugins/tinymce_4.6.6/tinymce/languages/zh_CN.js"></script>
+<script src="/static/plugins/tinymce_4.6.6/tinymce/tinymce.min.js "></script>
+<script src="/static/plugins/tinymce_4.6.6/tinymce/languages/zh_CN.js "></script>
 <script>
-    var da = new Date(1781713563);
-    var d2a = new Date(366834064);
-    var d3a = new Date(410509574);
     tinymce.init({
         selector: 'textarea',
         height: 500,
@@ -177,6 +172,6 @@
 
     });
 </script>
-<script src="/static/products/js/new.js" rel="stylesheet"></script>
+<script src="/static/products/js/new.js " rel="stylesheet "></script>
 
 {% endblock %}

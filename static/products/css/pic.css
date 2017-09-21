@@ -1,0 +1,28 @@
+/*
+   * Demo3:label样式
+   */
+
+#img_input2 {
+    display: none;
+}
+
+#img_label2 {
+    background-color: #f2d547;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 10px;
+}
+
+#preview_box2 img {
+    width: 200px;
+}
+
+.swiper-img{
+    width: 100%;
+    height: auto;
+}
+
+.container-pics{
+    padding-left: 0px;
+    padding-right:0px;
+}

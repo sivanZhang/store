@@ -1,0 +1,90 @@
+{% extends 'base.html' %} {% block css %}
+{% load staticfiles %}
+<link  href="/static/plugins/cropper/dist/cropper.css" rel="stylesheet">
+<link  href="/static/plugins/cropper/dist/main.css" rel="stylesheet">
+<link href="/static/products/css/pic.css" rel="stylesheet"> {% endblock %} {% block content %}
+<form id="csrftocken_form">{% csrf_token %}
+  <input type="hidden" id="productid" value="{{product.id}}" />
+</form>
+ 
+<div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <!-- <h3 class="page-header">Demo:</h3> -->
+        <div class="img-container">
+          <img id="image" src="{{mediaroot}}{{product.thumbnail }}" alt="Picture">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <!-- <h3 class="page-header">Preview:</h3> -->
+            <div class="docs-preview clearfix">
+               <div class="img-preview preview-lg"></div>
+              
+        <div class="row">
+            <div class="col-md-9 docs-buttons"> 
+            
+              <div class="btn-group"> 
+                 <button type="button" class="btn btn-primary" data-method="rotate" data-option="-30" title="Rotate Left"> 
+                     <span class="fa fa-rotate-left"></span> 
+                 </button>
+                  <button type="button" class="btn btn-primary" data-method="rotate" data-option="30" title="Rotate Right"> 
+                      <span class="fa fa-rotate-right"></span> 
+                  </button>
+              <label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
+                <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*">
+                <span class="docs-tooltip" >
+                  <span class="fa fa-upload">&nbsp;&nbsp;浏览</span>
+                </span>
+              </label>
+        </div>
+        
+              <div class="btn-group btn-group-crop"> 
+          <button type="button" class="btn btn-primary" data-method="getCroppedCanvas"> 
+            <i class="fa fa-floppy-o"></i> 保存 </span>
+          </button>
+        </div>
+        
+              <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="getCroppedCanvasTitle">预览</h4>
+              </div>
+              <div class="modal-body"></div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.png">Download</a>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.modal -->  
+            </div><!-- /.docs-buttons --> 
+        </div>
+        
+      </div>
+   
+  </div>      
+ </div>  
+ <div class="container container-pics">
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <h1>【{{product.title|truncatechars:"40"}}】主图：</h1>
+        </div>
+    </div>
+   <div class="row">
+     {% for pic in product.productpic_set.all %}
+       <div class="col-md-3 col-lg-3">
+         <img class="swiper-img" src="{{mediaroot}}{{pic.url}}" />
+         <button class="btn-set-primary" picid="{{pic.id}}" productid={{pic.product.id}} >设为缩略图</button>
+         <button class="btn-delete-primary" picid="{{pic.id}}" productid={{pic.product.id}} >删除</button>
+       </div>
+      {% endfor %}
+   </div>
+</div>  {% endblock %} {% block js %}
+<script src="/static/plugins/cropper/dist/cropper.js"></script>
+<script src="/static/plugins/cropper/dist/canvas-to-blob.min.js"></script>
+<script src="/static/plugins/cropper/dist/main.js"></script> 
+<script src="/static/products/js/pic.js" rel="stylesheet"></script>
+
+{% endblock %}

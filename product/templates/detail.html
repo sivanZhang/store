@@ -4,7 +4,7 @@
 <link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.css"> {% endblock %} {% block content %}
 
 <header class="header f20">
-    <a class="pull-left" href="http://192.168.1.102:8000/"><i class="glyphicon glyphicon-menu-left" aria-hidden="true"></i></a>
+    <a class="pull-left" href="/"><i class="glyphicon glyphicon-menu-left" aria-hidden="true"></i></a>
     <a class="pull-right" href="javascript:;"><i class="glyphicon glyphicon-share-alt"></i></a>
 </header>
 
@@ -48,10 +48,12 @@
     <div class="tab-pane fade in active" id="main">
         <div class="main-top">
             <div class="item_name f18">
-                商品名称
+                    {{product.title}}
             </div>
-            <div class="msg">此处可以叠加一些简要说明</div>
-            <div class="price">￥188.8<s class="msg f12">￥288</s>
+            <div class="msg">
+                {{product.description|default:''}} {{product.adaptorrule_set.all.0.name }} {{product.adaptorrule_set.all.0.unit }}
+            </div>
+            <div class="price">￥{{product.adaptorrule_set.all.0.price }} 
             </div>
         </div>
         <a href="javascript:;">
@@ -86,6 +88,7 @@
             </table>
         </div>
         <div>
+            {{product.detail|safe}}
             <img src='/static/img/sexy3.png' width="100% " />
         </div>
     </div>

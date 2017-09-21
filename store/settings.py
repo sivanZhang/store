@@ -131,10 +131,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 AUTH_USER_MODEL = 'appuser.AdaptorUser'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'media'),
 )
 
 AUTHENTICATION_BACKENDS=['django.contrib.auth.backends.ModelBackend']
@@ -164,6 +166,7 @@ SOCIALOAUTH_SITES = (
         }
     ),
 )
+
 
 EMAIL_SWITCH = True
 SMTP_SERVER         ='smtp.mxhichina.com' #SMTP server IP address

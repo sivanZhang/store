@@ -1,0 +1,234 @@
+{% extends 'base.html' %} {% block css %}
+
+<link href="/static/products/css/products.css" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.css"> {% endblock %} {% block content %}
+
+<header class="header f20">
+    <a class="pull-left" href="http://192.168.1.102:8000/"><i class="glyphicon glyphicon-menu-left" aria-hidden="true"></i></a>
+    <a class="pull-right" href="javascript:;"><i class="glyphicon glyphicon-share-alt"></i></a>
+</header>
+
+<!-- swiper -->
+<div id="swiper-container" class="swiper-container text-center">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide slide-1">
+            <img src='/static/img/sexy.png' /> </div>
+        <div class="swiper-slide slide-2">
+            <img src='/static/img/sexy2.png' /> </div>
+        <div class="swiper-slide slide-3">
+            <img src='/static/img/sexy3.png' /> </div>
+    </div>
+</div>
+<!-- swiper end-->
+
+<!-- 子导航栏-->
+<div class="sub-nav f14">
+    <nav id="myTab" class="nav nav-tabs">
+        <ul id="myTab">
+
+            <li class="active"> <a href="#main" data-toggle="tab">商品 </a></li>
+
+
+            <li><a href="#details" data-toggle="tab">详情</a></li>
+
+
+            <li><a href="#comment" data-toggle="tab">评价</a></li>
+
+        </ul>
+
+    </nav>
+</div>
+<!-- 子导航栏  结束-->
+
+
+
+<div id="myTabContent" class="tab-content">
+
+    <!-- 商品页 -->
+    <div class="tab-pane fade in active" id="main">
+        <div class="main-top">
+            <div class="item_name f18">
+                商品名称
+            </div>
+            <div class="msg">此处可以叠加一些简要说明</div>
+            <div class="price">￥188.8<s class="msg f12">￥288</s>
+            </div>
+        </div>
+        <a href="javascript:;">
+            <div class="choose f14">
+                商品规格选择
+                <i class="glyphicon glyphicon-option-horizontal pull-right"></i></div>
+        </a>
+    </div>
+
+    <!--详情页-->
+    <div class="tab-pane fade " id="details">
+        <div class="tb-wrap ">
+            <table class="table table-bordered ">
+                <tr>
+                    <th>名称</th>
+                    <th>属性</th>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>xxxxxxxxxxxx</td>
+
+                </tr>
+                <tr>
+                    <td>number</td>
+                    <td>12343242352345423</td>
+
+                </tr>
+                <tr>
+                    <td>color</td>
+                    <td>red</td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <img src='/static/img/sexy3.png' width="100% " />
+        </div>
+    </div>
+
+    <!--评价页-->
+    <div class="tab-pane fade " id="comment">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#">全部</a></li>
+            <li role="presentation"><a href="#">有图</a></li>
+            <li role="presentation"><a href="#">好评</a></li>
+            <li role="presentation"><a href="#">差评</a></li>
+        </ul>
+        <div class="discuss">
+            <div class="user-img pull-left"> <img src='/static/img/ic2.png' /></div>
+            <div class="comment">
+                <table class="pull-left">
+                    <tr>
+                        <td class="user-name">用户昵称</td>
+                    </tr>
+                    <tr class="rating">
+                        <td>★★★★★</td>
+                    </tr>
+                </table>
+                <div class="pull-right msg f10">2017-09-20</div>
+
+                <div class="clear">评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容
+                </div>
+                <div class="thumbs-up msg">
+                    <div class="pull-left msg f10">购买日期2017-09-20</div>
+                    <i class="fa fa-thumbs-up pull-right" aria-hidden="true">12</i>
+                    <i class="fa fa-commenting pull-right" aria-hidden="true">20</i>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="discuss">
+            <div class="user-img pull-left"> <img src='/static/img/ic2.png' /></div>
+            <div class="comment">
+                <table class="pull-left">
+                    <tr>
+                        <td class="user-name">用户昵称</td>
+                    </tr>
+                    <tr class="rating">
+                        <td>★★★★★</td>
+                    </tr>
+                </table>
+                <div class="pull-right msg f10">2017-09-20</div>
+
+                <div class="clear">评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容
+                </div>
+                <div class="thumbs-up msg">
+                    <div class="pull-left msg f10">购买日期2017-09-20</div>
+                    <i class="fa fa-thumbs-up pull-right" aria-hidden="true">12</i>
+                    <i class="fa fa-commenting pull-right" aria-hidden="true">20</i>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="discuss">
+            <div class="user-img pull-left"> <img src='/static/img/ic2.png' /></div>
+            <div class="comment">
+                <table class="pull-left">
+                    <tr>
+                        <td class="user-name">用户昵称</td>
+                    </tr>
+                    <tr class="rating">
+                        <td>★★★★★</td>
+                    </tr>
+                </table>
+                <div class="pull-right msg f10">2017-09-20</div>
+
+                <div class="clear">评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容
+                </div>
+                <div class="thumbs-up msg">
+                    <div class="pull-left msg f10">购买日期2017-09-20</div>
+                    <i class="fa fa-thumbs-up pull-right" aria-hidden="true">12</i>
+                    <i class="fa fa-commenting pull-right" aria-hidden="true">20</i>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="discuss">
+            <div class="user-img pull-left"> <img src='/static/img/ic2.png' /></div>
+            <div class="comment">
+                <table class="pull-left">
+                    <tr>
+                        <td class="user-name">用户昵称</td>
+                    </tr>
+                    <tr class="rating">
+                        <td>★★★★★</td>
+                    </tr>
+                </table>
+                <div class="pull-right msg f10">2017-09-20</div>
+
+                <div class="clear">评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容
+                </div>
+                <div class="thumbs-up msg">
+                    <div class="pull-left msg f10">购买日期2017-09-20</div>
+                    <i class="fa fa-thumbs-up pull-right" aria-hidden="true">12</i>
+                    <i class="fa fa-commenting pull-right" aria-hidden="true">20</i>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+{% endblock %} {% block menu %}
+<!--footer-->
+<footer class="text-center " id="footer ">
+    <div class="pull-left menu-left ">
+        <ul>
+            <li><i class="fa fa-commenting f18" aria-hidden="true"></i>
+                <div>联系卖家</div>
+            </li>
+            <li>
+                <i class="fa fa-heart f18" aria-hidden="true "></i>
+                <div>收藏</div>
+            </li>
+            <a href="javascript:; ">
+                <li>
+                    <i class="fa fa-shopping-cart f18" aria-hidden="true"></i>
+                    <div>购物车</div>
+                </li>
+            </a>
+        </ul>
+    </div>
+
+    <a href="javascript:; ">
+        <div class="pull-right menu-right ">加入购物车</div>
+    </a>
+</footer>
+{% endblock %} {% block js %}
+<script type="text/javascript " src="/static/js/swiper-3.4.2.jquery.min.js "></script>
+<script type="text/javascript " src="/static/js/shop.js "></script>
+<script>
+    $('#swiper-container').height($('#swiper-container').width() * 0.9 + 'px');
+</script>
+{% endblock %}
