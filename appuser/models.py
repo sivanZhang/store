@@ -105,8 +105,13 @@ class BaseUser(BaseDate, AbstractBaseUser, PermissionsMixin):
     def get_full_name(self):
         # The user is identified by their email address
         return self.name
+class StoreUser(BaseUser): 
+    # 用户购物车中商品的种类数量，即表达购物车中有几种商品
+    cart_num = models.IntegerField(default = 0)
+    class Meta:
+        abstract = True
 
-class AdaptorUser(BaseUser):
+class AdaptorUser(StoreUser):
     objects  = AdaptorUserManager()
     class Meta:
         db_table = 'user'

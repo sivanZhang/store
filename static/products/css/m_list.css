@@ -46,10 +46,9 @@
     }
     
     .price {
-        color: #f44336;
+        color: #e53935;
         font-size: 16px;
         margin-left: 2px;
-        font-family: arial;
     }
     
     svg.list-btn {
@@ -66,7 +65,7 @@
     }
     
     header {
-        background-color: #f44336;
+        background-color: #e53935;
         position: relative;
         color: #fff;
         height: 40px;
@@ -136,6 +135,6 @@
     
     .border-box {
         width: 70%;
-        border-top: 1px solid #aaa;
+        border-top: 1px solid #bdbdbd;
         margin: 0 auto;
     }

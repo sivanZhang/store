@@ -25,7 +25,7 @@ SECRET_KEY = 'cacjwhl1ic189%05f4acy64104056a@fc**7ub^)-%u+g_&ll&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.1.104",'127.0.0.1','192.168.1.102']
+ALLOWED_HOSTS = ["192.168.1.104",'127.0.0.1','192.168.1.102', "*"]
 
 CORS_ORIGIN_WHITELIST = (
     '192.168.1.105:8000', 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'appuser',
     'category',
     'product',
+    'shopcar',
 ]
 
 MIDDLEWARE = [

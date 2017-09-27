@@ -17,12 +17,12 @@ header {
     margin: 10% auto 5%;
     width: 55%;
     border-radius: 50%;
-    border: 1px solid #ccc;
+    border: 1px soli #ddd;
 }
 
 .search {
     background-color: rgba(225, 225, 225, 0.12);
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     height: 34px;
 }
 

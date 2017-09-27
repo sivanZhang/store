@@ -16,35 +16,42 @@
     <script type="text/javascript" src="/static/jquery/dist/jquery.min.js"></script>
 
     <script type="text/javascript" src="/static/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/static/css/m_jquery.message.css">
 
 
 </head>
 
 <body data-theme="m">
+    {% if request.user.is_anonymous %}
+    <input type="hidden" id="userlogin" value="0" />
+    {% else %}
+    <input type="hidden" id="userlogin" value="1" />
+    {% endif %}
+    
     {% block content %} {% endblock %} {% block menu %}
     <!--menu-->
     <div class="menu">
 
         <a class=" {{home}}" href="{% url 'home' %}">
-            <div class="menu-act pull-left ">
+            <div class="{% block menuhome %} {% endblock %}  pull-left ">
                 <img src="/static/img/m1.png">
                 <div>主页</div>
             </div>
         </a>
         <a class=" {{category}}" href="">
-            <div class="pull-left ">
+            <div class="{% block menucategory %} {% endblock %} pull-left ">
                 <img src="/static/img/if3.png">
                 <div>分类</div>
             </div>
         </a>
-        <a class=" {{trolly}}" href="">
-            <div class="pull-left ">
+        <a class=" {{trolly}}" href="{% url 'shopcar:shopcar_detail'  %}">
+            <div class="{% block menucart %} {% endblock %} pull-left ">
                 <img src="/static/img/if5.png">
-                <div>购物车</div>
+                <div>购物车<span>{{request.user.cart_num|default:''}}</span></div>
             </div>
         </a>
         <a class="mine {{mine}}" href="">
-            <div class="pull-left ">
+            <div class="{% block menumine %} {% endblock %} pull-left ">
                 <img src="/static/img/ic2.png">
                 <div>我的</div>
             </div>
@@ -53,6 +60,7 @@
     <!-- menu end-->
     {% endblock %}
     <!---->
+    <script type="text/javascript" src="/static/js/jquery.message.js"></script>
     {% block js %} {% endblock %}
 </body>
 

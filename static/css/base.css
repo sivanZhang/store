@@ -20,7 +20,7 @@
     }
     
     .title {
-        color: #f44336;
+        color: #e53935;
         margin-top: 20px;
         font-size: 20px;
     }
@@ -68,7 +68,7 @@
         font-size: 8px;
         font-weight: 300;
         line-height: 1;
-        color: #f44336;
+        color: #e53935;
         text-align: center;
         white-space: nowrap;
         vertical-align: middle;
@@ -79,7 +79,7 @@
     }
     
     .header-wrap {
-        background-color: #f44336;
+        background-color: #e53935;
         ;
     }
     
@@ -125,7 +125,7 @@
     }
     
     nav li:hover {
-        color: #f44336;
+        color: #e53935;
         font-size: 16px;
     }
     

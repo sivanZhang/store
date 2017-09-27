@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^users/', include('appuser.urls', namespace="users")),
     url(r'^category/', include('category.urls', namespace="category")),
     url(r'^product/', include('product.urls', namespace="product")),
+    url(r'^shopcar/', include('shopcar.urls', namespace="shopcar")),
     
     url(r'^$', views.home, name='home'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

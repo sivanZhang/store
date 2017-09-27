@@ -66,9 +66,9 @@
                     <img src="/static/img/if6.png"> 商品列表
                 </div>
             </a>
-            <a href="{% url 'product:products' %}">
+            <a href="{% url 'shopcar:shopcar_detail' %}">
                 <div class="pull-left submenu">
-                    <img src="/static/img/if20.png"> 商品列表
+                    <img src="/static/img/if20.png"> 购物车
                 </div>
             </a>
             <a href="javascript:;">
@@ -148,7 +148,7 @@
 </div>
 <!-- swiper2 end-->
 
-<div class="aj"> </div>
+<div class="aj"> {% if request.user.is_anonymous %}未登录{%else%} {{request.user.username}}{% endif%}</div>
 
 {% endblock %} {% block js %}
 <script type="text/javascript" src="/static/js/swiper-3.4.2.jquery.min.js"></script>

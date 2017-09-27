@@ -1,7 +1,6 @@
 {% extends 'm_base.html' %} {% block css %} {% load staticfiles %}
 <link href="/static/products/css/products.css" rel="stylesheet">
-<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.css"> {% endblock %} {% block content %}
-
+<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.css"> {% endblock %} {% block content %} {%csrf_token%}
 <header class="header">
     <i class="fa fa-angle-left pull-left back f26" aria-hidden="true"></i>
     <i class="fa fa-external-link pull-right f20"></i>
@@ -34,49 +33,38 @@
 <!-- 子导航栏  结束-->
 
 
-
 <div id="myTabContent" class="tab-content">
 
     <!-- 商品页 -->
     <div class="tab-pane fade in active" id="main">
         <div class="main-top">
             <div class="item_name f18">
-                {{product.title}}
+                {{product.title|truncatechars:"100"}}
             </div>
             <div class="msg">{{product.description|default:''}} {{product.adaptorrule_set.all.0.name }} {{product.adaptorrule_set.all.0.unit }}</div>
-            <div class="price">￥{{product.adaptorrule_set.all.0.price }}
+            <div class="price"><i class="fa fa-jpy" aria-hidden="true"></i>{{product.adaptorrule_set.all.0.price }}
             </div>
         </div>
-        <a href="javascript:;">
+       
             <div class="choose f14">
                 商品规格选择
-                <i class="glyphicon glyphicon-option-horizontal pull-right"></i></div>
-        </a>
+                <i class="glyphicon glyphicon-option-horizontal pull-right"></i>
+            </div>
+         
+    
+
+        {% include 'recommend.html' %}
     </div>
 
     <!--详情页-->
     <div class="tab-pane fade " id="details">
         <div class="tb-wrap ">
-            <table class="table table-bordered ">
-                <tr>
-                    <th>名称</th>
-                    <th>属性</th>
-                </tr>
-                <tr>
-                    <td>name</td>
-                    <td>xxxxxxxxxxxx</td>
+            <table class="table table-bordered pro-table">
 
-                </tr>
-                <tr>
-                    <td>number</td>
-                    <td>12343242352345423</td>
-
-                </tr>
-                <tr>
-                    <td>color</td>
-                    <td>red</td>
-                </tr>
             </table>
+        </div>
+        <div>
+            {{ product.detail|default:''|safe}}
         </div>
         <div>
             <img src='/static/img/sexy3.png' width="100% " />
@@ -138,55 +126,7 @@
                 </div>
             </div>
 
-        </div>
-        <div class="discuss">
-            <div class="user-img pull-left"> <img src='/static/img/ic2.png' /></div>
-            <div class="comment">
-                <table class="pull-left">
-                    <tr>
-                        <td class="user-name">用户昵称</td>
-                    </tr>
-                    <tr class="rating">
-                        <td>★★★★★</td>
-                    </tr>
-                </table>
-                <div class="pull-right msg f10">2017-09-20</div>
-
-                <div class="clear">评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容
-                </div>
-                <div class="thumbs-up msg">
-                    <div class="pull-left msg f10">购买日期2017-09-20</div>
-                    <i class="fa fa-thumbs-up pull-right" aria-hidden="true">12</i>
-                    <i class="fa fa-commenting pull-right" aria-hidden="true">20</i>
-
-                </div>
-            </div>
-
-        </div>
-        <div class="discuss">
-            <div class="user-img pull-left"> <img src='/static/img/ic2.png' /></div>
-            <div class="comment">
-                <table class="pull-left">
-                    <tr>
-                        <td class="user-name">用户昵称</td>
-                    </tr>
-                    <tr class="rating">
-                        <td>★★★★★</td>
-                    </tr>
-                </table>
-                <div class="pull-right msg f10">2017-09-20</div>
-
-                <div class="clear">评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容
-                </div>
-                <div class="thumbs-up msg">
-                    <div class="pull-left msg f10">购买日期2017-09-20</div>
-                    <i class="fa fa-thumbs-up pull-right" aria-hidden="true">12</i>
-                    <i class="fa fa-commenting pull-right" aria-hidden="true">20</i>
-
-                </div>
-            </div>
-
-        </div>
+        
 
 
 
@@ -205,7 +145,7 @@
                 <i class="fa fa-heart f18" aria-hidden="true "></i>
                 <div>收藏</div>
             </li>
-            <a href="javascript:; ">
+            <a href="{% url 'shopcar:shopcar_detail' %}">
                 <li>
                     <i class="fa fa-shopping-cart f18" aria-hidden="true"></i>
                     <div>购物车</div>
@@ -215,16 +155,71 @@
     </div>
 
     <a href="javascript:; ">
-        <div class="pull-right menu-right ">加入购物车</div>
+        <div class="pull-right menu-right add-cart">加入购物车</div>
     </a>
 </footer>
+
+<!-- hide div -->
+<div class="hide_box_wrap">
+    <div class="hide_box_void"></div>
+    <div class="hide_box_content">
+        <img class="thumbnail" src="{{mediaroot}}{{product.thumbnail}}">
+        <div class="hide_box_price">
+            <i class="fa fa-jpy" aria-hidden="true"></i>
+            <span class="price" id="total_price"> </span>
+            <i class="fa fa-times pull-right" aria-hidden="true"></i>
+            <div class="font-grey">库存：<span class="stock_copy">--</span></div>
+        </div>
+        <table class="table">
+            {% if product.adaptorrule_set.all %}
+            <tr>
+                <th>规格</th>
+                <th>价格</th>
+                <th>库存</th>
+                <th>单位</th>
+            </tr>
+            {% for rule in product.adaptorrule_set.all %}
+            <tr class="rule_tr" ruleid="{{rule.id}}">
+                <td >{{rule.name}}</td>
+                <td class="unit-price">{{rule.price}}</td>
+                <td class="stock">{{rule.inventory}}</td>
+                <td>{{rule.unit}}</td>
+            </tr>
+            {% endfor %} {% endif %}
+        </table>
+
+        <div class="rule_wrap clearfix">
+          
+                <div class="font-grey pull-left">数量</div>
+                <div class="btn-group btn-group-sm pull-right" role="group">
+                    <button class="btn btn-default addition">+</button>
+                    <div class="carnum" id="carnum">1</div>
+                    <button class="btn btn-default subtraction">-</button>
+                </div>
+          
+        </div>
+
+        <div class="submit">
+            <button class="btn btn-info pull-left" type="button">立即购买</button>
+            <button class="btn btn-danger" type="button">确定</button>
+        </div>
+    </div>
+</div>
 {% endblock %} {% block js %}
 <script type="text/javascript " src="/static/js/swiper-3.4.2.jquery.min.js "></script>
-<script type="text/javascript " src="/static/js/shop.js "></script>
+<script type="text/javascript " src="/static/js/m_detail.js "></script>
 <script>
-    $('#swiper-container').height($('#swiper-container').width() + 'px');
-    $('.back').click(function() {
-        history.back();
-    });
+var items = {{product.parameters|safe}};
+    var html = '';
+    for (var i = 0; i < items.length; i++) {
+        html = ' <tr  ">' +
+            '<td class="key ">' + items[i]['key'] + '</td>' +
+            '<td class="value ">' + items[i]['value'] + '</td>' +
+
+            '</tr>';
+        $('.pro-table').append(html);
+    }
+
+ 
 </script>
 {% endblock %}

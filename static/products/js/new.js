@@ -50,9 +50,7 @@ $('.add-rule').click(function() {
     } else {
         rule_el.innerHTML = rule_el.innerHTML + newhtml;
         $('#name,#rule,#price,#inventory').val("");
-    };
-
-
+    }; 
 });
 
 function getCookie(name) {

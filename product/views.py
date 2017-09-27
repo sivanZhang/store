@@ -115,7 +115,7 @@ class ProductDetailView(APIView):
                 result['msg']    = '上传成功...' 
         else:
             result['status'] = 'ERROR'
-            result['msg']    = '请先选择图片..'
+            result['msg']    = 'Method error..'
                   
         return HttpResponse(json.dumps(result), content_type='application/json')
          
