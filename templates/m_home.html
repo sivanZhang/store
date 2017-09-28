@@ -76,9 +76,9 @@
                     <img src="/static/img/if7.png"> 退出
                 </div>
             </a>
-            <a href="javascript:;">
+            <a href="{% url 'bill:bills' %}">
                 <div class="pull-left submenu">
-                    <img src="/static/img/if8.png"> 菜单名称
+                    <img src="/static/img/if8.png"> 我的订单
                 </div>
             </a>
             <a href="javascript:;">
@@ -148,6 +148,8 @@
     <div class="swiper-pagination2 pagination-2"></div>
 </div>
 <!-- swiper2 end-->
+测试用户名: 281475120@163.com
+密码：889886
 
 <div class="aj"> {% if request.user.is_anonymous %}未登录{%else%} {{request.user.username}}{% endif%}</div>
 
