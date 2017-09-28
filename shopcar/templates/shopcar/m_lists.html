@@ -49,13 +49,17 @@
 <script>
     var sum = 0;
     {% if ruleitems %}
-{% for rule in ruleitems %}
-sum += {{rule.rule.price}} * {{rule.quantity}};
-{% endfor %}
-{% endif%}
-$('.sum_price').text(sum);
+    {% for rule in ruleitems %}
+    sum += {{rule.rule.price }} * {{rule.quantity }};
+    {% endfor %}
+    {% endif %}
+    $('.sum_price').text(sum);
+
 </script>
 <script>
+    $('document').ready(function(){
+        getLogin();
+    })
     $('.ware_img').height($('.ware_img').width() + 'px');
     $('.img_parent').height($('.img_parent').width() + 'px');
     $('.number').height($('.img_parent').height() + 'px');

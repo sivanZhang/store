@@ -86,6 +86,8 @@ $('.back').click(function () {
 /* ajax  点击按钮‘加入购物车’事件*
 --------------------------*/
 $('.add-cart').click(function () {
+    getLogin();
+    
     if($('.act_box').length===0){
         fnShow();    
     }else{ 

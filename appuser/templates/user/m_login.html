@@ -15,16 +15,15 @@
 
         </a>
     </ul>
-    <button type="submit" class="btn btn-sm  btn-block btn-login">登陆</button>
+    <button type="submit" class="btn btn-sm  btn-block btn-login">登录</button>
     {% if status == 'error' %}
     <div class="alert alert-danger">{{msg}}</div>
     {% endif %}
 </form>
 
 <input type="hidden" name="next" value="{{next_url}}" />
+{% endblock %}{% block jslogin %}
 {% endblock %} {% block js %}
-
-<script type="text/javascript" src="/static/js/shop.js"></script>
 <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -68,6 +67,8 @@
             }
         });
     });
+
+    $('#signup-Form').children().css("margin", "30px auto 5px");
 </script>
 
 {% endblock %}

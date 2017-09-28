@@ -15,15 +15,8 @@ import random
 import string
 from django.utils import timezone
 from django.urls import reverse
- 
-
 from .form import UploadPortrainForm, GroupForm, UserForm
-
-
- 
-
 from django.contrib import auth
-
 #from socialoauth import SocialSites,SocialAPIError  
 
 from basedatas.bd_comm import Common
@@ -57,20 +50,17 @@ def login(request):
                 if next_url:
                     #after login, return to the previous page, but if the previous page is logout, 
                     #then return to the host page
-                    if 'logout' not in str(next_url):
+                    if 'logout' not in str(next_url): 
                          return redirect(next_url)
             
-                if isMble:
-                    return render(request, 'home.html', context)
-                else:
-                    return render(request, 'home.html', context)
+                return redirect(reverse('home'))
             else:
                 try: 
                     user_instance = User.objects.get(email = email)
                     msg = '登录失败，密码错误...' 
                 except User.DoesNotExist:
                     msg = '登录失败，用户{0}未注册...'.format(email)
-                status = 'error' 
+          
                 context = {'next':next_url,
                            'status':'error',
                            'msg':msg,
@@ -90,10 +80,12 @@ def login(request):
             return render(request, 'user/login.html', context)
 def logout(request):
     auth.logout(request)
-    return render(request, 'home.html', {})
+    isMble  = dmb.process_request(request)
+    return redirect(reverse('home'))
    
 @csrf_exempt
 def register(request):
+    isMble  = dmb.process_request(request)
     content = {}
 
     if request.method == "POST":
@@ -115,7 +107,9 @@ def register(request):
                 'email':email, 
                 'msg':'验证码错误...'
             }
-
+    
+    if isMble: 
+        return render(request, 'user/m_regsiter.html', content)
+    else:  
         return render(request, 'user/regsiter.html', content)
-    else:
-        return render(request, 'user/regsiter.html', content)
+ 

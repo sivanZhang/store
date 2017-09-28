@@ -3,14 +3,9 @@ li {
 }
 
 
-/* 
-input.form-control {
-    border-radius: 0px;
-    border-left-style: none;
-    border-right-style: none;
+button.btn-block:hover{
+    color: #eee;
 }
- */
-
 form {
     margin: 0 5%;
 }

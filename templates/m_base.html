@@ -61,7 +61,12 @@
     {% endblock %}
     <!---->
     <script type="text/javascript" src="/static/js/jquery.message.js"></script>
+    
+    {% block jslogin %}
+        <script type="text/javascript" src="/static/js/login.js"></script>
+    {% endblock %}
+
     {% block js %} {% endblock %}
 </body>
-
+ 
 </html>
