@@ -1,6 +1,8 @@
 {% extends 'm_base.html' %} {% block css %}
-<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.css"> {% endblock %} {% block content %}
+<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.css">
 <link href="/static/css/shophome.css" rel="stylesheet">
+{% endblock %} {% block content %}
+
 <header class="container">
     <div class="row">
         <a href="javascript:;">
@@ -120,24 +122,24 @@
                     <img src="/static/img/if15.png"> 菜单名称
                 </div>
             </a>
-            <a href="javascript:;">
+            <a href="/area/get_county_list/?cityid=610800">
                 <div class="pull-left submenu">
-                    <img src="/static/img/if16.png"> 菜单名称
+                    <img src="/static/img/if16.png"> 获取榆林各县的json数据
                 </div>
             </a>
             <a href="javascript:;">
                 <div class="pull-left submenu">
-                    <img src="/static/img/if17.png"> 菜单名称
+                    <img src="/static/img/if17.png"> 数据
                 </div>
             </a>
-            <a href="javascript:;">
+            <a href="/area/get_city_list/?provinceid=610000">
                 <div class="pull-left submenu">
-                    <img src="/static/img/if18.png"> 菜单名称
+                    <img src="/static/img/if18.png"> 获取陕西各市json数据
                 </div>
             </a>
-            <a href="javascript:;">
+            <a href="/area/get_provice_list/">
                 <div class="pull-left submenu">
-                    <img src="/static/img/if19.png"> 菜单名称
+                    <img src="/static/img/if19.png"> 获取省级json数据
                 </div>
             </a>
 
@@ -147,10 +149,10 @@
     </div>
     <div class="swiper-pagination2 pagination-2"></div>
 </div>
-<!-- swiper2 end-->
+<!-- swiper2 end--><!-- 
 测试用户名: 281475120@163.com
-密码：889886
-
+密码：889886 -->
+ 
 <div class="aj"> {% if request.user.is_anonymous %}未登录{%else%} {{request.user.username}}{% endif%}</div>
 
 {% endblock %}

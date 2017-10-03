@@ -167,17 +167,15 @@ class ProductView(View):
                 # categoryid【可选字段】： 商品所属类别ID 
                 # unit【可选字段】： 商品的计量单位，如：个、只
                 # price【可选字段】： 商品的计量单位，如：个、只
-                # parameters【可选字段】： 商品的自定义规格，是一个寄送数据
+                # parameters【可选字段】： 商品的自定义规格，是一个json数据
                 # detail【可选字段】： 商品的详情
             新建: 参数中带没有method，或method的值不等于put或者delete
                 # title【必须字段】：商品名称 
                 # categoryid【必须字段】： 商品所属类别ID 
                 # unit【可选字段】： 商品的计量单位，如：个、只
                 # price【可选字段】： 商品的计量单位，如：个、只
-                # parameters【可选字段】： 商品的自定义规格，是一个寄送数据
-                # detail【可选字段】： 商品的详情
-        
-        修改产品
+                # parameters【可选字段】： 商品的自定义规格，是一个json数据
+                # detail【可选字段】： 商品的详情 
         """
         result = {} 
         

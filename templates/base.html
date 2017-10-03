@@ -64,11 +64,24 @@
     <!--菜单结束-->
     {% endblock %} 
     {% block content %} {% endblock %}
-    {% block footer %} footer{% endblock %}
+    {% block footer %} 
+    <footer>
+        <div>
+            <p>
+                <span>联系我们</span>
+                <span>关于我们</span>
+                <span>友情链接</span>
+            </p>
+            <p>
+                <span>版权所有</span>
+            </p>
+        </div>
+    </footer>
+    {% endblock %}
     <script type="text/javascript" src="/static/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="/static/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/static/js/jquery.message.js"></script>
-
+    <script type="text/javascript" src="/static/js/base.js"></script>
     {% block js %} {% endblock %} 
 </body>
 

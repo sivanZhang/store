@@ -1,0 +1,36 @@
+{% extends 'm_base.html' %} {% block css %} {% load staticfiles %}
+{% load areas %}
+<link href="/static/address/css/m_address.css" rel="stylesheet"> {% endblock %} {% block content %}
+<!-- 顶部 -->
+<header class="header">
+    <i class="fa fa-angle-left pull-left back f26" aria-hidden="true"></i> 地址管理
+</header>
+<!-- 地址列表 --> 
+<section class="address">
+    {% if addresses %}
+    {% for address in addresses %}
+        <div>
+                <div>
+                        <span>姓名:{{address.receiver}}</span>
+                        <span>电话:{{address.phone}}</span>
+                </div>
+                <div class="pull-left">{{address.area|areas}}{{address.area.short_name}}[县\区]  {{address.detail}}</div>
+                <a  href="{% url 'address:addresses' %}?addressid={{address.id}}">  
+                <i class="fa fa-pencil-square-o pull-right f20" aria-hidden="true"></i>
+                </a>
+        </div>
+        {% endfor %}
+    {% else %}
+        没有创建任何地址
+    {% endif %}
+</section>
+
+<!-- 新建地址按钮 -->
+<a class="btn btn-danger btn-block" id="" type="button" href="{% url 'address:addresses' %}?new=">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        新建地址
+</a>
+{% block menu %}{% endblock %}{% endblock %}{% block js %}
+<script src="/static/address/js/m_address.js">
+</script>
+{% endblock %}

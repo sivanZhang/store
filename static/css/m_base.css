@@ -34,23 +34,23 @@ input {
 
 /* 通用样式区域 */
 
-div.menu div.pull-left {
-    text-align: center;
-    box-sizing: border-box;
-    width: 25%;
-}
-
 div.menu {
+    display: table;
     background-color: #fff;
     color: #17324D;
     z-index: 1;
     position: fixed;
-    top: 100%;
+    bottom: 0;
     width: 100%;
-    transform: translateY(-100%);
     border-top: 1px solid #eee;
-    padding-top: 2px;
-    height: 50px;
+    line-height: 1.2;
+}
+
+div.menu>a{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    width: 25%;
 }
 
 .activate {
@@ -86,11 +86,11 @@ f8 {
 }
 
 .f16 {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .f18 {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .f26 {
@@ -110,7 +110,7 @@ i.fa-2x+div {
     height: 40px;
     overflow: hidden;
     padding: 0px 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #eee;
 }
 
 .cut-off {
@@ -118,28 +118,8 @@ i.fa-2x+div {
 }
 
 
-/* wwwqewqewqeqwewqewqewqe */
-
 .menu-act {
     color: #e53935;
-}
-
-div.menu-act img {
-    border: 0px;
-    transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
-    /* Safari 和 Chrome */
-    -moz-transform: rotateY(180deg);
-    /* Firefox */
-    position: relative;
-    top: -3px;
-    border-radius: 50%;
-    box-shadow: 0 3px 10px rgba(0,0,0,.23), 0 3px 10px rgba(0,0,0,.16);
-}
-
-.menu img {
-    width: 30px;
-    height: 30px;
 }
 
 .font-grey{

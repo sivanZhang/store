@@ -1,0 +1,40 @@
+{% extends 'm_base.html' %} {% block css %} {% load staticfiles %}
+<link href="/static/address/css/m_address.css" rel="stylesheet"> {% endblock %} {% block content %}
+<!-- 顶部 -->
+<header class="header">
+    <i class="fa fa-angle-left pull-left back f26" aria-hidden="true"></i> 新建地址
+</header>
+<!-- 地址列表 --> 
+<section class="address">
+    {% if address %}
+    <input type="hidden" id="addressid"    value="{{address.id}}"/>
+    {% endif %}
+    <div><label><i class="fa fa-user" aria-hidden="true"></i></label>
+        <input type="text" id="receiver"  placeholder="姓名" value="{{address.receiver}}"/>
+    </div>
+    <div><label><i class="fa fa-phone" aria-hidden="true"></i> </label>
+        <input type="text" id="phone" placeholder="电话" value="{{address.phone}}"/>
+    </div>
+    <div class="font-grey"><label><i class="fa fa-map-marker" aria-hidden="true"></i></label>
+        <select id="province" type="text">
+        </select><i class="fa fa-angle-down" aria-hidden="true"></i>省
+        <select id="city" type="text">
+            <option></option>
+        </select><i class="fa fa-angle-down" aria-hidden="true"></i>市
+        <select id="counties" type="text"><option></option>
+        </select><i class="fa fa-angle-down" aria-hidden="true"></i>县/区
+    </div>
+    <div><input type="text" id="detail" placeholder="详细地址:" value="{{address.detail}}" />
+    </div>
+</section>
+<!-- <section class="address">
+</section> -->
+<!-- 新建地址按钮 -->
+<button class="btn btn-danger btn-block create-btn"  type="button"  >
+        保存使用
+</button>
+
+{% block menu %}{% endblock %}{% endblock %}{% block js %}
+<script src="/static/address/js/m_address.js">
+</script>
+{% endblock %}

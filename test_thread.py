@@ -43,18 +43,15 @@ num = 0
 lock = threading.Lock()
 if __name__ == "__main__":
     
-    t = []
-    for i in range(25):
-        #t1=threading.Thread(target=p1.reduce)
-        t1=ProductManager()
-        t1.start()
-        #t.append(t1)
-    for ti in t:
-        ti.start()
-        
-    for ti in t:
-        ti.join()
-    
+    i = 0
+    start = time.ctime()
+    while i< 100000:
+        lock.acquire()
+         
+        i += 1
+        lock.release()
+
+    print(start, time.ctime())
     
     print('done')
     

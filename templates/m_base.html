@@ -4,24 +4,24 @@
 
 <head>
     <meta charset="utf-8">
-    <title>{% block title2%}商城{% endblock%}</title>
+    <title>{% block pagetitle%}商城{% endblock%}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-
+    
     <link type="text/css" href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet">
-
+    <link href="/static/font_my/iconfont.css" type="text/css" rel="stylesheet">    
+    <!-- <link href="//at.alicdn.com/t/font_433208_0jiikn8awg41v2t9.css" type="text/css" rel="stylesheet"> -->
+    <link type="text/css" rel="stylesheet" href="/static/css/m_jquery.message.css">
     
     <link type="text/css" rel="stylesheet" href="/static/css/m_base.css"> {% block css %} {% endblock %}
-
+    
     <script type="text/javascript" src="/static/jquery/dist/jquery.min.js"></script>
 
     <script type="text/javascript" src="/static/bootstrap/dist/js/bootstrap.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="/static/css/m_jquery.message.css">
-
 
 </head>
 
-<body data-theme="m">
+<body>
     {% if request.user.is_anonymous %}
     <input type="hidden" id="userlogin" value="0" />
     {% else %}
@@ -33,26 +33,26 @@
     <div class="menu">
 
         <a class=" {{home}}" href="{% url 'home' %}">
-            <div class="{% block menuhome %} {% endblock %}  pull-left ">
-                <img src="/static/img/m1.png">
+            <div class="{% block menuhome %} {% endblock %}">
+                <span class="iconfont icon-shouye"></span>
                 <div>主页</div>
             </div>
         </a>
         <a class=" {{category}}" href="">
-            <div class="{% block menucategory %} {% endblock %} pull-left ">
-                <img src="/static/img/if3.png">
+            <div class="{% block menucategory %} {% endblock %}  ">
+                    <span class="iconfont icon-sousuoleimu"></span>
                 <div>分类</div>
             </div>
         </a>
         <a class=" {{trolly}}" href="{% url 'shopcar:shopcar_detail'  %}">
-            <div class="{% block menucart %} {% endblock %} pull-left ">
-                <img src="/static/img/if5.png">
+            <div class="{% block menucart %} {% endblock %}">
+                    <span class="iconfont icon-gouwuche"></span>
                 <div>购物车<span>{{request.user.cart_num|default:''}}</span></div>
             </div>
         </a>
         <a class="mine {{mine}}" href="">
-            <div class="{% block menumine %} {% endblock %} pull-left ">
-                <img src="/static/img/ic2.png">
+            <div class="{% block menumine %} {% endblock %}">
+                 <span class="iconfont icon-yonghu"></span>
                 <div>我的</div>
             </div>
         </a>
@@ -61,7 +61,7 @@
     {% endblock %}
     <!---->
     <script type="text/javascript" src="/static/js/jquery.message.js"></script>
-    
+    <script type="text/javascript" src="/static/js/base.js"></script>
     {% block jslogin %}
         <script type="text/javascript" src="/static/js/login.js"></script>
     {% endblock %}

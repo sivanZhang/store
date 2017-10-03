@@ -1,12 +1,54 @@
 {% extends 'm_base.html' %} {% block css %} {% load staticfiles %}
-<link href="/static/bill/css/m_lists.css" rel="stylesheet"> {% endblock %} {% block content %}
+<link href="/static/bill/css/m_lists.css" rel="stylesheet">
+{% endblock %} {% block content %}
 <!-- 顶部 -->
-<header id="nav"> 
-    <div class="list-title">我的订单</div> 
-</header> 
+<header class="header">
+    <i class="fa fa-angle-left pull-left back f26" aria-hidden="true"></i>
+  填写订单
+</header>
+<a href="{% url 'address:addresses' %}">
+    <section class="address">
+        <span>姓名</span>
+        <span>电话号135********</span>
+        <div><i class="fa fa-map-marker" aria-hidden="true"></i>陕西省西安市雁塔区某街道</div>
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+    </section>
+</a>
 
- 
+<section class="ware">
+    <img class="thumbnail pull-left " src="/static/img/sli2.jpg">
+    <img class="thumbnail pull-left " src="/static/img/sexy.png">
+    <span class="icon-saoyisao"> </span>
+    <span class="pull-right">共 12 件</span>
+    <a href="{% url 'bill:detail' 12 %}" ><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+</section>
+
+<section class="all_price">
+        <div>发票<span class="pull-right">（发票类型）</span></div>
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+</section>
+
+<input class="message form-control" type="text" placeholder="选填：买家留言"/>
+<section class="all_price">
+    <div>商品总价：<i class="fa fa-jpy" aria-hidden="true"></i><span class="price f16"> 0.00</span></div>
+    <div>快递费用：<i class="fa fa-jpy" aria-hidden="true"></i><span class="price f16"> 0.00</span></div>
+</section>
+
+
+<footer class="text-center " id="footer ">
+        <div class="pull-left menu-left ">
+            实付款：<i class="fa fa-jpy" aria-hidden="true"></i><span class="price sum_price"> 0.00</span>
+        </div>
+    
+        <a href="javascript:; ">
+            <div class="pull-right menu-right ">提交订单</div>
+        </a>
+</footer>
 <script> 
+$('.thumbnail').height($('.thumbnail').width() +'px');
+$('.back').click(function () {
+    history.back();
+});
 </script> 
    
 {% endblock %}

@@ -1,0 +1,68 @@
+body{
+    background-color:rgb(244, 247, 250); 
+    font-size: 14px;
+    padding-top: 40px;
+}
+
+.header {
+    font-size: 16px;
+    text-align: center;
+    line-height: 40px; 
+}
+
+.header i {
+    height: 100%;
+    line-height: 40px;
+}
+/* 
+ * 新建地址按钮
+ */
+a.btn-danger{
+    background-color: #e53935;
+    width: 70%;
+    position: fixed;
+    bottom:3px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+/* 
+ *地址列表
+ */
+ .address{
+    background-color:#fff;
+    line-height: 2;
+}
+.address>div{
+    margin: 6px 12px;
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+    overflow: hidden;
+}
+/* 
+ *改变输入框样式//下拉框样式
+ */
+ input{
+     outline: 0px;
+     border: 0px;
+     margin-left: 10px;
+ }
+/* 
+ *下拉框样式
+ */
+ select{
+     margin-left:12px;
+    outline: 0px;
+    border: 0px;
+    background-color:transparent; 
+    
+    color:#212121;
+ }
+ label>.fa{
+     font-size: 16px;
+ }
+ .fa-angle-down{
+     margin-right: 10px;
+ }
+ .font-grey .fa{
+    color:#212121;
+ }

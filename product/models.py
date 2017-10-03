@@ -60,8 +60,14 @@ class Rule(models.Model):
     name = models.CharField(_('name'), max_length=1024, null=True)
     # 价格:6999
     price = models.DecimalField(_('price'), max_digits=9, decimal_places=2, null=True)
-    # 库存：100
-    inventory = models.PositiveIntegerField(_('inventory'), default = 0, null=True)
+
+    # 如果可以随便增加、删除库存，那么没有办法核对库存信息。
+    # 要可以核对库存信息，则还需要完善的入库操作
+    # 物理库存：100
+    real_inventory = models.PositiveIntegerField(_('real inventory'), default = 0, null=True)
+    # 可用库存：100
+    available_inventory = models.PositiveIntegerField(_('available inventory'), default = 0, null=True)
+
     # 单位：台
     unit = models.CharField(_('unit'), max_length=128, null=True)
 
