@@ -2,7 +2,7 @@
 import pika
 import pdb
 
-from rabbit import Rabbit
+from rabbitmq.rabbit import Rabbit
 
 
 class Publisher(Rabbit):

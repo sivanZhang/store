@@ -34,7 +34,8 @@ $('.btn-group').on("click", '.subtraction', function () {
     $('#total_price').text($('.act_box').children('.unit-price').text() * $('.carnum').text());
 });
 
-
+/* 元素尺寸样式
+--------------------------*/
 $('.ware_img').height($('.ware_img').width() + 'px');
 $('.ware_img').height($('.ware_img').width() + 'px');
 $('.img_parent').height($('.img_parent').width() + 'px');
@@ -77,11 +78,6 @@ $('.btn-danger').click(function () {
     }
 });
 
-/* 返回上一页按钮 
---------------------------*/
-$('.back').click(function () {
-    history.back();
-});
 
 /* ajax  点击按钮‘加入购物车’事件*
 --------------------------*/

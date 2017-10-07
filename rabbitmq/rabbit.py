@@ -4,7 +4,7 @@ import pdb
 import time
 import importlib
 
-from  readconf import ReadConf
+from  rabbitmq.readconf import ReadConf
 
 
 class Rabbit(object):

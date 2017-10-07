@@ -13,3 +13,12 @@ function getCookie(name) {
     }
     return cookieValue;
 }
+/* 
+ *返回按钮
+ */
+$(document).ready(function(){
+    $('i.back').click(function () {
+        history.back();
+    });
+});
+

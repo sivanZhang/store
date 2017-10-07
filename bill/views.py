@@ -18,10 +18,10 @@ from django.conf import settings
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from bill.models import AdaptorBill
+from bill.models import AdaptorBill, AdaptorBillItem
 
 from mobile.detectmobilebrowsermiddleware import DetectMobileBrowser
-
+from rabbitmq.publisher import Publisher
 
 dmb     = DetectMobileBrowser()
 
@@ -99,21 +99,28 @@ class BillView(View):
         # title\category字段是必须的
         user = request.user
         result = {}
-        if 'phone' in request.POST and 'reciever' in request.POST \
-            and 'items' in request.POST:  
+        if 'phone' in request.POST and 'address_id' in request.POST \
+            and 'items' in request.POST and 'reciever' in request.POST:   
             
             items_str = request.POST['items']
             items = json.loads(items_str)
+            sss={}
+            sss['s1'] = 123
+            sss['s2'] = [12,34, 56]
+            p = Publisher()
+            p.publish_message('store_exchange', json.dumps(sss), 'msg_real')
+            p.close_connection()
+
             if len(items) > 0:
-                # 创建订单
-                try: 
-                    product = AdaptorBill.objects.createbill(items, request.POST) 
-                    result['id'] = product.id
-                    result['status'] ='ok'
-                    result['msg'] ='Done'
-                except Category.DoesNotExist:
-                    result['status'] ='error'
-                    result['msg'] ='404 Category not found ID:{}'.format(categoryid)  
+                # 创建订单 
+                bill = AdaptorBill.objects.createbill(request.POST, user) 
+                AdaptorBillItem.objects.createitem(bill, items)
+
+                # publish to queue
+
+                result['id'] = bill.id
+                result['status'] ='ok'
+                result['msg'] ='创建成功...' 
             else:
                 result['status'] ='error'
                 result['msg'] ='Need items in POST' 

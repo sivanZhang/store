@@ -182,7 +182,7 @@
             <tr class="rule_tr" ruleid="{{rule.id}}">
                 <td >{{rule.name}}</td>
                 <td class="unit-price">{{rule.price}}</td>
-                <td class="stock">{{rule.inventory}}</td>
+                <td class="stock">{{rule.available_inventory}}</td>
                 <td>{{rule.unit}}</td>
             </tr>
             {% endfor %} {% endif %}
@@ -204,6 +204,7 @@
             <button class="btn btn-danger" type="button">确定</button>
         </div>
     </div>
+</div>
 </div>
 {% endblock %} {% block js %}
 <script type="text/javascript " src="/static/js/swiper-3.4.2.jquery.min.js "></script>

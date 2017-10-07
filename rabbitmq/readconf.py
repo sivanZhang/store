@@ -3,7 +3,7 @@ import os
 import pdb
 import sys
 import importlib 
-from server import rabbit, rabbithttpapi, rabbitserverinfo
+from rabbitmq.server import rabbit, rabbithttpapi, rabbitserverinfo
  
 class ReadConf(object):
     """read configuration from rabbit.conf"""

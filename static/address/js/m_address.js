@@ -1,9 +1,4 @@
-/* 
- *返回按钮
- */
-$('.back').click(function () {
-    history.back();
-});
+
 /* 
  *列表最后一项去边框
  */
@@ -20,7 +15,6 @@ $(document).ready(function () {
         
     });
 
-    //zhaji25
 
     //  创建地址按钮    >>> 点击事件
 $('.create-btn').click(function() {
@@ -69,6 +63,9 @@ $('.create-btn').click(function() {
         success: function(result) {
             if (result['status'] == 'ok'){
                 $().message(result['msg']);
+                setTimeout(function() {//三秒返回
+                    location.reload();
+                }, 3000);
             }else{
                 $().errormessage(result['msg']);
             }
@@ -85,7 +82,7 @@ $('.create-btn').click(function() {
  *省份change获取市
  */
 $('#province').change(function(){
-    $('#city').text('');
+    $('#city').val('');
     $.get('/area/get_city_list/?provinceid='+this.value, function (data) {
         for (var i = 0; i < data.length; i++) {
             var oCity = data[i];
@@ -98,7 +95,7 @@ $('#province').change(function(){
  *市change获取县区
  */
 $('#city').change(function(){
-  $('#counties').text('');
+  $('#counties').val('');
     $.get('/area/get_county_list/?cityid='+this.value, function (data) {
         for (var i = 0; i < data.length; i++) {
             var oCounties = data[i];

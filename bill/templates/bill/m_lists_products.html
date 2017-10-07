@@ -1,5 +1,24 @@
 {% extends 'm_base.html' %} {% block css %} {% load staticfiles %}
 <link href="/static/bill/css/m_lists_products.css" rel="stylesheet">
 {% endblock %} {% block content %} 
+<header class="header">
+    <i class="fa fa-angle-left pull-left back f26" aria-hidden="true"></i> 商品清单
+</header>
+
+<section class="list">
+      
+            <div>
+                <img class="img-rounded pull-left" src="/static/img/sexy.png"/>
+                <div class="details">
+                    <p>商品说明</p>
+                    
+                    
+                    <p><span class="font-grey pull-right">x0</span></p>
+                </div>
+            </div>
+ 
+    </section>
+
 {% endblock %}
-{% block pagetitle%}订单产品列表{% endblock%}
+
+{% block pagetitle%}商品清单{% endblock%}

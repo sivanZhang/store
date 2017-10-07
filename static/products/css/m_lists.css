@@ -178,8 +178,7 @@ footer div {
 
 .menu-left {
     width: 70%;
-    border-top: 1px solid #e53935;
-    border-bottom: 1px solid #e53935;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
     padding-right: 20px;
     padding-left: 20px;
     line-height: 50px;
@@ -227,4 +226,12 @@ footer div {
 
 .fa-angle-double-right {
     margin-left: 10px;
+}
+
+.checked{
+    border: 1px solid #ddd;
+    float: left;
+}
+input.checked {
+    -webkit-appearance: checkbox;
 }

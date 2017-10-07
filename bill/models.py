@@ -27,17 +27,21 @@ class Bill(BaseDate):
         (STATUS_FINISHED, _('finished')),
     )
 
-    lock = threading.Lock()
     
     # 组成方式：年月日时分秒毫秒用户ID
     no = models.CharField(_('Bill No.'), max_length=1024)
     # 提交订单的人
     ownser = models.ForeignKey(User) 
+    
     # 收货人地址
-    address = models.ForeignKey(Address, null = True)
+    address = models.ForeignKey(Address, null = True) 
+    # 收货人电话号码
+    phone = models.CharField(_('phone'), max_length=20, null = True) 
+    # 收货人姓名
+    reciever = models.CharField(_('reciever'), max_length=120, null = True)
   
     #订单金额
-    receiver = models.DecimalField(_('Money'), max_digits = 9, decimal_places = 2, default = 0.0)
+    money = models.DecimalField(_('Money'), max_digits = 9, decimal_places = 2, default = 0.0)
 
     # 订单状态
     status = models.SmallIntegerField(choices = STATUS_CHOICES, default = STATUS_SUBMITTED)

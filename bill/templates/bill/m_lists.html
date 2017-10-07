@@ -15,14 +15,15 @@
     </section>
 </a>
 
-<section class="ware">
-    <img class="thumbnail pull-left " src="/static/img/sli2.jpg">
-    <img class="thumbnail pull-left " src="/static/img/sexy.png">
-    <span class="icon-saoyisao"> </span>
-    <span class="pull-right">共 12 件</span>
-    <a href="{% url 'bill:detail' 12 %}" ><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-</section>
-
+<a href="{% url 'bill:detail' 12 %}">
+    <section class="ware">
+        <img class="thumbnail pull-left " src="/static/img/sli2.jpg">
+        <img class="thumbnail pull-left " src="/static/img/sexy.png">
+        <span class="icon-saoyisao"> </span>
+        <span class="pull-right">共 12 件</span>
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+    </section>
+</a>
 <section class="all_price">
         <div>发票<span class="pull-right">（发票类型）</span></div>
         <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -41,15 +42,15 @@
         </div>
     
         <a href="javascript:; ">
-            <div class="pull-right menu-right ">提交订单</div>
+            <div class="pull-right menu-right submit-btn">提交订单</div>
         </a>
 </footer>
 <script> 
 $('.thumbnail').height($('.thumbnail').width() +'px');
-$('.back').click(function () {
-    history.back();
-});
 </script> 
    
+{% endblock %}
+{% block js %}
+<script type="text/javascript " src="/static/bill/js/new.js "></script>
 {% endblock %}
  

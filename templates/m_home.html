@@ -7,7 +7,7 @@
     <div class="row">
         <a href="javascript:;">
             <div class="text-center col-xs-2">
-                <i class="fa fa-qrcode block fa-2x"></i><span class="f12"> 扫码</span>
+                <i class="iconfont icon-scan block"></i><span class="f12"> 扫码</span>
             </div>
         </a>
 
@@ -17,7 +17,7 @@
         </div>
 
         <a href="/">
-            <div class="text-center col-xs-2"><i class="fa fa-commenting-o block fa-2x"></i> <span class="f12"> 消息</span>
+            <div class="text-center col-xs-2"><i class="iconfont icon-comment block"></i> <span class="f12"> 消息</span>
             </div>
         </a>
     </div>
@@ -149,9 +149,9 @@
     </div>
     <div class="swiper-pagination2 pagination-2"></div>
 </div>
-<!-- swiper2 end--><!-- 
+<!-- swiper2 end--> 
 测试用户名: 281475120@163.com
-密码：889886 -->
+密码：889886 
  
 <div class="aj"> {% if request.user.is_anonymous %}未登录{%else%} {{request.user.username}}{% endif%}</div>
 
@@ -159,9 +159,5 @@
 {% block menuhome %} menu-act{% endblock %} 
  {% block js %}
 <script type="text/javascript" src="/static/js/swiper-3.4.2.jquery.min.js"></script>
-<script type="text/javascript" src="/static/js/shop.js"></script>
-<script>
-    //轮播图 宽高比
-    $('#swiper-container').height($('#swiper-container').width() * 0.6 + 'px');
-</script>
+<script type="text/javascript" src="/static/js/home.js"></script>
 {% endblock %}

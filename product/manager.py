@@ -5,7 +5,7 @@ import pdb
 import json
 
 
-lock = threading.Lock()
+
 
 
 class ProductManager(models.Manager):
@@ -34,34 +34,6 @@ class RuleManager(models.Manager):
     规格的manager，增加库存，减少库存都需要在这里执行
     """
     
-    def reduce(self,  num):
-        """减少库存"""
-        Timeout = 5 # 最多等待5秒
-        status = {}
-        if lock.acquire(self.Timeout):
-            # 减库存
-            if self.model.inventory - num < 0:
-                status['result'] = 'error'
-                status['msg'] = '错误：库存不足'
-            else:
-                self.model.inventory -= num
-                self.model.save()
-                status['result'] = 'ok'
-                status['msg'] = 'Done'
-
-            lock.release()
-
-    def add(self,  num):
-        """增加库存"""
-        status = {}
-        if lock.acquire(self.Timeout):
-            # +库存 
-            self.model.inventory += num
-            self.model.save()
-            status['result'] = 'ok'
-            status['msg'] = 'Done' 
-            lock.release()
-
     def mul_create(self, rules_str, product):
         """
         批量创建规格
@@ -71,6 +43,34 @@ class RuleManager(models.Manager):
         for rule in rules: 
             self.create(product = product, name=rule['name'], price = float(rule['price']), inventory=rule['inv'], unit=rule['unit'] )
       
-        
+    
+    def check_available_inventory(self, rules):
+        """
+        检测rules中可用库存是否满足出库条件。
+        返回可用库存不足的的rules，
+        返回状态为：status=1代表可用库存足够，status=0代表可用库存不足，检测返回的rules list来查看哪些库存不足
+        对于没有找到的rule，在notfound字段中返回
+
+        如果result['status']！= 1 时，需要判断result['notfound']和result['notenough']
+        两个的list长度，可能可用库存不足，也可能没有找到相应的rule，两个问题也可能同时存在
+        """
+        result = {}
+        result['status'] = 1 #默认为可用库存满足
+        notfound = []
+        notenough = []
+        for rule in rules:
+            try:
+                rule_instance = self.model.objects.get(pk = rule['id'])
+                if rule_instance.available_inventory <  rule['num']:
+                    notenough.append(rule['id'])
+                    result['status'] = -0
+            except self.model.DoesNotExist:
+                notfound.append(rule['id'])
+                result['status'] = -1
+
+        result['notfound'] = notfound
+        result['notenough'] = notenough
+        return result
+
 class AdaptorRuleManager(RuleManager):
     pass

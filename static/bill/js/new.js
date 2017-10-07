@@ -1,10 +1,9 @@
-//  发表+存稿按钮    >>> 点击事件
-$('.product-btn').click(function() {
+//  提交订单
+$('.submit-btn').click(function() {
+    /*
     var categoryid = $('#sel-category').val();
     var title = $('#title').val();
     var desc = $('#desc').val();
-
-    var detail = tinymce.get("detail").getContent();
     var categoryid = $('#sel-category').val();
 
     var obj = {};
@@ -28,18 +27,20 @@ $('.product-btn').click(function() {
         parameters.push(obj_para);
         obj_para = {};
     });
+    */
   
     
+    var address_id = 1;
+    var phone = '18811082245';
+    var reciever = '张继伟'
+    var items = Array();
 
     data = {
         'method': 'create',
-        'categoryid': categoryid,
-        'title': title,
-        'description': desc,
-        'detail': detail,
-        'rules': JSON.stringify(rules),
-        'parameters': JSON.stringify(parameters),
-        'status': $(this).attr('status'),
+        'address_id': address_id,
+        'phone': phone,
+        'reciever': reciever,
+        'items': JSON.stringify(items),
         'csrfmiddlewaretoken': getCookie('csrftoken'),
     };
     var product = $('#productid');
@@ -49,13 +50,12 @@ $('.product-btn').click(function() {
         data['method'] = 'put'; //修改产品
     }
 
-    var html = '<div class="alert alert-danger" role="alert">####</div>';
     $.ajax({
         type: 'post',
-        url: '/product/products/',
+        url: '/bill/bills/',
         data: data,
         success: function(result) {
-            $('.msg').append(html.replace('###', result['msg']));
+            $().message(result['msg']); 
         },
         error: function() {
             // 500
