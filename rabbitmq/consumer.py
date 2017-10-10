@@ -2,8 +2,8 @@
 import pika
 import pdb
 
-from  rabbit import Rabbit
-from  httpapi import HttpApi
+from  rabbitmq.rabbit import Rabbit
+from  rabbitmq.httpapi import HttpApi
 
 
 class Consumer(Rabbit):

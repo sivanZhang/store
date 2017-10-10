@@ -11,12 +11,12 @@ sys.path.append(BASE_DIR)
 
 import pika
 
-import rabbit
+import rabbitmq
 from requests import Request, Session
 from requests.auth import HTTPBasicAuth
-from rabbit.consumer import Consumer
-from server import globalinfo, storeserver, node
-from server import rabbit as rabbit_conf
+from rabbitmq.consumer import Consumer
+from rabbitmq.server import globalinfo, storeserver 
+from rabbitmq.server import rabbit as rabbit_conf
 
 
 class Delivery(object):
@@ -39,15 +39,7 @@ class Delivery(object):
         self.get_node_api = storeserver['API_GET_NODE']
         self.cert = storeserver['CERT_VERIFY']
          
-        self.get_compute_api = storeserver['API_RUN_COMPUTE']
-        self.get_fileupload_api = storeserver['API_RUN_FILEUPLOAD']
-        self.taskcounter_api = storeserver['API_ADD_TASK']
-        self.get_fileserver_api = storeserver['API_GET_FILE_SERVER']
-        self.apiserver = self.apiserver.format(self.http_protocol)
-        self.update_result_api = storeserver['RESULT_UPDATE_API']
-
-        self.node_upload_input_file_api = node['UPLOAD_INPUT_FILE_API']
-        self.center_upload_input_file_api = storeserver['UPLOAD_INPUTFILE_API']
+        self.get_compute_api = storeserver['API_RUN_COMPUTE'] 
 
         self.username = storeserver['API_SERVER_USER']
         self.password = storeserver['API_SERVER_PWD']
@@ -165,71 +157,13 @@ class Delivery(object):
                 requests.post(add_task_url, data={'nodeid': self.nodeid, 'counter': -1})
 
         self.consumer.basic_consume(basic_callback, self.queue_avail)
-         
-    def basic_consume_filehandle(self, prefetch_count = 0):
-        """
-        delivery the file messages
-        """
-        
-        if prefetch_count > 0:
-            self.consumer.channel.basic_qos(prefetch_count=prefetch_count)
-        
-        def basic_callback(ch, method, properties, body):
-            # send to remote node to compute
-            msg = json.loads(body.decode())
-
-            # start to get file server information
-            # host, api, and the destination of file
-            if self.http_protocol.lower() == 'https': 
-                req = requests.get(self.apiserver_url + self.get_fileserver_api, verify=self.cert)
-            else:
-                req = requests.get(self.apiserver_url + self.get_fileserver_api)
-            fileserver_info = eval(req.text)
-
-            param = {
-                'resultid': msg['resultid'],
-                'filepath': msg['filepath'],
-                'dest_path': fileserver_info['dest_path'],
-                'url': fileserver_info['url'],
-                'host': fileserver_info['host'],
-            }
-            # url in node side to upload file to file server
-            http = msg['nodehost'] + self.get_fileupload_api
-            
-            # start to upload file
-            headers = {"Authorization": ""}
-            auth = self.auth
-            if self.http_protocol.lower() == 'https':
-                headers['referer'] = '/'
-                req = requests.post(http, data=param, headers=headers, verify=self.cert)
-            else:
-                req = requests.post(http, data=param, headers=headers)
-    
-            print('file upload end. status code is ' + str(req.status_code))
-            if req.status_code == 200:      
-                result = eval(req.text)
-                if result['status'] == 'ok':
-                    self.consumer.channel.basic_ack(delivery_tag=method.delivery_tag)
-                else:
-                    #print('failed to upload file, returned text is {}'.format(result['msg']))
-                    self.update(id=msg['resultid'], status=self.OtherError, 
-                          msg='failed to upload file[status code is {0}] when uploading file. details:{1}'.format(str(req.status_code), result['msg']))
-            else:
-                #self.consumer.close_connection()
-                #raise Exception('Compute failed in remote node, status code :'
-                #                + str(req.status_code)+'reason: '+req.text)
-                self.update(id=msg['resultid'], status=self.OtherError, 
-                          msg='Node return error[status code is {0}] when uploading file. details:{1}'.format(str(req.status_code), req.text))
-         
-        self.consumer.basic_consume(basic_callback, self.queue_outfile)
-
+          
     def run_consume(self, computing_num, file_num):
         """
         start consumer for computing and filehandler
         """
         self.conn()
-        self.basic_consume_compute(computing_num)
-        self.basic_consume_filehandle(file_num)
+        self.basic_consume_compute(computing_num) 
         self.consumer.channel.start_consuming()
 
     def stop_consume(self):

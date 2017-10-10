@@ -131,6 +131,7 @@ class ProductView(View):
         content['products'] = products
         content['categories'] = categories
         content['mediaroot'] = settings.MEDIA_URL
+     
         if 'new' in request.GET:
             if isMble:
                 return render(request, 'm_new.html', content)

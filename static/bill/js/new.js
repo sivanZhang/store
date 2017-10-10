@@ -1,3 +1,37 @@
+/* 
+ *获取cookid数据
+ */
+var nSum_price =JSON.parse(CookieUtil.get("sum_price"));//总价格
+var aProducts=JSON.parse(CookieUtil.get("products"));//商品
+var oAdress= JSON.parse(CookieUtil.get("aAddress"));//快递地址
+
+/* 
+ *显示总价
+ */
+$('#sum_price').text(nSum_price);
+/* 
+ *显示总件数
+ *图片显示
+ */
+var sum_number=0;
+var oImg=  $('img.thumbnail')
+for (var i = 0; i < aProducts.length; i++) {
+  sum_number += parseInt(aProducts[i].num);
+  //图片显示
+  var aSrc=aProducts[i].img;
+  $(oImg[i]).attr('src',aSrc)
+};
+$('#sum_number').text('共'+sum_number+'件');
+
+/* 
+ *地址栏text
+ */
+$('#name').text('姓名：'+oAdress.name);
+$('#phone').text('电话：'+oAdress.phone);
+var addressIcon = '<i class="fa fa-map-marker" aria-hidden="true"></i>:';
+$('#address').html(' <div id="address">'+addressIcon+oAdress.address+'</div>');
+
+
 //  提交订单
 $('.submit-btn').click(function() {
     /*
@@ -27,29 +61,35 @@ $('.submit-btn').click(function() {
         parameters.push(obj_para);
         obj_para = {};
     });
-    */
+   
   
     
     var address_id = 1;
     var phone = '18811082245';
-    var reciever = '张继伟'
+    var reciever = '张继伟'*/
     var items = Array();
-
+    for (var i = 0; i < aProducts.length; i++) {
+        item ={
+            'ruleid':aProducts[i].ruleid,
+            'num':aProducts[i].num
+        }
+        items.push(item);
+      };
     data = {
         'method': 'create',
-        'address_id': address_id,
-        'phone': phone,
-        'reciever': reciever,
+        'address_id': oAdress.address_id,
+        'phone': oAdress.phone,
+        'reciever': '大哥',
         'items': JSON.stringify(items),
         'csrfmiddlewaretoken': getCookie('csrftoken'),
     };
-    var product = $('#productid');
+  /*   var product = $('#productid');
     if (product.length > 0){
         //3
         data['id'] = product.val();
         data['method'] = 'put'; //修改产品
     }
-
+    */
     $.ajax({
         type: 'post',
         url: '/bill/bills/',
@@ -63,3 +103,4 @@ $('.submit-btn').click(function() {
         }
     })
 });
+

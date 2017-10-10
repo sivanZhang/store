@@ -9,12 +9,12 @@
 <section class="address">
     {% if addresses %}
     {% for address in addresses %}
-        <div>
+        <div class="address_wrap" addressid="{{address.id}}">
                 <div>
-                        <span>姓名:{{address.receiver}}</span>
-                        <span>电话:{{address.phone}}</span>
+                    姓名:<span class="name">{{address.receiver}}</span>
+                    电话: <span class="ph_number">{{address.phone}}</span>
                 </div>
-                <div class="pull-left">{{address.area|areas}}{{address.area.short_name}}[县\区]  {{address.detail}}</div>
+                <div class="pull-left s_address">{{address.area|areas}}{{address.area.short_name}}[县\区]  {{address.detail}}</div>
                 <a  href="{% url 'address:addresses' %}?addressid={{address.id}}">  
                 <i class="fa fa-pencil-square-o pull-right f20" aria-hidden="true"></i>
                 </a>

@@ -95,7 +95,7 @@ $('.add-cart').click(function () {
         var data = {
             'method': 'create',
             'ruleid': ruleid,
-            'quantity': quantity,
+            'num': quantity,
             'csrfmiddlewaretoken': csrfmiddlewaretoken
         }
        $.ajax({
@@ -108,7 +108,7 @@ $('.add-cart').click(function () {
                     $().errormessage(result['msg']);
                 }
                 else{
-                    $().messsage(result['msg']);
+                    $().message(result['msg']);
                 } 
         },
         error: function() { // 500

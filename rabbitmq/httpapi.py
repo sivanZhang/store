@@ -6,7 +6,7 @@ import pdb
 import requests
 
 
-from  readconf import ReadConf
+from  rabbitmq.readconf import ReadConf
 
 
 class HttpApi(object):

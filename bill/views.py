@@ -19,6 +19,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from bill.models import AdaptorBill, AdaptorBillItem
+from product.models import AdaptorRule
 
 from mobile.detectmobilebrowsermiddleware import DetectMobileBrowser
 from rabbitmq.publisher import Publisher
@@ -99,24 +100,34 @@ class BillView(View):
         # title\category字段是必须的
         user = request.user
         result = {}
-        if 'phone' in request.POST and 'address_id' in request.POST \
-            and 'items' in request.POST and 'reciever' in request.POST:   
+        if  'address_id' in request.POST   and 'items' in request.POST  :   
             
             items_str = request.POST['items']
             items = json.loads(items_str)
-            sss={}
-            sss['s1'] = 123
-            sss['s2'] = [12,34, 56]
-            p = Publisher()
-            p.publish_message('store_exchange', json.dumps(sss), 'msg_real')
-            p.close_connection()
-
+             
             if len(items) > 0:
                 # 创建订单 
                 bill = AdaptorBill.objects.createbill(request.POST, user) 
+                for item in items:
+                    try:
+                        rule = AdaptorRule.objects.get(pk = item['ruleid'])
+                        item['rule'] = rule
+                    except AdaptorRule.DoesNotExist:
+                        result['status'] ='error'
+                        result['msg'] ='订单创建失败，未找到商品...' 
+                        bill.delete()
+                        return  self.httpjson(result)
+                
+                # 创建订单分表
                 AdaptorBillItem.objects.createitem(bill, items)
-
-                # publish to queue
+                
+                # 提交到queue中
+                q_bill={}
+                q_bill['billid'] = bill.id 
+                q_bill['items'] = items_str
+                p = Publisher()
+                p.publish_message('store_exchange', json.dumps(q_bill), 'msg_real')
+                p.close_connection()
 
                 result['id'] = bill.id
                 result['status'] ='ok'

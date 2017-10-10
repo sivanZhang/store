@@ -37,6 +37,16 @@ class Product(BaseDate):
     # 所属类别
     category = models.ForeignKey(Category)
     thumbnail = models.CharField(_('thumbnail'), max_length = 2048, null=True)
+    
+    def fallback(self ):
+        """下架商品"""
+        self.status = self.FALLDOWN
+        self.save()
+
+    def publish(self):
+        """发布商品， 商品上架"""
+        self.status = self.PUBLISHED
+        self.save()
 
     class Meta:
         abstract = True
@@ -64,8 +74,9 @@ class Rule(models.Model):
     """
     商品的规格：如：电脑商品 名称：8G/价格：6999/库存：100/单位：台
     """
-    Timeout = 3 # 最多等待3秒
-
+    OP_REDUCE_TYPE_AVAIL = 0 # 减可用库存
+    OP_REDUCE_TYPE_REAL = 1  # 减物理库存
+    OP_REDUCE_TYPE_ALL = 2   # 同时减少可用库存和物理库存
     
     product = models.ForeignKey(AdaptorProduct)
     # 名称 ：8G
@@ -82,69 +93,62 @@ class Rule(models.Model):
 
     # 单位：台
     unit = models.CharField(_('unit'), max_length=128, null=True)
-    
-
-    def reduce(self,  num, inventory_type = 0):
+     
+    def _reduce(self,  num, inventory_type = OP_REDUCE_TYPE_AVAIL):
         """
         减少库存
         inventory_type表示减少库存的类型，当=0时，代表减少可用库存
         =1 时代表减少物理库存
-
-        """
-        
+        """ 
         status = {}
-        if lock.acquire(self.Timeout):
-            # 减库存
-            if inventory_type == 0:
-                # 减可用库存
-                if self.available_inventory - num < 0:
-                    status['result'] = 'error'
-                    status['msg'] = '错误：可用库存不足'
-                else:
-                    self.available_inventory = F('available_inventory') - num
-                    self.save()
-                    status['result'] = 'ok'
-                    status['msg'] = 'Done'
-            elif inventory_type == 1:
-                # 减物理库存
-                if self.real_inventory - num < 0:
-                    status['result'] = 'error'
-                    status['msg'] = '错误：物理库存不足'
-                else:
-                    self.real_inventory = F('real_inventory') - num
-                    self.save()
-                    status['result'] = 'ok'
-                    status['msg'] = 'Done'
+        # if lock.acquire(self.Timeout):
+        # 减库存
+        if inventory_type == self.OP_REDUCE_TYPE_AVAIL:
+            # 减可用库存
+            if self.available_inventory - num < 0:
+                status['result'] = 'error'
+                status['msg'] = '错误：可用库存不足'
             else:
-                # 同时减少可用库存和物理库存
-                # 减物理库存
-                if self.real_inventory - num < 0 or self.available_inventory - num < 0:
-                    status['result'] = 'error'
-                    status['msg'] = '错误：库存不足'
-                else:
-                    self.available_inventory = F('available_inventory') - num
-                    self.real_inventory = F('real_inventory') - num
-                    self.save()
-                    status['result'] = 'ok'
-                    status['msg'] = 'Done'
-            lock.release()
-        
+                self.available_inventory = F('available_inventory') - num
+                self.save()
+                status['result'] = 'ok'
+                status['msg'] = 'Done'
+        elif inventory_type == self.OP_REDUCE_TYPE_REAL:
+            # 减物理库存
+            if self.real_inventory - num < 0:
+                status['result'] = 'error'
+                status['msg'] = '错误：物理库存不足'
+            else:
+                self.real_inventory = F('real_inventory') - num
+                self.save()
+                status['result'] = 'ok'
+                status['msg'] = 'Done'
+        elif inventory_type == self.OP_REDUCE_TYPE_ALL:
+            # 同时减少可用库存和物理库存
+            # 减物理库存
+            if self.real_inventory - num < 0 or self.available_inventory - num < 0:
+                status['result'] = 'error'
+                status['msg'] = '错误：库存不足'
+            else:
+                self.available_inventory = F('available_inventory') - num
+                self.real_inventory = F('real_inventory') - num
+                self.save()
+                status['result'] = 'ok'
+                status['msg'] = 'Done'
+        else:
+            status['result'] = 'error'
+            status['msg'] = 'inventory type invalid'
+     
         return status
 
-    def add(self,  num):
-        """增加库存"""
-        status = {}
-        if lock.acquire(self.Timeout):
-            # +库存 
-            self.available_inventory = F('available_inventory') + num
-            self.real_inventory = F('real_inventory') + num
-            self.save()
-            status['result'] = 'ok'
-            status['msg'] = 'Done' 
-            lock.release()
-        return status
-
-
+    def _add(self,  num):
+        """同时增加可用库存和物理库存"""
+        status = {} 
+        # +库存 
+        self.available_inventory = F('available_inventory') + num
+        self.real_inventory = F('real_inventory') + num
+        self.save()
+   
     class Meta:
         abstract = True
   

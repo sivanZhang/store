@@ -59,7 +59,7 @@ class ShopcarDetailView(APIView):
     def post(self, request ):
         """
         创建、删除
-        创建需要参数：method:create, ruleid, quantity
+        创建需要参数：method:create, ruleid, num
         """
         result = {} 
         if request.method == 'POST': 
@@ -81,7 +81,7 @@ class ShopcarDetailView(APIView):
                             result['msg']    = '删除成功...' 
                         else :
                             # create 
-                            quantity = request.POST['quantity']
+                            quantity = request.POST['num']
                             car, create = CartItem.objects.get_or_create(rule = rule, user=user )
                             car.quantity += int(quantity )
                             car.save()

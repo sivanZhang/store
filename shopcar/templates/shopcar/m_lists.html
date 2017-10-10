@@ -2,10 +2,8 @@
 <link href="/static/products/css/m_lists.css" rel="stylesheet"> {% endblock %} {% block content %}
 <!-- 顶部 -->
 <header id="nav">
-
     <div class="list-title">购物车</div>
     <i class="fa fa-commenting pull-right f18" aria-hidden="true"></i>
-
 </header>
 <!-- 要购买的商品 -->
 {% if ruleitems %}
@@ -13,20 +11,19 @@
      <div class="list carlist">
             
         <div class="img_parent col-xs-3 col-sm-3">
-                <input class="checked" type="checkbox" checked="checked"/>
+                <input class="checked" type="checkbox" />
             <img src="{{mediaroot}}{{rule.rule.product.thumbnail}}"></div>
         <div class="col-xs-7 col-sm-7 list_center">
-            <div>{{rule.rule.product.title|truncatechars:"20"}}
+            <div class="carlist_name">{{rule.rule.product.title|truncatechars:"20"}}
             </div>
-            <div >规格：{{rule.rule.name}}
+            <div class="rule_content">规格：{{rule.rule.name}}
                 </div>
             <div><i class="fa fa-jpy" aria-hidden="true"></i> <span class="price add_price carprice">{{rule.rule.price}}</span>
             </div>
         </div>
-    
         <div class="col-xs-2 col-sm-2 number f20">
             <div class="addition">+</div>
-            <div class="display carnum">{{rule.quantity}}</div>
+            <div class="display carnum" ruleid="{{rule.id}}">{{rule.quantity}}</div>
             <div class="subtraction">-</div>
         </div> 
     </div>
@@ -42,8 +39,8 @@
         总金额为：<i class="fa fa-jpy" aria-hidden="true"></i><span class="price sum_price"> 0.00</span>
     </div>
 
-    <a href="javascript:; ">
-        <div class="pull-right menu-right ">去结算</div>
+    <a class="block pull-right menu-right " href="javascript:; ">
+        去结算
     </a>
 </footer>
 </div>
@@ -52,7 +49,7 @@
 {% block menucart %} menu-act {% endblock %}
 {% endblock %}
 {% block js %}
-<script type="text/javascript" src="/static/products/js/shopcar.js"></script>
+<script type="text/javascript" src="/static/shopcar/js/shopcar.js"></script>
 <script>
     var sum = 0;
     {% if ruleitems %}
