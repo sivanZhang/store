@@ -9,7 +9,7 @@
     <link href="/static/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="/static/css/m_jquery.message.css">
     <link type="text/css" rel="stylesheet" href="/static/css/base.css"> {% block css %} {% endblock %}
-    
+
 </head>
 
 <body>
@@ -18,20 +18,25 @@
     <div class="header-wrap">
         <header class="clearfix">
             <ul class="pull-left">
-
-                <a href="javascript:;">
-                    <li>购买指南</li>
-                </a>
-                <li>订单满¥99顺丰包邮，支持支付宝、微信、银联、顺丰到付、分期支付。</li>
+                <li>
+                    <a href="javascript:;">购买指南</a>
+                </li>
+                <li>订单满¥99顺丰包邮，支持支付宝、微信、银联、顺丰到付、分期支付。
+                </li>
             </ul>
-            <ul class="pull-right ">
-                <a href="javascript:;">
-                    <li><i class="fa fa-shopping-cart fa-shop" aria-hidden="true"></i>购物车<span class="badge">4</span></li>
-                </a>
-                <a href="javascript:;">
+            <ul class="pull-right">
+
+                <li>
+                    <a href="{% url 'shopcar:shopcar_detail'  %}">
+                        <i class="fa fa-shopping-cart fa-shop" aria-hidden="true"></i> 购物车
+                    </a>
+                    <span class="badge">4</span>
+                </li>
+
+                <a href="{% url 'users:login' %}">
                     <li>登录</li>
                 </a>
-                <a href="javascript:;">
+                <a href="{% url 'users:register' %}">
                     <li>注册</li>
                 </a>
                 <a href="javascript:;">
@@ -45,26 +50,36 @@
     <div class="nav-wrap">
         <nav class="clearfix">
             <ul class="pull-left">
-                <li class="logo"><img src="/static/img/logo.png" height="25px"> </li>
-                <a href="{% url 'home' %}">
-                    <li>主页</li>
-                </a>
-                <li>商品分类<i class="fa fa-angle-down" aria-hidden="true"></i></li>
-                <li>优惠<i class="fa fa-angle-down" aria-hidden="true"></i></li>
-                <a href="javascript:;">
-                    <li>移动版商城</li>
-                </a>
+                <li class="logo">
+                    <img src="/static/img/m1.png" height="25px">
+                </li>
+                <li>
+                    <a href="{% url 'home' %}">主页</a>
+                </li>
+                <li>
+                    <a href="{% url 'category:categories' %}">
+                    商品分类
+                    <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                </li>
+                <li>优惠
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </li>
+
+                <li>
+                    <a href="javascript:;">移动版商城</a>
+                </li>
+
             </ul>
             <form id="search-form" class="pull-right">
-                <input class="search" type="text" placeholder="搜索商品" />
-                <button class="search pull-right" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                <input class="search" type="text" placeholder="搜索" />
+                <button class="search pull-right" type="button">    
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
             </form>
         </nav>
     </div>
     <!--菜单结束-->
-    {% endblock %} 
-    {% block content %} {% endblock %}
-    {% block footer %} 
+    {% endblock %} {% block content %} {% endblock %} {% block footer %}
     <footer>
         <div>
             <p>
@@ -81,8 +96,7 @@
     <script type="text/javascript" src="/static/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="/static/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/static/js/jquery.message.js"></script>
-    <script type="text/javascript" src="/static/js/base.js"></script>
-    {% block js %} {% endblock %} 
+    <script type="text/javascript" src="/static/js/base.js"></script> {% block js %} {% endblock %}
 </body>
 
 </html>

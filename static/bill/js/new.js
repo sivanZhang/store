@@ -26,10 +26,22 @@ $('#sum_number').text('共'+sum_number+'件');
 /* 
  *地址栏text
  */
-$('#name').text('姓名：'+oAdress.name);
-$('#phone').text('电话：'+oAdress.phone);
 var addressIcon = '<i class="fa fa-map-marker" aria-hidden="true"></i>:';
-$('#address').html(' <div id="address">'+addressIcon+oAdress.address+'</div>');
+if(oAdress){
+    $('#name').text('姓名：'+oAdress.name);
+    $('#phone').text('电话：'+oAdress.phone);
+    $('#address').html(' <div id="address">'+addressIcon+oAdress.address+'</div>');
+}else{
+    $('#name').text('姓名：');
+    $('#phone').text('电话：');
+     $('#address').html(' <div id="address">'+addressIcon+'</div>');
+}
+
+
+ 
+
+
+
 
 
 //  提交订单

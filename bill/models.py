@@ -16,7 +16,6 @@ class Bill(BaseDate):
     """
     STATUS_FAILED = -3 # 订单创建失败
     STATUS_SUBMITTED = -2 # 订单已提交
-    STATUS_CONFIRMED = -1 # 订单已确认
     STATUS_UNPAYED = 0 # 未支付
     STATUS_PAYED = 1   # 已支付
     STATUS_FINISHED = 2# 已完成
@@ -31,7 +30,7 @@ class Bill(BaseDate):
     # 组成方式：年月日时分秒毫秒用户ID
     no = models.CharField(_('Bill No.'), max_length=1024)
     # 提交订单的人
-    ownser = models.ForeignKey(User) 
+    owner = models.ForeignKey(User) 
     
     # 收货人地址
     address = models.ForeignKey(Address, null = True) 
@@ -44,6 +43,7 @@ class Bill(BaseDate):
     money = models.DecimalField(_('Money'), max_digits = 9, decimal_places = 2, default = 0.0)
 
     # 订单状态
+    # 订单已提交状态在验证了库存之后，直接转入未支付状态
     status = models.SmallIntegerField(choices = STATUS_CHOICES, default = STATUS_SUBMITTED)
     
     # 订单失败的原因， 在订单创建失败之后，这个字段存储创建失败的原因，如库存不足

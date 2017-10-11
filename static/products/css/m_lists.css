@@ -41,6 +41,8 @@ li {
 li i {
     height: auto;
 }
+
+
 /*--------------------------------------------------------------------------------- */
 
 
@@ -51,7 +53,7 @@ li i {
     color: #e53935;
 }
 
-div.list {
+div.carlist {
     margin: 2px 0;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -61,7 +63,7 @@ div.list {
     position: relative;
 }
 
-div.list>div {
+div.carlist>div {
     padding: 0;
 }
 
@@ -75,8 +77,7 @@ div.list>div {
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
     text-align: center;
-    box-shadow: 0 3px 10px rgba(0,0,0,.23), 0 3px 10px rgba(0,0,0,.16);
-    
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .23), 0 3px 10px rgba(0, 0, 0, .16);
 }
 
 .display {
@@ -84,7 +85,7 @@ div.list>div {
     border-bottom: 1px solid #ddd;
 }
 
-.list>div.list_center {
+.carlist>div.list_center {
     padding: 10px;
 }
 
@@ -97,6 +98,8 @@ div.list>div {
     color: #e53935;
     font-size: 20px;
 }
+
+
 /*--------------------------------------------------------------------------------- */
 
 
@@ -155,7 +158,10 @@ svg.list-btn {
     padding-left: 2px;
     padding-right: 2px;
 }
+
+
 /*--------------------------------------------------------------------------------- */
+
 
 /* 结算按钮 */
 
@@ -174,7 +180,7 @@ footer div {
 
 .menu-left {
     width: 70%;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
     padding-right: 20px;
     padding-left: 20px;
     line-height: 50px;
@@ -190,6 +196,7 @@ footer div {
     height: 100%;
     line-height: 50px;
     color: #fff;
+    font-family: '微软雅黑';
     font-size: 16px;
     text-align: center;
 }
@@ -210,8 +217,11 @@ footer div {
     bottom: 0px;
     left: 1px;
 }
+
+
 /*--------------------------------------------------------------------------------- */
-s
+
+
 /*加载更多 */
 
 .btn_more {
@@ -222,12 +232,4 @@ s
 
 .fa-angle-double-right {
     margin-left: 10px;
-}
-
-.checked{
-    border: 1px solid #ddd;
-    float: left;
-}
-input.checked {
-    -webkit-appearance: checkbox;
 }

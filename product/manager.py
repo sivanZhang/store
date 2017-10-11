@@ -3,6 +3,7 @@ from django.db import models
 import threading 
 import pdb
 import json
+import copy
 
 lock = threading.Lock()
 Timeout = 3
@@ -22,7 +23,7 @@ class RuleManager(models.Manager):
     """
     OP_ADD = 1    # 加库存操作，同时增加可用库存和物理库存
     OP_REDUCE = 0 # 减库存操作
-
+    Timeout = 3
     def mul_create(self, rules_str, product):
         """
         批量创建规格
@@ -32,7 +33,7 @@ class RuleManager(models.Manager):
         for rule in rules: 
             self.create(product = product, name=rule['name'], price = float(rule['price']), inventory=rule['inv'], unit=rule['unit'] )
 
-    def inventory_op(self, rules = None, reduce_type=None, op_type= OP_REDUCE):
+    def inventory_op(self, rules = None, reduce_type=None, op_type= OP_REDUCE, billstatus=None):
         """
         库存操作函数：对于商品的库存操作都应该经过这个函数去处理
         op_type = OP_REDUCE, 默认， 代表减库存操作， 此时rules和reduce_type字段不能为空。reduce_type代表减库存的类型
@@ -65,12 +66,16 @@ class RuleManager(models.Manager):
                     result['status'] = 'error'
                     result['msg'] = 'rules is empty'
                     return result
-                else:
+                elif isinstance(rules[0], dict):
                     keys = rules[0].keys()
                     if 'ruleid' not in keys or 'num' not in keys:
                         result['status'] = 'error'
                         result['msg'] = 'Need ruleid and num in rules '
                         return result
+                else:
+                    result['status'] = 'error'
+                    result['msg'] = 'rules items should be dict'
+                    return result
         elif op_type == self.OP_ADD: # 加库存操作
             if rules is None:
                 result['status'] = 'error'
@@ -85,75 +90,79 @@ class RuleManager(models.Manager):
                     result['status'] = 'error'
                     result['msg'] = 'rules is empty'
                     return result
-                else:
+                elif isinstance(rules[0], dict):
                     keys = rules[0].keys()
                     if 'ruleid' not in keys or 'num' not in keys:
                         result['status'] = 'error'
                         result['msg'] = 'Need ruleid and num in rules '
                         return result
-                    
+                else:
+                    result['status'] = 'error'
+                    result['msg'] = 'rules items should be dict'
+                    return result        
         else:
             result['status'] = 'error'
             result['msg'] = 'op_type invalid'
             return result
         # 判断参数的有效性-----结束
 
-        # 锁库存
+        # 锁库存 
         lock.acquire(self.Timeout)
         # 启用备忘录模式
         rules_backup = []
         if op_type == self.OP_ADD: # 加库存
+            # 未测试：2017年10月11日20:27:16
             for rule_i in rules:
                 try:
                     rule = self.model.objects.get(pk = rule_i['ruleid'])
-                    rule._add(int(rule_i['num']))
-                    rules_backup.append(rule) # 加入备忘录
+                    rules_backup.append(copy.copy(rule)) # 加入备忘录
+                    rule._add(int(rule_i['num'])) 
                 except self.model.DoesNotExist:
-                    # 从备忘录中恢复
-                    # 得测试下
+                    # 从备忘录中恢复 
                     for rule in rules_backup:
                         rule.save()
                      
                     result['status'] = 'error'
                     result['msg'] = '{0} not found'.format(rule_i['ruleid'])
+                    lock.release()
                     return result
+
             result['status'] = 'ok'
             result['msg'] = 'Done'
+            lock.release()
             return result
         elif op_type == self.OP_REDUCE: # 减库存
             for rule_i in rules:
-                try:
-                    rule = self.model.objects.get(pk = rule_i['ruleid'])
-                    status = rule._reduce( num = int(rule_i['num']), inventory_type=reduce_type)
+                try: 
+                    rule = self.model.objects.get(pk = rule_i['ruleid']) 
+                    rules_backup.append(copy.copy(rule)) # 加入备忘录 
+                    status = rule._reduce( num = int(rule_i['num']), inventory_type=reduce_type) 
                     if status['result'] == 'error':
-                        # 从备忘录中恢复
-                        # 得测试下
+                        # 从备忘录中恢复  
                         for rule in rules_backup:
                             rule.save()
                         
                         result['status'] = 'error'
                         result['msg'] = status['msg']
+                        lock.release()
                         return result
-
-                    else:
-                        rules_backup.append(rule) # 加入备忘录
+                     
                 except self.model.DoesNotExist:
-                    # 从备忘录中恢复
-                    # 得测试下
+                    # 从备忘录中恢复 
                     for rule in rules_backup:
                         rule.save()
                      
                     result['status'] = 'error'
                     result['msg'] = '{0} not found'.format(rule_i['ruleid'])
+                    lock.release()
                     return result
             result['status'] = 'ok'
             result['msg'] = 'Done'
+            
+            # 更新订单信息
+            lock.release()
             return result
-
-        # 释放库存
-        lock.release()
-
-        return result
+ 
 
     def check_available_inventory(self, rules):
         """

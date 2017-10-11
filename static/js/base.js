@@ -16,9 +16,17 @@ function getCookie(name) {
 /* 
  *返回按钮
  */
-$(document).ready(function(){
-    $('i.back').click(function () {
+$(document).ready(function() {
+    $('i.back').click(function() {
         history.back();
     });
 });
-
+/* 
+ *菜单栏搜索框
+ */
+$('input.search').focus(function() {
+    $('#search-form').css('border-bottom', '1px solid #44a8f2');
+});
+$('input.search').blur(function() {
+    $('#search-form').css('border-bottom', '0px');
+});

@@ -19,7 +19,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from bill.models import AdaptorBill, AdaptorBillItem
-from product.models import AdaptorRule
+from product.models import AdaptorRule, AdaptorProduct
 
 from mobile.detectmobilebrowsermiddleware import DetectMobileBrowser
 from rabbitmq.publisher import Publisher
@@ -29,15 +29,17 @@ dmb     = DetectMobileBrowser()
    
 class BillView(View):
     
+    @method_decorator(login_required)
     def get(self, request):
         isMble  = dmb.process_request(request)
         content = {} 
-        
+        bills = AdaptorBill.objects.filter(owner = request.user)
+        content['bills'] = bills
         if 'new' in request.GET:
             if isMble:
-                return render(request, 'm_new.html', content)
+                return render(request, 'bill/m_new.html', content)
             else:
-                return render(request, 'new.html', content)
+                return render(request, 'bill/new.html', content)
         if 'test' in request.GET:
             if isMble:
                 return render(request, 'm_new.html', content)
@@ -126,7 +128,7 @@ class BillView(View):
                 q_bill['billid'] = bill.id 
                 q_bill['items'] = items_str
                 p = Publisher()
-                p.publish_message('store_exchange', json.dumps(q_bill), 'msg_real')
+                p.publish_message('store_exchange', json.dumps(q_bill), 'msg_avail')
                 p.close_connection()
 
                 result['id'] = bill.id
@@ -240,6 +242,86 @@ class BillView(View):
     def httpjson(self, result):
         return HttpResponse(json.dumps(result), content_type="application/json")
 
+class RabbitBillDetailView(APIView):
+    """bill detail"""
+    model = AdaptorBill
+    def get_object(self, pk):
+        try:
+            return AdaptorBill.objects.get(pk=pk)
+        except AdaptorBill.DoesNotExist:
+            raise Http404
+    def get(self, request, pk, format=None):
+        bill = self.get_object(pk)
+        isMble  = dmb.process_request(request)
+        
+        content = {}
+        if bill.status == AdaptorBill.STATUS_SUBMITTED: 
+            rules = []
+            for item in bill.adaptorbillitem_set.all():
+                rule = {}
+                rule['ruleid'] = item.id
+                rule['num'] = item.num
+                rules.append(rule)
+            
+            # 减可用库存
+            result = AdaptorRule.objects.inventory_op(rules=rules, 
+                                                    op_type=AdaptorRule.objects.OP_REDUCE, 
+                                                    reduce_type=AdaptorRule.OP_REDUCE_TYPE_AVAIL)
+            if result['status'] == 'ok':
+                bill.status = AdaptorBill.STATUS_UNPAYED
+                bill.save()
+            else:
+                # 减库存失败，存储失败状态和原因
+                bill.status = AdaptorBill.STATUS_FAILED
+                bill.errromsg = result['msg']
+                bill.save()
+
+            content = result
+        elif bill.status == AdaptorBill.STATUS_UNPAYED:
+            content['status'] = 'error'
+            content['msg'] = '订单已提交成功，无需再次提交...'
+        return HttpResponse(json.dumps(content), content_type='application/json')
+
+
+    @method_decorator(csrf_exempt)
+    def post(self, request, pk, format=None):
+        product = self.get_object(pk)
+         
+        content={
+            'product':product
+        } 
+        result = {}	
+        if request.method == 'POST': 
+            user = request.user
+            if 'method' in request.POST:
+                method = request.POST['method']
+                if method == 'delete':
+                    picid = request.POST['picid']
+                    productpic = ProductPic.objects.get(pk = picid)
+                    productpic.delete()
+                    result['status'] = 'OK'
+                    result['msg']    = '删除成功...' 
+            elif 'picid' in request.POST: # 说明是在设置主缩略图
+                picid = request.POST['picid']
+                productpic = ProductPic.objects.get(pk = picid)
+                product.thumbnail = productpic.url 
+                product.save()
+                
+                result['status'] = 'OK'
+                result['msg']    = '设置成功...'
+            else: 
+                code    = ''.join(random.choice(string.ascii_letters + string.digits) for i in range(4))
+                filename = handle_uploaded_file(request.FILES['pic'], str(user.id)+'_'+ code)
+                
+                ProductPic.objects.create(product=product, url=filename.replace('\\', '/'))
+                
+                result['status'] = 'OK'
+                result['msg']    = '上传成功...' 
+        else:
+            result['status'] = 'ERROR'
+            result['msg']    = 'Method error..'
+                  
+        return HttpResponse(json.dumps(result), content_type='application/json')
 
 class BillDetailView(APIView):
     """bill detail"""

@@ -3,11 +3,16 @@
 <link href="/static/bill/css/m_lists.css" rel="stylesheet">
 {% endblock %}
  {% block content %}
- 我的订单：<br/>
- {% for bill in bills %}
+ 我的订单详情：<br/>
+ 
  <a href="{% url 'bill:rabbit' bill.id %}" >
-   {{bill.id}}</a><br/>
- {% endfor %}
+   {{bill.id}}</a>
+   <br/>{{bill.status}}
+    
+{{result}}
+  {% for item in bill.adaptorbillitem_set.all %} 
+  {{item.id}} <br/>
+  {% endfor %}
 {% endblock %}
 {% block js %}
 <script type="text/javascript " src="/static/bill/js/new.js "></script>

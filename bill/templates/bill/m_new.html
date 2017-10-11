@@ -1,0 +1,57 @@
+{% extends 'm_base.html' %} {% block css %} {% load staticfiles %}
+<link href="/static/bill/css/m_new.css" rel="stylesheet">
+{% endblock %} {% block content %}
+<!-- 顶部 -->
+<header class="header">
+    <i class="fa fa-angle-left pull-left back f26" aria-hidden="true"></i>
+  填写订单
+</header>
+<a href="{% url 'address:addresses' %}">
+    <section class="address">
+        <span id="name">姓名</span>
+        <span id="phone">电话号135********</span>
+        <div id="address"><i class="fa fa-map-marker" aria-hidden="true"></i>陕西省西安市雁塔区某街道</div>
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+    </section>
+</a>
+
+<a href="{% url 'bill:detail' 12 %}">
+    <section class="ware">
+        <img class="thumbnail pull-left " src="">
+        <img class="thumbnail pull-left " src="">
+        <img class="thumbnail pull-left " src="">
+        <span class="pull-right" id='sum_number'></span>
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+    </section>
+</a>
+<section class="all_price">
+        <div>发票<span class="pull-right">（发票类型）</span></div>
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+</section>
+
+<input class="message form-control" type="text" placeholder="选填：买家留言"/>
+<section class="all_price">
+    <div>商品总价：<i class="fa fa-jpy" aria-hidden="true"></i><span id="sum_price" class="price f16"> 0.00</span></div>
+    <div>快递费用：<i class="fa fa-jpy" aria-hidden="true"></i><span class="price f16"> 0.00</span></div>
+</section>
+
+
+<footer class="text-center " id="footer ">
+        <div class="pull-left menu-left ">
+            实付款：<i class="fa fa-jpy" aria-hidden="true"></i><span class="price sum_price"> 0.00</span>
+        </div>
+    
+        <a href="javascript:; ">
+            <div class="pull-right menu-right submit-btn submit-btn-test">提交订单</div>
+        </a>
+</footer>
+<script> 
+$('.thumbnail').height($('.thumbnail').width() +'px');
+</script> 
+   
+{% endblock %}
+{% block js %}
+<script type="text/javascript " src="/static/bill/js/new.js "></script>
+<!-- <script type="text/javascript " src="/static/bill/js/newtest.js "></script> -->
+{% endblock %}
+ 

@@ -6,57 +6,55 @@
     <i class="fa fa-commenting pull-right f18" aria-hidden="true"></i>
 </header>
 <!-- 要购买的商品 -->
-{% if ruleitems %}
-{% for rule in ruleitems %}
-     <div class="list carlist">
-            
+{% if ruleitems %} {% for rule in ruleitems %}
+<div class="list carlist">
+    <div class="img_parent col-xs-1 col-sm-1">
+        <input class="checked" type="checkbox" /></div>
+        
         <div class="img_parent col-xs-3 col-sm-3">
-                <input class="checked" type="checkbox" />
-            <img src="{{mediaroot}}{{rule.rule.product.thumbnail}}"></div>
-        <div class="col-xs-7 col-sm-7 list_center">
+            <img src="{{mediaroot}}{{rule.rule.product.thumbnail}}">
+        </div>
+        <div class="col-xs-6 col-sm-6 list_center">
             <div class="carlist_name">{{rule.rule.product.title|truncatechars:"20"}}
             </div>
             <div class="rule_content">规格：{{rule.rule.name}}
-                </div>
-            <div><i class="fa fa-jpy" aria-hidden="true"></i> <span class="price add_price carprice">{{rule.rule.price}}</span>
+            </div>
+            <div>
+                <i class="fa fa-jpy" aria-hidden="true"></i>
+                <span class="price add_price carprice">{{rule.rule.price}}</span>
             </div>
         </div>
         <div class="col-xs-2 col-sm-2 number f20">
             <div class="addition">+</div>
             <div class="display carnum" ruleid="{{rule.id}}">{{rule.quantity}}</div>
             <div class="subtraction">-</div>
-        </div> 
+        </div>
     </div>
-    {% endfor %}
-{% else %}
-购物车中没有物品
-{%endif%}
+    {% endfor %} {% else %} 购物车中没有物品 {%endif%}
 
 
-<!-- 结账按钮 -->
-<footer class="text-center " id="footer ">
-    <div class="pull-left menu-left ">
-        总金额为：<i class="fa fa-jpy" aria-hidden="true"></i><span class="price sum_price"> 0.00</span>
-    </div>
+    <!-- 结账按钮 -->
+    <footer class="text-center " id="footer ">
 
-    <a class="block pull-right menu-right " href="javascript:; ">
-        去结算
-    </a>
-</footer>
+        <div class="pull-left menu-left ">
+            <input id="all_checked" type="checkbox" />全选 总金额为：
+            <i class="fa fa-jpy" aria-hidden="true"></i>
+            <span class="price sum_price"> 0.00</span>
+        </div>
+
+        <a class="block pull-right menu-right " href="javascript:; ">
+            去结算
+        </a>
+    </footer>
 </div>
 
-{% include 'recommend.html' %}
-{% block menucart %} menu-act {% endblock %}
-{% endblock %}
-{% block js %}
+{% include 'recommend.html' %} {% block menucart %} menu-act {% endblock %} {% endblock %} {% block js %}
 <script type="text/javascript" src="/static/shopcar/js/shopcar.js"></script>
 <script>
     var sum = 0;
-    {% if ruleitems %}
-    {% for rule in ruleitems %}
+    {%if ruleitems %} {% for rule in ruleitems %}
     sum += {{rule.rule.price }} * {{rule.quantity }};
     {% endfor %}
     {% endif %}
     $('.sum_price').text(sum);
-</script>
-{% endblock %}
+</script> {% endblock %}

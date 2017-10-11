@@ -1,51 +1,12 @@
 {% extends 'base.html' %} {% block css %}
-<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.css"> {% endblock %} {% block content %}
-<link href="/static/css/shophome.css" rel="stylesheet">
-<header class="container">
-    <div class="row">
-        <a href="javascript:;">
-            <div class="text-center col-xs-2">
-                <i class="fa fa-qrcode block fa-2x"></i><span class="f12"> 扫码</span>
-            </div>
-        </a>
+<link href="/static/css/shophome.css" rel="stylesheet"> {% endblock %} {% block content %}
 
-        <div class="search i-block col-xs-8">
-            <i class="fa fa-search pull-left" aria-hidden="true"></i>
-            <input class="inp-search" type="text" />
-        </div>
-
-        <a href="/">
-            <div class="text-center col-xs-2"><i class="fa fa-commenting-o block fa-2x"></i> <span class="f12"> 消息</span>
-            </div>
-        </a>
-    </div>
-</header>
-
-<!-- swiper1 -->
-<div id="swiper-container" class="swiper-container">
-    <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="/static/img/sli1.jpg"></div>
-        <div class="swiper-slide"><img src="/static/img/sli3.jpg"></div>
-        <div class="swiper-slide"><img src="/static/img/sli2.jpg"></div>
-    </div>
-</div>
-<!-- swiper1 end-->
-
-<!-- swiper2 -->
-
-<div class="swiper-container swiper-container-2 subnav-wrap f12">
+<div class="aj"> {% if request.user.is_anonymous %}未登录{%else%} {{request.user.username}}{% endif%}</div>
+<!-- <div class="swiper-container swiper-container-2 subnav-wrap f12">
     <div class="swiper-wrapper">
         <div class="swiper-slide">
-            <a href="{% url 'users:login' %}">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if1.png"> 登录
-                </div>
-            </a>
-            <a href="{% url 'users:register' %}">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if2.png"> 注册
-                </div>
-            </a>
+
+
             <a href="{% url 'category:categories' %}">
                 <div class="pull-left submenu">
                     <img src="/static/img/if3.png"> 类别
@@ -61,101 +22,39 @@
                     <img src="/static/img/if5.png"> 创建商品
                 </div>
             </a>
+            <a href="{% url 'product:products' %}?pic">
+                <div class="pull-left submenu">
+                    <img src="/static/img/if6.png"> 创建商品图片
+                </div>
+            </a>
             <a href="{% url 'product:products' %}">
                 <div class="pull-left submenu">
-                    <img src="/static/img/if6.png"> 商品列表
+                    <img src="/static/img/if20.png"> 商品列表
                 </div>
             </a>
-            <a href="{% url 'shopcar:shopcar_detail' %}">
+            <a href="{% url 'users:logout' %}">
                 <div class="pull-left submenu">
-                    <img src="/static/img/if20.png"> 购物车
+                    <img src="/static/img/if7.png"> 退出
                 </div>
             </a>
+            <a href="{% url 'bill:bills' %}">
+                <div class="pull-left submenu">
+                    <img src="/static/img/if8.png"> 我的订单
+                </div>
+            </a>
+
+
             <a href="javascript:;">
                 <div class="pull-left submenu">
-                    <img src="/static/img/if7.png"> 菜单名称
+                    <img src="/static/img/if17.png"> 数据
                 </div>
             </a>
-            <a href="javascript:;">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if8.png"> 菜单名称
-                </div>
-            </a>
-            <a href="javascript:;">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if9.png"> 菜单名称
-                </div>
-            </a>
+
 
 
         </div>
-        <div class="swiper-slide">
-            <a href="javascript:;">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if10.png"> 菜单名称
-                </div>
-            </a>
-            <a href="javascript:;">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if11.png"> 菜单名称
-                </div>
-            </a>
-            <a href="javascript:;">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if12.png"> 菜单名称
-                </div>
-            </a>
-            <a href="javascript:;">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if13.png"> 菜单名称
-                </div>
-            </a>
-            <a href="javascript:;">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if14.png"> 菜单名称
-                </div>
-            </a>
-            <a href="javascript:;">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if15.png"> 菜单名称
-                </div>
-            </a>
-            <a href="javascript:;">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if16.png"> 菜单名称
-                </div>
-            </a>
-            <a href="/area/get_county_list/?cityid=610800">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if16.png"> 获取榆林各县的json数据
-                </div>
-            </a>
-         
-            <a href="/area/get_city_list/?provinceid=610000">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if18.png"> 获取陕西各市json数据
-                </div>
-            </a>
-            <a href="/area/get_provice_list/">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if19.png"> 获取省级json数据
-                </div>
-            </a>
 
-
-        </div>
     </div>
     <div class="swiper-pagination2 pagination-2"></div>
-</div>
-<!-- swiper2 end-->
-
-<div class="aj"> {% if request.user.is_anonymous %}未登录{%else%} {{request.user.username}}{% endif%}</div>
-
-{% endblock %} {% block js %}
-<script type="text/javascript" src="/static/js/swiper-3.4.2.jquery.min.js"></script>
-<script type="text/javascript" src="/static/js/shop.js"></script>
-<script>
-    //轮播图 宽高比
-    $('#swiper-container').height($('#swiper-container').width() * 0.6 + 'px');
-</script>
-{% endblock %}
+</div> -->
+{% endblock %} {% block js %} {% endblock %}

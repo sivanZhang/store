@@ -22,12 +22,12 @@ rabbithttpapi = {
 storeserver = {
     'IP': '127.0.0.1',
     'PORT': 8000,
-    'API_SERVER_USER': 'admin',
-    'API_SERVER_PWD': 'admin',
+    'API_SERVER_USER': '281475120@163.com',
+    'API_SERVER_PWD': '889886',
     'ALLOWED_HOSTS':['192.168.1.102', 'localhost', '127.0.0.1', 'jeawy-pc'],
    
     # get the remote node to delivery
-    'API_GET_NODE': '/api/nodes/',
+    'BILL_SUBMIT_API': '/bill/bills/{0}/rabbit',
     'API_ADD_TASK': '/nodes/taskcounter/',
 
     'API_RUN_COMPUTE': '/api/run_compute/',

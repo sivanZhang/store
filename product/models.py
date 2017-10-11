@@ -1,5 +1,6 @@
 #! -*- coding:utf-8 -*-
 import threading
+import pdb
 
 from django.db import models
 from appuser.models import AdaptorUser as User 
@@ -12,7 +13,7 @@ from django.db.models import F
 """
 全局锁，锁住的时候，不允许进行任何库存的写操作
 """
-lock = threading.Lock()
+ 
 
 class Product(BaseDate):
     DRAFT = 0
@@ -100,15 +101,15 @@ class Rule(models.Model):
         inventory_type表示减少库存的类型，当=0时，代表减少可用库存
         =1 时代表减少物理库存
         """ 
-        status = {}
-        # if lock.acquire(self.Timeout):
+        status = {} 
         # 减库存
         if inventory_type == self.OP_REDUCE_TYPE_AVAIL:
             # 减可用库存
+            
             if self.available_inventory - num < 0:
                 status['result'] = 'error'
                 status['msg'] = '错误：可用库存不足'
-            else:
+            else: 
                 self.available_inventory = F('available_inventory') - num
                 self.save()
                 status['result'] = 'ok'
