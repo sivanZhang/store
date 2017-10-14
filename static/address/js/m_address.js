@@ -64,7 +64,7 @@ $(document).ready(function () {
                 if (result['status'] == 'ok') {
                     $().message(result['msg']);
                     setTimeout(function () {//三秒返回
-                        location.reload();
+                        location.href='/address/addresses/';
                     }, 3000);
                 } else {
                     $().errormessage(result['msg']);

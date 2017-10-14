@@ -1,9 +1,9 @@
 /* 
  *获取cookid数据
  */
-var nSum_price =JSON.parse(CookieUtil.get("sum_price"));//总价格
-var aProducts=JSON.parse(CookieUtil.get("products"));//商品
-var oAdress= JSON.parse(CookieUtil.get("aAddress"));//快递地址
+var nSum_price = JSON.parse(CookieUtil.get("sum_price"));//总价格
+var aProducts = JSON.parse(CookieUtil.get("products"));//商品
+var oAdress = JSON.parse(CookieUtil.get("aAddress"));//快递地址
 
 /* 
  *显示总价
@@ -13,146 +13,148 @@ $('#sum_price').text(nSum_price);
  *显示总件数
  *图片显示
  */
-var sum_number=0;
-var oImg=  $('img.thumbnail')
+var sum_number = 0;
+var oImg = $('img.thumbnail');
+var counter = 0;
+//for (var i = 0; i < Math.max(oImg.length,aProducts.length); i++) {
 for (var i = 0; i < aProducts.length; i++) {
-  sum_number += parseInt(aProducts[i].num);
-  //图片显示
-  var aSrc=aProducts[i].img;
-  $(oImg[i]).attr('src',aSrc);
+    counter++;
+    if (aProducts.length == 1) {
+        $('.ware').children().remove();
+        $('.ware').append('<img class="img-rounded pull-left" src="" />' +
+            '<div class="pull-left">' +
+            '<div class="product_name">商品名称</div>' +
+            '<div class="product_rull font-grey">商品说明</div>' +
+            '<div class="pull-left">' +
+            '<i class="fa fa-jpy" aria-hidden="true"></i>' +
+            '<span class="product_price">价格</span>' +
+            '</div>' +
+            '<div class="product_numb font-grey pull-right">件数' +
+            '</div>' +
+            '</div>')
+        var aList = $('.ware');
+        $(aList[i]).find('img').attr('src', aProducts[i].img);
+        $(aList[i]).find('.product_name').text(aProducts[i].name);
+        $(aList[i]).find('.product_rull').text(aProducts[i].rule);
+        $(aList[i]).find('.product_price').text(aProducts[i].Price);
+        $(aList[i]).find('.product_numb').text('x' + aProducts[i].num + '件');
+
+    };
+    if (aProducts[i]) {
+        $(oImg[i]).css('display', 'block');
+        sum_number += parseInt(aProducts[i].num);
+        var aSrc = aProducts[i].img;
+        $(oImg[i]).attr('src', aSrc);
+    }
+
+
 };
-if($('img.thumbnail').attr('src')){
-    $(this).css('display','none')
-  }
-$('#sum_number').text('共'+sum_number+'件');
+
+$('#sum_number').text('共' + sum_number + '件');
 
 /* 
  *地址栏text
  */
 var addressIcon = '<i class="fa fa-map-marker" aria-hidden="true"></i>:';
-if(oAdress){
-    $('#name').text('姓名：'+oAdress.name);
-    $('#phone').text('电话：'+oAdress.phone);
-    $('#address').html(' <div id="address">'+addressIcon+oAdress.address+'</div>');
-}else{
+if (oAdress) {
+    $('#name').text('姓名：' + oAdress.name);
+    $('#phone').text('电话：' + oAdress.phone);
+    $('#address').html(' <div id="address">' + addressIcon + oAdress.address + '</div>');
+} else {
     $('#name').text('姓名：');
     $('#phone').text('电话：');
-     $('#address').html(' <div id="address">'+addressIcon+'</div>');
+    $('#address').html(' <div id="address">' + addressIcon + '</div>');
 }
-
-
- 
-
-
 
 
 
 //  提交订单
 mark = false;
-$('.submit-btn').click(function() {
-     //loading
-    if( mark == true){
+$('.submit-btn').click(function () {
+    //loading
+    if (mark == true) {
         return;
     }
-    mark = true; 
-    
-    /*
-    var categoryid = $('#sel-category').val();
-    var title = $('#title').val();
-    var desc = $('#desc').val();
-    var categoryid = $('#sel-category').val();
-
-    var obj = {};
-    var rules = Array();
-
-    var rules_tr = $('.tr_rule');
-    rules_tr.each(function() {
-        obj['name'] = $(this).find('.name').text();
-        obj['unit'] = $(this).find('.type').text();
-        obj['price'] = $(this).find('.price').text();
-        obj['inv'] = $(this).find('.inv').text();
-        rules.push(obj);
-        obj = {};
-    });
-    var parameters = Array();
-    var parameters_tr = $('.parameter_tr');
-    var obj_para = {};
-    parameters_tr.each(function() {
-        obj_para['key'] = $(this).find('.key').text();
-        obj_para['value'] = $(this).find('.value').text(); 
-        parameters.push(obj_para);
-        obj_para = {};
-    });
-   
-  
-    
-    var address_id = 1;
-    var phone = '18811082245';
-    var reciever = '张继伟'*/
+    var options = {
+        theme: "sk-doc",
+        message: '提交中...',
+        backgroundColor: "#000",
+        textColor: "white"
+    };
+    HoldOn.open(options);
+    mark = true;
     var items = Array();
     for (var i = 0; i < aProducts.length; i++) {
-        item ={
-            'ruleid':aProducts[i].ruleid,
-            'num':aProducts[i].num
+        item = {
+            'ruleid': aProducts[i].ruleid,
+            'num': aProducts[i].num
         }
         items.push(item);
-      };
+    };
     data = {
         'method': 'create',
         'address_id': oAdress.address_id,
         'phone': oAdress.phone,
         'reciever': '大哥',
         'items': JSON.stringify(items),
-        'csrfmiddlewaretoken': getCookie('csrftoken'),
+        'csrfmiddlewaretoken': getCookie('csrftoken')
     };
-  /*   var product = $('#productid');
-    if (product.length > 0){
-        //3
-        data['id'] = product.val();
-        data['method'] = 'put'; //修改产品
-    }
-    */
+
     $.ajax({
         type: 'post',
         url: '/bill/bills/',
         data: data,
-        success: function(result) {
-            if (result['status'] == 'ok'){
+        success: function (result) {
+            if (result['status'] == 'ok') {
                 //$().message(result['msg']); 
-                
                 // 不断查询订单状态
                 billid = result['id'];
-                url = '/bill/bills/'+ billid +'/?status';
-                $.ajax({
-                    type: 'get',
-                    url: url,
-                    success: function(billresult) {
-                        if (billresult['status'] == 'ok'){
-                            billresult['billstatus'];
-                            billresult['billmsg'];
-                            /*
-                               billresult['billstatus']可能的值如下：
-                                # 订单创建失败:failed
-                                # 订单已提交:submitted
-                                # 未支付:unpayed
-                                # 已支付:payed
-                                # 已完成:finished
-                            */
-                        }
-                    },
-                    error: function() {}
+                while (true) {
 
-                });
+                    url = '/bill/bills/' + billid + '/?status'; //API
+                    $.ajax({// 查询订单库存是否足够
+                        type: 'get',
+                        url: url,
+                        success: function (billresult) {
+                            if (billresult['status'] == 'ok') {
+
+                                var billstatus = billresult['billstatus'];
+                                if (billstatus == 'failed') {
+                                    HoldOn.close();
+                                    $().errormessage(billresult['billmsg']);
+                                    return;
+                                } else if (billstatus == 'submitted') {
+                                    HoldOn.close();
+                                    return;
+                                    // 超3秒，显示超时。$().errormessage('订单超时...');
+                                } else if (billstatus == 'unpayed') {
+                                    //导航到待支付页面
+
+                                }
+
+
+                            } else {
+                                HoldOn.close();
+                                $().errormessage('订单异常...');
+                                return;
+                            }
+                        },
+                        error: function () {
+                            HoldOn.close();
+                        }
+                    })
+                }
+
             }
-            
-            // unloading
         },
-        error: function() {
+        error: function () {
             // 500
+            HoldOn.close();
             alert('server is down!')
             mark = false;
             // unloading
         }
-    })
+
+    });
 });
 

@@ -11,10 +11,9 @@ $('document').ready(function() {
 $('.col-xs-1,.col-sm-1').height($('.col-xs-1,.col-sm-1').next().height()+'px');
 
 /* 
- *点击复选框更新价格
+ *checkbox click
+ *全选/反选
  */
-
-//全选
 $("#all_checked").click(function() {
     if (this.checked) {
         $("input.checked").prop("checked", true);
@@ -22,7 +21,7 @@ $("#all_checked").click(function() {
         $("input.checked").prop("checked", false);
     }
 });
-
+    //单选
 var selectList = '';
 $('body').on("click", "input[type='checkbox']", function() {
     selectList = $("input.checked:checked").parents('.carlist');
@@ -30,26 +29,29 @@ $('body').on("click", "input[type='checkbox']", function() {
     var sum = cal_sum();
     $('.sum_price').text(sum.toFixed(2));
 });
-// 数字失去焦点
+
+/* 
+ *个数失去焦点
+ */
 $('.carlist').on("blur", '.carnum', function() {
            var sum = cal_sum();
            $('.sum_price').text(sum.toFixed(2));
    });
-//按键起来事件  验证是否为数字
-$('.carlist').on("keydown", '.carnum', function() {
-    this.value=this.value.replace(/\D/g,'')
-   });
 
+fnLimited($('.carnum'));//限制用户输入除数字外的其他字符
 
+/* 
+ *加载完跟新价格
+ */
 window.onload = function() {
         var selectList = $("input.checked:checked").parents('.carlist');
         cal_sum();
         var sum = cal_sum();
         $('.sum_price').text(sum.toFixed(2));
     }
-    /* 
-     *单价x数量的总价格
-     */
+/* 
+ *计算总计价格
+ */    
 function cal_sum() {
     var num = 0;
     var sum = 0; //tatol money
@@ -110,7 +112,7 @@ $('a.menu-right').click(function() {
         product.rule = aRule.text();
         product.img = aImg.attr('src');
         product.Price = aPrice.text();
-        product.ruleid = $(aCarnum).attr('ruleid');
+        product.ruleid = aCarnum.attr('ruleid');
         product.num = aCarnum.val();
         products.push(product);
     }
@@ -123,3 +125,29 @@ $('a.menu-right').click(function() {
     window.location.href = '/bill/bills/?new';
 })
 
+
+/* 
+ *删除按钮
+ */
+$('.carlist').on('click','.fa-times',function(){
+    var fa_times=$(this);
+    data = {
+        'method': 'delete',
+        'ruleid': $(this).attr('ruleid'),
+        'csrfmiddlewaretoken': getCookie('csrftoken'),
+    };
+    $.ajax({
+        type: 'post',
+        url: '/shopcar/shopcars/',
+        data: data,
+        success: function(result) {
+            if (result['status'] == 'ok'){
+                fa_times.parents('.carlist').remove();
+            }
+            
+        },
+        error: function() {
+            alert('server is down!')
+        }
+    })
+});

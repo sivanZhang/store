@@ -10,4 +10,5 @@ class Apis(models.Model):
     remark = models.CharField(_('Rule'), max_length = 4096, null = True) 
   
 class AdaptorApis(Apis):
-    pass
+    class Meta:
+        ordering = (('-id'), )

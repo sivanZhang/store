@@ -1,5 +1,5 @@
 
-{% extends 'base.html' %} {% block css %} {% load staticfiles %}
+{% extends 'base.html' %} {% block pagetitle%}API列表{% endblock%}{% block css %} {% load staticfiles %}
  
 {% endblock %}
  {% block content %}
@@ -12,10 +12,11 @@
  </form>
  {% for api in apis %}
  <table class="table">
-    <tr>
-        <td  > <a target="__blank" href=" " > {{api.url}}</a> </td>
-        <td> <pre>  {{api.remark }} </pre> </td>
-        <td> <input type="button" value="删除 "  class="btn-delete" id=" {{api.id}}" /> </td>
+    <tr> 
+        <td  > <input type="button" value="删除本条API"  class="btn btn-danger btn-delete" id=" {{api.id}}" /><a target="__blank" href=" " > {{api.url}}</a> </td>
+    </tr>
+        <td  >  <pre>  {{api.remark }} </pre> </td>
+       
      </tr>
 </table>  
 {% endfor %}{% endblock %}

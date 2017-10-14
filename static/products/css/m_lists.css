@@ -54,11 +54,12 @@ li i {
 }
 
 div.carlist {
-    margin: 4px 0;
+    margin: 4px 4px 4px 0px;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     width: 100%;
     background-color: #fff;
+    width:100%;
     overflow: hidden;
     position: relative;
     padding:5px 0;
@@ -69,8 +70,7 @@ div.carlist>div {
 }
 
 .img_parent img {
-    width: 100%;
-    height: 100%;
+    width: 90%;
 }
 
 .number {
@@ -272,7 +272,7 @@ transform: translate(-50%,-50%);
     overflow: hidden;
     position: relative;
     bottom: 0px;
-transform: translateY(100%);
+transform: translateY(50%);
 }
 /* .menu-right::after,a.menu-right:hover,a.menu-right:focus,a.menu-right:active{
     color: #eee;

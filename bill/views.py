@@ -20,7 +20,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from bill.models import AdaptorBill, AdaptorBillItem
 from product.models import AdaptorRule, AdaptorProduct
-
+from django.utils.translation import ugettext as _
 from mobile.detectmobilebrowsermiddleware import DetectMobileBrowser
 from rabbitmq.publisher import Publisher
 
@@ -45,11 +45,29 @@ class BillView(View):
                 return render(request, 'm_new.html', content)
             else:
                 return render(request, 'test.html', content)
-        if 'pic' in request.GET:
+        if 'detail' in request.GET:
             if isMble:
-                return render(request, 'm_pic.html', content)
+                return render(request, 'bill/m_detail.html', content)
             else:
-                return render(request, 'pic.html', content)
+                return render(request, 'bill/m_detail.html', content)
+        if 'unpayed' in request.GET:
+            # 给客户展示订单支付页面
+            # 需要订单号
+            if 'billno' in request.GET:
+                billno = request.GET['billno']
+                try:
+                    bill = AdaptorBill.objects.get(no = billno, owner = request.user)
+       
+                    content['bill'] = bill
+                except AdaptorBill.DoesNotExist:
+                    content['bill'] = False
+                    content['error'] = _("Not Found...") 
+            else:
+                content['error'] = _("Need billno, Not Found...")
+            if isMble:
+                return render(request, 'bill/m_unpayed.html', content)
+            else:
+                return render(request, 'bill/m_unpayed.html', content)
         else:
             if isMble:
                 return render(request, 'bill/m_lists.html', content)
@@ -103,8 +121,7 @@ class BillView(View):
         if  'address_id' in request.POST   and 'items' in request.POST  :   
             
             items_str = request.POST['items']
-            items = json.loads(items_str)
-             
+            items = json.loads(items_str) 
             if len(items) > 0:
                 # 创建订单 
                 bill = AdaptorBill.objects.createbill(request.POST, user) 
@@ -137,7 +154,7 @@ class BillView(View):
                 result['msg'] ='Need items in POST' 
         else:
             result['status'] ='error'
-            result['msg'] ='Need phone, reciever and items in POST'
+            result['msg'] ='Need  items in POST'
         return self.httpjson(result)
 
     def put(self, request):

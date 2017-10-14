@@ -12,7 +12,7 @@ from django.views import View
 from django.http import Http404, QueryDict
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required 
- 
+from django.utils.translation import ugettext as _
 from django.utils.decorators import method_decorator
 from django.views.generic.detail import DetailView
 from django.conf import settings
@@ -39,7 +39,7 @@ class ShopcarView(View):
             return render(request, 'shopcar/lists.html', content)
 
 
-class ShopcarDetailView(APIView):
+class ShopcarView(APIView):
 
     method_decorator(login_required)
     def get(self, request,  format=None ):
@@ -66,7 +66,7 @@ class ShopcarDetailView(APIView):
             user = request.user
             if user.is_anonymous():
                 result['status'] = 'ERROR'
-                result['msg']    = '需要登录....'
+                result['msg']    = _('login required....')
             else:
                 if 'method' in request.POST:
                     method = request.POST['method']
@@ -74,29 +74,30 @@ class ShopcarDetailView(APIView):
                     ruleid = request.POST['ruleid']
                     try:
                         rule = AdaptorRule.objects.get(id = ruleid)
+                
                         if method == 'delete': 
                             caritem = CartItem.objects.get(rule = rule, user = user)
                             caritem.delete()
-                            result['status'] = 'OK'
-                            result['msg']    = '删除成功...' 
+                            result['status'] = 'ok'
+                            result['msg']    = _('Delete successfully....')#'删除成功...' 
                         else :
                             # create 
                             quantity = request.POST['num']
                             car, create = CartItem.objects.get_or_create(rule = rule, user=user )
                             car.quantity += int(quantity )
                             car.save()
-                            result['status'] = 'OK'
-                            result['msg']    = '添加成功...' 
+                            result['status'] = 'ok'
+                            result['msg']    = _('Add successfully....') # '添加成功...' 
                     except AdaptorRule.DoesNotExist:
-                        result['status'] = 'ERROR'
-                        result['msg']    = '未找到商品....'
+                        result['status'] = 'error'
+                        result['msg']    = _('Not found....') #'未找到商品....'
                 
                 else:   
-                    result['status'] = 'ERROR'
-                    result['msg']    = 'Need method in post...' 
+                    result['status'] = 'error'
+                    result['msg']    = _('Need method in post...') 
         else:
-            result['status'] = 'ERROR'
-            result['msg']    = 'Method error..'
+            result['status'] = 'error'
+            result['msg']    = _('Method error..')
                   
         return HttpResponse(json.dumps(result), content_type='application/json')
          

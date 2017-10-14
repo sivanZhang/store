@@ -6,7 +6,7 @@
     <i class="fa fa-commenting pull-right f18" aria-hidden="true"></i>
 </header>
 <!-- 要购买的商品 -->
-{% if ruleitems %} {% for rule in ruleitems %}
+{% if ruleitems %} {% for car in ruleitems %}
 <div class="list carlist">
     <div class="col-xs-1 col-sm-1">
         <label class="demo--label">
@@ -15,21 +15,21 @@
         </label>
     </div>
         <div class="img_parent col-xs-3 col-sm-3">
-            <img class="img-rounded" src="{{mediaroot}}{{rule.rule.product.thumbnail}}">
+            <img class="img-rounded" src="{{mediaroot}}{{car.rule.product.thumbnail}}">
         </div>
         <div class="col-xs-8 col-sm-8 list_center">
-            <div class="carlist_name">{{rule.rule.product.title|truncatechars:"20"}}
+            <div class="carlist_name">{{car.rule.product.title|truncatechars:"20"}}<i class="fa fa-times pull-right" ruleid="{{car.rule.id}}" aria-hidden="true"></i>
             </div>
-            <div class="rule_content font-grey">规格：{{rule.rule.name}}
+            <div class="rule_content font-grey">规格：{{car.rule.name}}
             </div>
-            <div class="item_main">
+            <div class="item_main" carid="{{car.id}}">
                 <div class="pull-left">
                     <i class="fa fa-jpy" aria-hidden="true"></i>
-                    <span class="price add_price carprice">{{rule.rule.price}}</span>
+                    <span class="price add_price carprice">{{car.rule.price}}</span>
                 </div>
                 <div class="carnum_parent pull-right">
                     <span class="addition glyphicon glyphicon-plus"> </span>
-                    <input class="carnum" type="text" value="{{rule.quantity}}" ruleid="{{rule.id}}">
+                    <input class="carnum" ruleid="{{car.rule.id}}" type="text" value="{{car.quantity}}"  >
                     <span class="subtraction glyphicon glyphicon-minus">
                         <span>
                 </div>
