@@ -75,9 +75,7 @@ class BillView(View):
         删除：参数中带有method，并且值是'delete'，大小写不敏感
                 # # id【必须字段】：订单id 
 
-        修改：参数中带有method，并且值是'put'，大小写不敏感
-                
-            
+        修改：参数中带有method，并且值是'put'，大小写不敏感 
         """
         result = {} 
         
@@ -258,6 +256,9 @@ class RabbitBillDetailView(APIView):
         if bill.status == AdaptorBill.STATUS_SUBMITTED: 
             rules = []
             for item in bill.adaptorbillitem_set.all():
+                item.product_title = item.product.title
+                item.rule_title = item.rule.name
+                item.save()
                 rule = {}
                 rule['ruleid'] = item.id
                 rule['num'] = item.num
@@ -332,17 +333,25 @@ class BillDetailView(APIView):
         except AdaptorBill.DoesNotExist:
             raise Http404
     def get(self, request, pk, format=None):
-        #bill = self.get_object(pk)
+        bill = self.get_object(pk)
         isMble  = dmb.process_request(request)
         
         content={
-            #'bill':bill
+            'bill':bill
         }
         content['mediaroot'] = settings.MEDIA_URL
+        if 'status' in request.GET:
+            # 查询订单状态
+            result = {
+                'status':'ok',
+                'billstatus' : bill.get_status_display(),
+                'billmsg' : bill.errromsg
+            }
+            return HttpResponse(json.dumps(result), content_type='application/json')
         if isMble:
             return render(request, 'bill/m_lists_products.html', content)
         else:
-            return render(request, 'bill/detail.html', content)
+            return render(request, 'bill/m_lists_products.html', content)
 
 
     @method_decorator(csrf_exempt)

@@ -17,38 +17,36 @@
 
 <a href="{% url 'bill:detail' 12 %}">
     <section class="ware">
-        <img class="thumbnail pull-left " src="">
-        <img class="thumbnail pull-left " src="">
-        <img class="thumbnail pull-left " src="">
+        <img class="thumbnail pull-left ">
+        <img class="thumbnail pull-left ">
+        <img class="thumbnail pull-left ">
         <span class="pull-right" id='sum_number'></span>
         <i class="fa fa-angle-right" aria-hidden="true"></i>
     </section>
 </a>
-<section class="all_price">
+<!-- <section class="all_price">
         <div>发票<span class="pull-right">（发票类型）</span></div>
         <i class="fa fa-angle-right" aria-hidden="true"></i>
-</section>
+</section> -->
 
 <input class="message form-control" type="text" placeholder="选填：买家留言"/>
-<section class="all_price">
+<!-- <section class="all_price">
     <div>商品总价：<i class="fa fa-jpy" aria-hidden="true"></i><span id="sum_price" class="price f16"> 0.00</span></div>
     <div>快递费用：<i class="fa fa-jpy" aria-hidden="true"></i><span class="price f16"> 0.00</span></div>
-</section>
+</section> -->
 
 
 <footer class="text-center " id="footer ">
         <div class="pull-left menu-left ">
-            实付款：<i class="fa fa-jpy" aria-hidden="true"></i><span class="price sum_price"> 0.00</span>
-        </div>
-    
+               商品总价：<i class="fa fa-jpy" aria-hidden="true"></i><span id="sum_price" class="price f16"> 0.00</span></div>
+            
         <a href="javascript:; ">
             <div class="pull-right menu-right submit-btn submit-btn-test">提交订单</div>
         </a>
 </footer>
 <script> 
 $('.thumbnail').height($('.thumbnail').width() +'px');
-</script> 
-   
+</script>
 {% endblock %}
 {% block js %}
 <script type="text/javascript " src="/static/bill/js/new.js "></script>

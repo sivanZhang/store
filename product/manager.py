@@ -30,8 +30,9 @@ class RuleManager(models.Manager):
         rules_str参数的样式：'[{"key":"23","value":"JK37"},{"key":"2332","value":"WL7"}]'
         """ 
         rules = json.loads(rules_str)
-        for rule in rules: 
-            self.create(product = product, name=rule['name'], price = float(rule['price']), inventory=rule['inv'], unit=rule['unit'] )
+        for rule in rules:  
+            self.create(product = product, name=rule['name'], price = float(rule['price']), 
+                             real_inventory=rule['inv'],available_inventory=rule['inv'], unit=rule['unit'] )
 
     def inventory_op(self, rules = None, reduce_type=None, op_type= OP_REDUCE, billstatus=None):
         """

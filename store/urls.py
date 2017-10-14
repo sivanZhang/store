@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^bill/', include('bill.urls', namespace="bill")),
     url(r'^address/', include('address.urls', namespace="address")),
     url(r'^area/', include('area.urls', namespace="area")),
+    url(r'^apis/', include('apis.urls', namespace="apis")),
     
     url(r'^$', views.home, name='home'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

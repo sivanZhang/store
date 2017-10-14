@@ -2,7 +2,7 @@
 <link href="/static/css/shophome.css" rel="stylesheet"> {% endblock %} {% block content %}
 
 <div class="aj"> {% if request.user.is_anonymous %}未登录{%else%} {{request.user.username}}{% endif%}</div>
-<!-- <div class="swiper-container swiper-container-2 subnav-wrap f12">
+  <div class="swiper-container swiper-container-2 subnav-wrap f12">
     <div class="swiper-wrapper">
         <div class="swiper-slide">
 
@@ -49,12 +49,16 @@
                     <img src="/static/img/if17.png"> 数据
                 </div>
             </a>
-
+            <a href=" {% url 'apis:apis' %}">
+                <div class="pull-left submenu">
+                    <img src="/static/img/if17.png"> API
+                </div>
+            </a>
 
 
         </div>
 
     </div>
     <div class="swiper-pagination2 pagination-2"></div>
-</div> -->
+</div>  
 {% endblock %} {% block js %} {% endblock %}

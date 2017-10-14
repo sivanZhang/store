@@ -1,0 +1,47 @@
+/* 
+ *页头
+ */
+.header {
+    height: 40px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 40px;  
+    background-color: #fff;
+}
+
+.header i {
+    height: 100%;
+    line-height: 40px;
+}
+/* 
+ *列表样式
+ */
+.list{
+    background-color:#fff;
+    line-height: 2;
+    margin-top: 40px;
+}
+.list>div{
+    margin: 6px 12px;
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+    overflow: hidden;
+}
+
+.img-rounded{
+    width: 80px;
+    height: 80px;
+}
+
+.details{
+    margin-left:110px;
+    overflow: hidden;
+}
+
+.product_price {
+    color: #e53935;
+    font-size: 20px;
+}
+.product_numb{
+    line-height: 2;
+}

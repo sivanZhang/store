@@ -1,0 +1,143 @@
+body{
+    background-color:rgb(244, 247, 250); 
+    font-size: 14px;
+}
+section{
+    position: relative;
+    margin:6px 0;
+    background-color:#fff;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    overflow: hidden;
+    color:#555;
+    padding: 6px 12px;
+    line-height: 28px;
+    min-height: 40px;
+   
+}
+.f16{
+    font-size: 16px;
+}
+
+
+.header {
+    height: 40px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 40px;  
+    background-color: #fff;
+}
+
+.header i {
+    height: 100%;
+    line-height: 40px;
+}
+
+/******************** 地址 ********************/
+section.address{
+    margin-top: 36px;
+    border-top: 0;
+}
+
+
+/******************** 结算按钮 ********************/
+footer {
+    height: 50px;
+    width: 100%;
+    overflow: hidden;
+    background-color: #fff;
+    z-index: 100;
+    position:fixed;
+    bottom: 0px;
+}
+
+footer div {
+    box-sizing: border-box;
+}
+
+.menu-left {
+    width: 70%;
+    border-top: 1px solid #eee;
+    padding-right: 20px;
+    padding-left: 20px;
+    line-height: 49px;
+    height: 49px;
+    font-size: 16px;
+    text-align: left;
+}
+
+.menu-right {
+    width: 30%;
+    background-color: #e53935;
+    position: relative;
+    height: 100%;
+    line-height: 50px;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+}
+
+.menu-right::after {
+    border-style: solid;
+    border-width: 50px 25px 50px;
+    border-color: transparent;
+    border-top-color: #e53935;
+    border-right-color: #e53935;
+    content: "";
+    display: inline-block;
+    margin: 0 auto;
+    -webkit-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    transform: translateX(-100%);
+    position: absolute;
+    bottom: 0px;
+    left: 1px;
+}
+/******************** 买家留言 ********************/
+.message{
+    border-radius: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    height: 40px;
+    border-color: #eee;
+    -webkit-appearance: none;
+}
+
+.fa-angle-right{
+    color:#ccc;
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+/******************** 购买的商品 ********************/
+section.ware{
+    display:flex;
+    align-items:center;
+}
+
+.ware img{
+    display: block;
+}
+.thumbnail{
+    padding: 0px;
+    margin-right: 5px;
+    margin-bottom: 0px;
+    width: 20%;
+    border: 0px;
+}
+.ware .pull-right{
+    position: absolute;
+    right: 25px;
+
+}
+
+
+.all_price .pull-right{
+margin-right: 25px;
+}
+
+

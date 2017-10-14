@@ -38,7 +38,7 @@
                 <div>主页</div>
             </div>
         </a>
-        <a class=" {{category}}" href="">
+        <a class=" {{category}}" href=" ">
             <div class="{% block menucategory %} {% endblock %}  ">
                     <span class="iconfont icon-sousuoleimu"></span>
                 <div>分类</div>
@@ -50,7 +50,7 @@
                 <div>购物车<span>{{request.user.cart_num|default:''}}</span></div>
             </div>
         </a>
-        <a class="mine {{mine}}" href="">
+        <a class="mine {{mine}}" href="{% url 'users:mine'  %}">
             <div class="{% block menumine %} {% endblock %}">
                  <span class="iconfont icon-yonghu"></span>
                 <div>我的</div>

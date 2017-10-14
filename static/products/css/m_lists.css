@@ -54,14 +54,15 @@ li i {
 }
 
 div.carlist {
-    margin: 2px 0;
+    margin: 4px 0;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     width: 100%;
     background-color: #fff;
     overflow: hidden;
     position: relative;
-}
+    padding:5px 0;
+ }
 
 div.carlist>div {
     padding: 0;
@@ -80,13 +81,10 @@ div.carlist>div {
     box-shadow: 0 3px 10px rgba(0, 0, 0, .23), 0 3px 10px rgba(0, 0, 0, .16);
 }
 
-.display {
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-}
+
 
 .carlist>div.list_center {
-    padding: 10px;
+    padding: 3px;
 }
 
 .list_center wares_name {
@@ -126,7 +124,7 @@ div.carlist>div {
     border-top: 1px solid #eee;
 }
 
-.ware_img {
+.ware_img{
     width: 100%;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
@@ -153,11 +151,6 @@ svg.list-btn {
     padding: 0 4px;
 }
 
-.row .col-xs-6,
-.row .col-sm-4 {
-    padding-left: 2px;
-    padding-right: 2px;
-}
 
 
 /*--------------------------------------------------------------------------------- */
@@ -180,9 +173,8 @@ footer div {
 
 .menu-left {
     width: 70%;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
     padding-right: 20px;
-    padding-left: 20px;
+    padding-left: 10px;
     line-height: 50px;
     height: 100%;
     font-size: 16px;
@@ -199,6 +191,14 @@ footer div {
     font-family: '微软雅黑';
     font-size: 16px;
     text-align: center;
+}
+
+input[type=text]{
+    outline: 0px;
+    border: 0px;
+    text-align: center;
+    width:50px;
+    font-size: 14px;
 }
 
 .menu-right::after {
@@ -233,3 +233,48 @@ footer div {
 .fa-angle-double-right {
     margin-left: 10px;
 }
+
+
+
+/* checkbox 自定义样式 
+<label class="demo--label">
+                <input  id="all_checked" class="demo--radio checked" type="checkbox" name="demo-radio">
+                <span class="demo--radioInput"></span>
+            </label>*/
+.demo--radio{display:none}
+.radio_input{background-color:#fff;border:1px solid #ddd;border-radius:100%;display:inline-block;height:14px;margin-right:5px;margin-top:-1px;vertical-align:middle;width:14px;line-height:14px;position: relative;
+}
+.demo--radio:checked + .radio_input:after{background-color:#e53935;border-radius:100%;content:"";display:inline-block;height:8px;width:8px;
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%,-50%);
+}
+
+/* checkbox 自定义样式 END*/
+.check_style{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%)
+}
+.glyphicon-plus,.glyphicon-minus{
+    padding:5px 10px;
+    color:#333;
+}
+.carnum_parent{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 1px;
+}
+.item_main{
+    width:100%;
+    overflow: hidden;
+    position: relative;
+    bottom: 0px;
+transform: translateY(100%);
+}
+/* .menu-right::after,a.menu-right:hover,a.menu-right:focus,a.menu-right:active{
+    color: #eee;
+    background-color: #757575;
+} */

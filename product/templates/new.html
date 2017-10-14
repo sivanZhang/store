@@ -84,8 +84,10 @@
                     <button type="button" class="btn btn-primary add-rule blue-btn"><i class="fa fa-plus" aria-hidden="true"></i></button>
 
                 </div>
+                {% if product %}
                 <table class="table table-hover table-bordered" id="tb_rule">
                     <tr>
+                        <th>是否有订单</th>
                         <th>名称</th>
                         <th>型号</th>
                         <th>价格</th>
@@ -94,15 +96,31 @@
                     </tr>
 
                     {% for rule in product.adaptorrule_set.all %}
-                    <tr class="tr_rule">
+                    <tr class="tr_rule" ruleid="{{rule.id}}">
+                        {% if rule.adaptorbillitem_set.all %}
+                        <td class="hasbiil">有</td>
+                        {% else  %}
+                        <td class="hasbiil">有</td>
+                        {% endif  %}
                         <td class="name">{{rule.name}}</td>
                         <td class="unit">{{rule.unit}}</td>
                         <td class="price">{{rule.price}}</td>
-                        <td class="inv">{{rule.inventory}}</td>
+                        <td class="inv">{{rule.real_inventory}}</td>
                         <td><i class="fa fa-trash-o " aria-hidden="true"></i></td>
                     </tr>
                     {% endfor %}
                 </table>
+                {% else %}
+                    <table class="table table-hover table-bordered" id="tb_rule">
+                        <tr>
+                            <th>名称</th>
+                            <th>型号</th>
+                            <th>价格</th>
+                            <th>库存</th>
+                            <th>删除</th>
+                        </tr> 
+                    </table>
+                {% endif %}
             </div>
         </div>
 

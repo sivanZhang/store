@@ -8,18 +8,13 @@ $('document').ready(function() {
 /* 
  *控制元素物理尺寸
  */
-$('.ware_img').height($('.ware_img').width() + 'px');
-$('.img_parent').height($('.img_parent').width() + 'px');
-$('.number').height($('.img_parent').height() + 'px');
-$('.number div').height($('.number').height() / 3 + 'px');
-$('.number div').css('line-height', $('.number div').height() + 'px');
+$('.col-xs-1,.col-sm-1').height($('.col-xs-1,.col-sm-1').next().height()+'px');
 
 /* 
  *点击复选框更新价格
  */
 
 //全选
-
 $("#all_checked").click(function() {
     if (this.checked) {
         $("input.checked").prop("checked", true);
@@ -30,13 +25,24 @@ $("#all_checked").click(function() {
 
 var selectList = '';
 $('body').on("click", "input[type='checkbox']", function() {
-    selectList = $("input.checked:checked").parent().parent();
+    selectList = $("input.checked:checked").parents('.carlist');
     cal_sum();
     var sum = cal_sum();
     $('.sum_price').text(sum.toFixed(2));
 });
+// 数字失去焦点
+$('.carlist').on("blur", '.carnum', function() {
+           var sum = cal_sum();
+           $('.sum_price').text(sum.toFixed(2));
+   });
+//按键起来事件  验证是否为数字
+$('.carlist').on("keydown", '.carnum', function() {
+    this.value=this.value.replace(/\D/g,'')
+   });
+
+
 window.onload = function() {
-        var selectList = $("input.checked:checked").parent().parent();
+        var selectList = $("input.checked:checked").parents('.carlist');
         cal_sum();
         var sum = cal_sum();
         $('.sum_price').text(sum.toFixed(2));
@@ -49,7 +55,7 @@ function cal_sum() {
     var sum = 0; //tatol money
     for (var i = 0; i < selectList.length; i++) {
         price = parseFloat($(selectList[i]).find('.carprice').text());
-        num = parseFloat($(selectList[i]).find('.carnum').text());
+        num = parseFloat($(selectList[i]).find('.carnum').val());
         sum += price * num;
     }
     return sum;
@@ -58,31 +64,39 @@ function cal_sum() {
 /* 
  *加按钮
  */
-$('.number').on("click", '.addition', function() {
-    var quantity = $(this).next().text();
+$('.carlist').on("click", '.addition', function() {
+    $(this).siblings('.subtraction').css('color','inherit');
+    var quantity = $(this).next().val();
     quantity = parseInt(quantity);
-    $(this).next().text(quantity + 1);
+    $(this).next().val(quantity + 1);
     var sum = cal_sum();
     $('.sum_price').text(sum.toFixed(2));
 });
 /* 
  *减按钮
  */
-$('.number').on("click", '.subtraction', function() {
-    var quantity = $(this).prev().text() - 0;
+$('.carlist').on("click", '.subtraction', function() {
+    var quantity = $(this).prev().val();
     var quantity = parseInt(quantity);
-    if (quantity < 1) {
-        $(this).prev().text('0');
+    if (quantity <=1) {
+        $(this).prev().val(0);
+        $(this).css('color','#ccc');
     } else {
-        $(this).prev().text(quantity - 1);
+        $(this).prev().val(quantity - 1);
         var sum = cal_sum();
         $('.sum_price').text(sum.toFixed(2));
     };
 });
+
 /* 
  *提交按钮
  */
 $('a.menu-right').click(function() {
+    if(selectList.length<1){
+        $('.menu-right').css({'background-color':'#505050','color':'#eee'});
+        $('.menu-right::after').css({'border-color':'#505050!important'})
+        return;
+    }
     //创建商品列表数组，每个元素是一个商品对象
     var products = new Array();
     for (var i = 0; i < selectList.length; i++) {
@@ -97,7 +111,7 @@ $('a.menu-right').click(function() {
         product.img = aImg.attr('src');
         product.Price = aPrice.text();
         product.ruleid = $(aCarnum).attr('ruleid');
-        product.num = aCarnum.text();;
+        product.num = aCarnum.val();
         products.push(product);
     }
     //商品列表数组保存到cookie
@@ -106,5 +120,6 @@ $('a.menu-right').click(function() {
     //cookie保存总价
     var sum_price = $('.sum_price').text();
     CookieUtil.set("sum_price", sum_price, '', "/");
-    window.location.href = '/bill/bills/';
+    window.location.href = '/bill/bills/?new';
 })
+

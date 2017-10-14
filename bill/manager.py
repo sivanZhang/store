@@ -14,7 +14,7 @@ class BillManager(models.Manager):
         
         no = datetime.strftime(datetime.now(), '%Y%m%d%H%M%S') + str(user.id)
 
-        bill_kwargs['ownser'] = user
+        bill_kwargs['owner'] = user
         bill_kwargs['no'] = no
         if 'address_id' in post:
             bill_kwargs['address_id'] = post['address_id'].strip()

@@ -38,7 +38,10 @@ class Product(BaseDate):
     # 所属类别
     category = models.ForeignKey(Category)
     thumbnail = models.CharField(_('thumbnail'), max_length = 2048, null=True)
-    
+    class Meta:
+        permissions = (
+            'manage_product', _('Permission to manage product')
+        )
     def fallback(self ):
         """下架商品"""
         self.status = self.FALLDOWN

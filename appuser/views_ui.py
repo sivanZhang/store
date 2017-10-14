@@ -15,6 +15,7 @@ import random
 import string
 from django.utils import timezone
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 from .form import UploadPortrainForm, GroupForm, UserForm
 from django.contrib import auth
 #from socialoauth import SocialSites,SocialAPIError  
@@ -112,4 +113,17 @@ def register(request):
         return render(request, 'user/m_regsiter.html', content)
     else:  
         return render(request, 'user/regsiter.html', content)
- 
+
+@login_required
+def mine(request):
+    isMble  = dmb.process_request(request)
+    
+    user = request.user
+    content = {
+        'user':user,
+        'mine':'menu-act'
+        }
+    if isMble: 
+        return render(request, 'user/m_mine.html', content)
+    else:  
+        return render(request, 'user/mine.html', content)

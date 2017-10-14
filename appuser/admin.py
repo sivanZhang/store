@@ -59,11 +59,10 @@ class AdaptorUserAdmin(UserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('email', 'date', 'username','is_admin')
+    list_display = ('email', 'username','is_admin')
     list_filter = ('is_admin',)
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('date',)}),
+        (None, {'fields': ('email', 'password')}), 
         ('Permissions', {'fields': ('is_admin','groups', 'user_permissions',)}),
         (u'姓名', {'fields': ('username',)}),
     )

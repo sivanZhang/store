@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block title2%}我的 {% endblock%} {% block css %}
+<link href="/static/css/user.css" rel="stylesheet"> {% endblock %} {% block content %}
+
+
+<header class="text-center h3" id="app-name">我的个人中心</header>
+
+<a href="{% url 'bills:addresses' %}">我的订单列表</a>　
+<a href="{% url 'addresses:bills' %}">我的常用地址</a>　
+ 
+{% endblock %}{% block jslogin %}
+{% endblock %} {% block js %}
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+ 
+
+{% endblock %}

@@ -33,7 +33,7 @@ $('.add-rule').click(function() {
     var price = $('#price').val();
     var rule = $('#rule').val();
     var inventory = $('#inventory').val();
-    var newhtml = ' <tr class="tr_rule">' +
+    var newhtml = ' <tr class="tr_rule" ruleid="-1">' +
         '<td class="name">' + name + '</td>' +
         '<td class="unit">' + rule + '</td>' +
         '<td class="price">' + price + '</td>' +
@@ -65,11 +65,15 @@ $('.submit').click(function() {
 
     var obj = {};
     var rules = Array();
-
+    var product = $('#productid');
+    
     var rules_tr = $('.tr_rule');
     rules_tr.each(function() {
+        if (product.length > 0){
+             obj['ruleid'] = $(this).attr('ruleid');
+        }
         obj['name'] = $(this).find('.name').text();
-        obj['unit'] = $(this).find('.type').text();
+        obj['unit'] = $(this).find('.unit').text();
         obj['price'] = $(this).find('.price').text();
         obj['inv'] = $(this).find('.inv').text();
         rules.push(obj);
@@ -84,8 +88,7 @@ $('.submit').click(function() {
         parameters.push(obj_para);
         obj_para = {};
     });
-  
-    
+   
 
     data = {
         'method': 'create',
@@ -98,7 +101,6 @@ $('.submit').click(function() {
         'status': $(this).attr('status'),
         'csrfmiddlewaretoken': getCookie('csrftoken'),
     };
-    var product = $('#productid');
     if (product.length > 0){
         //3
         data['id'] = product.val();

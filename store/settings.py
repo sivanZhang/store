@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'bill',
     'address',
     'area',
+    'apis',
 ]
 
 MIDDLEWARE = [

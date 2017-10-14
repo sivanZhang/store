@@ -21,7 +21,9 @@ from django.conf import settings
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.decorators import permission_required
+from django.utils.translation import ugettext  as _
 from product.comm import handle_uploaded_file
 
 from mobile.detectmobilebrowsermiddleware import DetectMobileBrowser
@@ -30,8 +32,8 @@ from mobile.detectmobilebrowsermiddleware import DetectMobileBrowser
 dmb     = DetectMobileBrowser()
 
 
-@login_required
-@csrf_exempt
+@login_required 
+@permission_required('product.manage_product')
 def change(request, pk):
     isMble  = dmb.process_request(request)
     content = {}

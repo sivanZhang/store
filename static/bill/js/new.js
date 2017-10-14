@@ -19,8 +19,11 @@ for (var i = 0; i < aProducts.length; i++) {
   sum_number += parseInt(aProducts[i].num);
   //图片显示
   var aSrc=aProducts[i].img;
-  $(oImg[i]).attr('src',aSrc)
+  $(oImg[i]).attr('src',aSrc);
 };
+if($('img.thumbnail').attr('src')){
+    $(this).css('display','none')
+  }
 $('#sum_number').text('共'+sum_number+'件');
 
 /* 
@@ -45,7 +48,14 @@ if(oAdress){
 
 
 //  提交订单
+mark = false;
 $('.submit-btn').click(function() {
+     //loading
+    if( mark == true){
+        return;
+    }
+    mark = true; 
+    
     /*
     var categoryid = $('#sel-category').val();
     var title = $('#title').val();
@@ -107,11 +117,41 @@ $('.submit-btn').click(function() {
         url: '/bill/bills/',
         data: data,
         success: function(result) {
-            $().message(result['msg']); 
+            if (result['status'] == 'ok'){
+                //$().message(result['msg']); 
+                
+                // 不断查询订单状态
+                billid = result['id'];
+                url = '/bill/bills/'+ billid +'/?status';
+                $.ajax({
+                    type: 'get',
+                    url: url,
+                    success: function(billresult) {
+                        if (billresult['status'] == 'ok'){
+                            billresult['billstatus'];
+                            billresult['billmsg'];
+                            /*
+                               billresult['billstatus']可能的值如下：
+                                # 订单创建失败:failed
+                                # 订单已提交:submitted
+                                # 未支付:unpayed
+                                # 已支付:payed
+                                # 已完成:finished
+                            */
+                        }
+                    },
+                    error: function() {}
+
+                });
+            }
+            
+            // unloading
         },
         error: function() {
             // 500
             alert('server is down!')
+            mark = false;
+            // unloading
         }
     })
 });

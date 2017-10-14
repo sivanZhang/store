@@ -8,27 +8,34 @@
 <!-- 要购买的商品 -->
 {% if ruleitems %} {% for rule in ruleitems %}
 <div class="list carlist">
-    <div class="img_parent col-xs-1 col-sm-1">
-        <input class="checked" type="checkbox" /></div>
-        
+    <div class="col-xs-1 col-sm-1">
+        <label class="demo--label">
+            <input class="demo--radio checked" type="checkbox" name="demo-radio">
+            <span class="radio_input check_style"></span>
+        </label>
+    </div>
         <div class="img_parent col-xs-3 col-sm-3">
-            <img src="{{mediaroot}}{{rule.rule.product.thumbnail}}">
+            <img class="img-rounded" src="{{mediaroot}}{{rule.rule.product.thumbnail}}">
         </div>
-        <div class="col-xs-6 col-sm-6 list_center">
+        <div class="col-xs-8 col-sm-8 list_center">
             <div class="carlist_name">{{rule.rule.product.title|truncatechars:"20"}}
             </div>
-            <div class="rule_content">规格：{{rule.rule.name}}
+            <div class="rule_content font-grey">规格：{{rule.rule.name}}
             </div>
-            <div>
-                <i class="fa fa-jpy" aria-hidden="true"></i>
-                <span class="price add_price carprice">{{rule.rule.price}}</span>
+            <div class="item_main">
+                <div class="pull-left">
+                    <i class="fa fa-jpy" aria-hidden="true"></i>
+                    <span class="price add_price carprice">{{rule.rule.price}}</span>
+                </div>
+                <div class="carnum_parent pull-right">
+                    <span class="addition glyphicon glyphicon-plus"> </span>
+                    <input class="carnum" type="text" value="{{rule.quantity}}" ruleid="{{rule.id}}">
+                    <span class="subtraction glyphicon glyphicon-minus">
+                        <span>
+                </div>
             </div>
         </div>
-        <div class="col-xs-2 col-sm-2 number f20">
-            <div class="addition">+</div>
-            <div class="display carnum" ruleid="{{rule.id}}">{{rule.quantity}}</div>
-            <div class="subtraction">-</div>
-        </div>
+        
     </div>
     {% endfor %} {% else %} 购物车中没有物品 {%endif%}
 
@@ -37,7 +44,11 @@
     <footer class="text-center " id="footer ">
 
         <div class="pull-left menu-left ">
-            <input id="all_checked" type="checkbox" />全选 总金额为：
+            <label class="demo--label">
+                <input  id="all_checked" class="demo--radio" type="checkbox" name="demo-radio">
+                <span class="radio_input"></span>全选
+            </label>
+             总计：
             <i class="fa fa-jpy" aria-hidden="true"></i>
             <span class="price sum_price"> 0.00</span>
         </div>

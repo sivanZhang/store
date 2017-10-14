@@ -56,7 +56,7 @@ class BaseUser(BaseDate, AbstractBaseUser, PermissionsMixin):
 
     def get_name(self):
         # The user is identified by their email address
-        return self.name
+        return self.username
 
     def __str__(self):              # __unicode__ on Python 2
         return self.email
@@ -87,10 +87,10 @@ class BaseUser(BaseDate, AbstractBaseUser, PermissionsMixin):
         return True
     def get_short_name(self):
         # The user is identified by their email address
-        return self.name
+        return self.username
     def get_full_name(self):
         # The user is identified by their email address
-        return self.name
+        return self.username
     
     class Meta:
             permissions = (
@@ -104,7 +104,7 @@ class BaseUser(BaseDate, AbstractBaseUser, PermissionsMixin):
         return self.is_active
     def get_full_name(self):
         # The user is identified by their email address
-        return self.name
+        return self.username
 class StoreUser(BaseUser): 
     # 用户购物车中商品的种类数量，即表达购物车中有几种商品
     cart_num = models.IntegerField(default = 0)

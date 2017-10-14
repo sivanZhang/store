@@ -4,10 +4,29 @@
 {% endblock %}
  {% block content %}
  我的订单：<br/>
+ <table class="table">
  {% for bill in bills %}
- <a href="{% url 'bill:rabbit' bill.id %}" >
-   {{bill.id}}</a><br/>
+ <tr>
+   <td rowspan="2"> <a target="__blank" href="{% url 'bill:rabbit' bill.id %}" > {{bill.id}}</a> </td>
+   <td>   {{bill.get_status_display }}  </td>
+</tr>
+<tr>
+    
+    <td> 
+        {% for item in bill.adaptorbillitem_set.all %}
+       <table class="table">
+          <tr>
+              <td rowspan="2"> <a target="__blank" href="{% url 'product:detail' item.product.id %}" > {{item.product.title|truncatechars:"10"}}</a> </td>
+              <td>   {{item.rule.name }}  </td>
+           </tr>
+      </table>  
+      {% endfor %}
+    </td>
+ </tr>
+
+
  {% endfor %}
+</table>
 {% endblock %}
 {% block js %}
 <script type="text/javascript " src="/static/bill/js/new.js "></script>

@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block css %}
+{% extends 'base.html' %}{% block pagetitle%}商品列表{% endblock%} {% block css %}
 {% load staticfiles %}
 <link href="/static/products/css/list.css" rel="stylesheet"> {% endblock %} {% block content %}
 <section>
@@ -16,7 +16,7 @@
                 <td rowspan="2"><a href="{% url 'product:detail' product.id %}">
                     <img src="{{mediaroot}}{{product.thumbnail}}" class="thumbnail" /></a>
                 </td>
-                <td> {{product.adaptorrule_set.all.0.price}}</td>
+                <td> 价格：{{product.adaptorrule_set.all.0.price}}<br/>库存：{{product.adaptorrule_set.all.0.real_inventory}}</td>
                 <td> </td>
 
                 <td> {{product.desc}}</td>

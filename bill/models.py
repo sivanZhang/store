@@ -21,6 +21,8 @@ class Bill(BaseDate):
     STATUS_FINISHED = 2# 已完成
 
     STATUS_CHOICES = (
+        (STATUS_FAILED, _('failed')),
+        (STATUS_SUBMITTED, _('submitted')),
         (STATUS_UNPAYED, _('unpayed')),
         (STATUS_PAYED, _('payed')),
         (STATUS_FINISHED, _('finished')),

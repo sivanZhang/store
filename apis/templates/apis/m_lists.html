@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %} {% block css %} {% load staticfiles %}
+ 
+{% endblock %}
+ {% block content %}
+ API列表：<br/>
+ <form action="" method="post">
+     {% csrf_token %}
+     <input type="text" name="url" value="" placeholder="url"/>
+     <textarea name="remark"   cols="30" rows="10"></textarea>
+     <input type="submit" value="提交 " />
+ </form>
+ {% for api in apis %}
+ <table class="table">
+    <tr>
+        <td  > <a target="__blank" href=" " > {{api.url}}</a> </td>
+        <td> <pre>  {{api.remark }} </pre> </td>
+        <td> <input type="button" value="删除 "  class="btn-delete" id=" {{api.id}}" /> </td>
+     </tr>
+</table>  
+{% endfor %}{% endblock %}
+{% block js %}
+<script type="text/javascript " src="/static/apis/js/new.js "></script> 
+{% endblock %}
+ 
