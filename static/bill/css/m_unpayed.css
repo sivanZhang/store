@@ -1,0 +1,45 @@
+body{
+    background-color:#f0f0f0; 
+}
+section{
+    position: relative;
+    margin:5px 0;
+    background-color:#fff;
+    overflow: hidden;
+    color:#212121;
+    padding: 5px 10px;
+    line-height: 28px;
+    min-height: 40px;
+   
+}
+
+.header {
+    height: 44px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 44px;  
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.header i {
+    height: 100%;
+    line-height: 40px;
+}
+
+section.billno{
+    margin-top: 49px;
+    border-top: 0;
+}
+.pay{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+.pay_btn{
+    width: 80%;
+    background-color: rgba(201, 22, 35,.8);
+    height: 44px;
+    border-radius:44px; 
+}

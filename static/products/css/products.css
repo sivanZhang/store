@@ -111,7 +111,7 @@
     }
     
     #main {
-        background-color: rgb(244, 247, 250);
+        background-color:#efefef;
     }
     
     .main-top {
@@ -161,7 +161,7 @@
     
     .menu-right {
         width: 30%;
-        background-color: #e53935;
+        background-color: rgb(201,22,35);
         position: relative;
         height: 100%;
         line-height: 50px;
@@ -174,8 +174,8 @@
         border-style: solid;
         border-width: 50px 25px 50px;
         border-color: transparent;
-        border-top-color: #e53935;
-        border-right-color: #e53935;
+        border-top-color: rgb(201,22,35);
+        border-right-color: rgb(201,22,35);
         content: "";
         display: inline-block;
         margin: 0 auto;
@@ -212,7 +212,7 @@
     }
     
     .rating {
-        color: #e53935;
+        color: rgb(201,22,35);
     }
     
     .clear {
@@ -245,25 +245,23 @@
     }
     
     .ware-wrap {
-        border-radius: 6px;
-        margin: 2px 0;
+        border-radius: 4px;
+        margin: 4px;
         position: relative;
-        border: 1px solid #ddd;
     }
     
     .ware-msg {
         background-color: #fff;
-        border-bottom-left-radius: 6px;
-        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius:4px;
         width: 100%;
-        height: 60px;
         border-top: 1px solid #ddd;
     }
     
     .ware_img {
         width: 100%;
-        border-top-left-radius: 6px;
-        border-top-right-radius: 6px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
     }
     
     svg.list-btn {
@@ -289,8 +287,8 @@
     
     .row .col-xs-6,
     .row .col-sm-4 {
-        padding-left: 2px;
-        padding-right: 2px;
+        padding-left: 0px;
+        padding-right: 0px;
     }
     
     /*加载更多 */
@@ -366,10 +364,10 @@
     }
 
     .act_box{
-       color: #e53935;
+       color: rgb(201,22,35);
     }
     .btn-danger{
-        background-color: #e53935;
+        background-color: rgb(201,22,35);
     }
     .submit .btn{
         width:50%;
@@ -378,16 +376,13 @@
         height: 50px;
     }
 .red{
-    color:#e53935;
+    color:rgb(201,22,35);
 }
-.fa-jpy{
-    color:#e53935;
-    font-size: 10px;
-}
+
    
 .price {
-    color: #e53935;
-    font-size: 20px;
+    color: rgb(201,22,35);
+    font-size: 16px;
 }
 .btn-group-sm>.btn{
     padding: 5px 20px;

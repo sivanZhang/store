@@ -1,31 +1,30 @@
 body{
-    background-color:rgb(244, 247, 250); 
+    background-color:#f0f0f0; 
     font-size: 14px;
 }
 section{
     position: relative;
-    margin:6px 0;
+    margin:5px 0;
     background-color:#fff;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
     overflow: hidden;
-    color:#555;
-    padding: 6px 12px;
+    color:#212121;
+    padding: 5px 10px;
     line-height: 28px;
     min-height: 40px;
    
 }
-.f16{
-    font-size: 16px;
+
+#sum_number{
+    color: #777;
 }
 
-
 .header {
-    height: 40px;
+    height: 44px;
     font-size: 16px;
     text-align: center;
-    line-height: 40px;  
+    line-height: 44px;  
     background-color: #fff;
+    border-bottom: 1px solid #ddd;
 }
 
 .header i {
@@ -35,7 +34,7 @@ section{
 
 /******************** 地址 ********************/
 section.address{
-    margin-top: 36px;
+    margin-top: 49px;
     border-top: 0;
 }
 
@@ -57,7 +56,7 @@ footer div {
 
 .menu-left {
     width: 70%;
-    border-top: 1px solid #eee;
+    border-top: 1px solid #ddd;
     padding-right: 20px;
     padding-left: 20px;
     line-height: 49px;
@@ -68,7 +67,7 @@ footer div {
 
 .menu-right {
     width: 30%;
-    background-color: #e53935;
+    background-color: rgb(201,22,35);
     position: relative;
     height: 100%;
     line-height: 50px;
@@ -81,8 +80,8 @@ footer div {
     border-style: solid;
     border-width: 50px 25px 50px;
     border-color: transparent;
-    border-top-color: #e53935;
-    border-right-color: #e53935;
+    border-top-color: rgb(201,22,35);
+    border-right-color: rgb(201,22,35);
     content: "";
     display: inline-block;
     margin: 0 auto;
@@ -98,13 +97,13 @@ footer div {
     border-radius: 0px;
     border-left: 0px;
     border-right: 0px;
-    height: 40px;
-    border-color: #eee;
+    height: 44px;
+    outline: 0px;
     -webkit-appearance: none;
 }
 
 .fa-angle-right{
-    color:#ccc;
+    color:#777;
     position: absolute;
     right: 0px;
     top: 50%;
@@ -130,7 +129,7 @@ section.ware{
 }
 
 .img-rounded{
-width: 18%;
+width: 19%;
 margin-right:12px;
 }
 .ware .pull-right{
@@ -140,7 +139,7 @@ margin-right:12px;
 }
 
 .product_price{
-    color:#e53935;
+    color:rgb(201,22,35);
     font-size: 16px;
 }
 

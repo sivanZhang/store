@@ -5,7 +5,7 @@
 body {
     margin: 0px;
     padding: 0px;
-    background-color: rgb(245, 247, 250);
+    background-color:#efefef;
 }
 
 li {
@@ -37,7 +37,7 @@ a:active {
  */
 
 .header-wrap {
-    background-color: #e53935;
+    background-color: rgb(201,22,35);
     border-bottom: 1px solid #ddd;
 }
 
@@ -60,7 +60,7 @@ header {
     font-size: 8px;
     font-weight: 300;
     line-height: 1;
-    color: #e53935;
+    color: rgb(201,22,35);
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
@@ -162,7 +162,7 @@ section {
 }
 
 .title {
-    color: #e53935;
+    color: rgb(201,22,35);
     margin-top: 20px;
     font-size: 20px;
 }

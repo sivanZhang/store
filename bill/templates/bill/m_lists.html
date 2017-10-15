@@ -7,11 +7,10 @@
  <table class="table">
  {% for bill in bills %}
  <tr>
-   <td rowspan="2"> <a target="__blank" href="{% url 'bill:rabbit' bill.id %}" > {{bill.id}}</a> </td>
+   <td rowspan="2"> <a target="__blank" href="{% url 'bill:bills' %}?unpayed=&billno={{bill.no}} "> {{bill.no}}</a> </td>
    <td>   {{bill.get_status_display }}  </td>
 </tr>
 <tr>
-    
     <td> 
         {% for item in bill.adaptorbillitem_set.all %}
        <table class="table">

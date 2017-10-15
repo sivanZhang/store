@@ -1,5 +1,5 @@
 body{
-    background-color:rgb(244, 247, 250); 
+    background-color:#f0f0f0; 
     font-size: 14px;
 }
 section{
@@ -68,7 +68,7 @@ footer div {
 
 .menu-right {
     width: 30%;
-    background-color: #e53935;
+    background-color: rgb(201,22,35);
     position: relative;
     height: 100%;
     line-height: 50px;
@@ -81,8 +81,8 @@ footer div {
     border-style: solid;
     border-width: 50px 25px 50px;
     border-color: transparent;
-    border-top-color: #e53935;
-    border-right-color: #e53935;
+    border-top-color: rgb(201,22,35);
+    border-right-color: rgb(201,22,35);
     content: "";
     display: inline-block;
     margin: 0 auto;

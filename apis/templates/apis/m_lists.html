@@ -13,7 +13,8 @@
  {% for api in apis %}
  <table class="table">
     <tr> 
-        <td  > <input type="button" value="删除本条API"  class="btn btn-danger btn-delete" id=" {{api.id}}" /><a target="__blank" href=" " > {{api.url}}</a> </td>
+        <td  > <input type="button" value="删除本条API"  class="btn btn-danger btn-delete" id=" {{api.id}}" />
+            <a target="__blank" href="{{api.url}}" > {{api.url}}</a> </td>
     </tr>
         <td  >  <pre>  {{api.remark }} </pre> </td>
        

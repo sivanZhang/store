@@ -277,7 +277,7 @@ class RabbitBillDetailView(APIView):
                 item.rule_title = item.rule.name
                 item.save()
                 rule = {}
-                rule['ruleid'] = item.id
+                rule['ruleid'] = item.rule.id
                 rule['num'] = item.num
                 rules.append(rule)
             
@@ -362,7 +362,8 @@ class BillDetailView(APIView):
             result = {
                 'status':'ok',
                 'billstatus' : bill.get_status_display(),
-                'billmsg' : bill.errromsg
+                'billmsg' : bill.errromsg,
+                'billno' : bill.no
             }
             return HttpResponse(json.dumps(result), content_type='application/json')
         if isMble:

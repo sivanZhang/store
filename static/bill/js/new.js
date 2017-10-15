@@ -37,7 +37,7 @@ for (var i = 0; i < aProducts.length; i++) {
         $(aList[i]).find('.product_name').text(aProducts[i].name);
         $(aList[i]).find('.product_rull').text(aProducts[i].rule);
         $(aList[i]).find('.product_price').text(aProducts[i].Price);
-        $(aList[i]).find('.product_numb').text('x' + aProducts[i].num + '件');
+        $(aList[i]).find('#sum_number').text('x' + aProducts[i].num + '件');
 
     };
     if (aProducts[i]) {
@@ -75,6 +75,9 @@ $('.submit-btn').click(function () {
     if (mark == true) {
         return;
     }
+
+    var timeout =  (500 * 2) * 3 /500;//3 second
+     
     var options = {
         theme: "sk-doc",
         message: '提交中...',
@@ -99,7 +102,6 @@ $('.submit-btn').click(function () {
         'items': JSON.stringify(items),
         'csrfmiddlewaretoken': getCookie('csrftoken')
     };
-
     $.ajax({
         type: 'post',
         url: '/bill/bills/',
@@ -108,43 +110,40 @@ $('.submit-btn').click(function () {
             if (result['status'] == 'ok') {
                 //$().message(result['msg']); 
                 // 不断查询订单状态
-                billid = result['id'];
-                while (true) {
-
-                    url = '/bill/bills/' + billid + '/?status'; //API
-                    $.ajax({// 查询订单库存是否足够
-                        type: 'get',
-                        url: url,
-                        success: function (billresult) {
-                            if (billresult['status'] == 'ok') {
-
-                                var billstatus = billresult['billstatus'];
-                                if (billstatus == 'failed') {
-                                    HoldOn.close();
-                                    $().errormessage(billresult['billmsg']);
-                                    return;
-                                } else if (billstatus == 'submitted') {
-                                    HoldOn.close();
-                                    return;
-                                    // 超3秒，显示超时。$().errormessage('订单超时...');
-                                } else if (billstatus == 'unpayed') {
-                                    //导航到待支付页面
-
-                                }
-
-
-                            } else {
-                                HoldOn.close();
-                                $().errormessage('订单异常...');
-                                return;
-                            }
-                        },
-                        error: function () {
-                            HoldOn.close();
-                        }
-                    })
+            billid = result['id'];
+            url = '/bill/bills/'+billid+'/?status'; //API
+    var count = 0;
+    var oTime= setInterval(function(){
+        if (count > timeout){
+            HoldOn.close(); 
+            $().errormessage('订单超时...');
+            clearInterval(oTime);
+        }
+        $.ajax({// 查询订单库存是否足够
+            type: 'get',
+            url: url,
+            success: function (billresult) {
+                count ++;
+                if (billresult['status'] == 'ok') {
+                    HoldOn.close();
+                    var billstatus = billresult['billstatus'];
+                    if (billstatus == 'failed') {
+                        $().errormessage(billresult['billmsg']);
+                    }else if (billstatus == 'unpayed') {
+                        clearInterval(oTime);
+                        location.href=' /bill/bills/?unpayed=&billno='+billresult['billno'];
+                    }
+                } else {
+                    HoldOn.close();
+                    $().errormessage('订单异常');
                 }
-
+            },
+            error: function () {
+               HoldOn.close();
+               clearInterval(oTime);
+            }
+        })
+    },500);
             }
         },
         error: function () {
@@ -155,6 +154,7 @@ $('.submit-btn').click(function () {
             // unloading
         }
 
-    });
+    });  
+
 });
 

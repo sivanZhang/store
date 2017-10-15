@@ -1,19 +1,33 @@
 
-{% extends 'm_base.html' %} {% block css %} {% load staticfiles %}
+{% extends 'm_base.html' %} {% block css %}
+ {% load staticfiles %}<link href="/static/bill/css/m_unpayed.css" rel="stylesheet">
 {% endblock %}
  {% block content %}
- 订单详情：<br/>
+ <header class="header">
+    <i class="fa fa-angle-left pull-left back f26" aria-hidden="true"></i>
+  购买
+</header>
  {% if bill %} 
  {{bill.get_status_displayname}}
- <div class="billno" >订单号：{{bill.no}}</div>
+ <a href="javascript:;">
+    <section class="billno">
+        订单号：{{bill.no}}
+    </section>
+</a>
  {% for item in bill.adaptorbillitem_set.all %} 
- {{item.id}} <br/>
+ <a href="javascript:;">
+    <section class="">
+        {{item.id}}
+    </section>
+</a>
+
  {% endfor %}
  {%else %}
  <div class="notfound" >{{error}}</div>
  {% endif %}
-
+ <div class="pay">
+ <button class="btn btn-danger pay_btn" type="button" >支付按钮</button></div>
 {% endblock %}
 {% block js %}
 {% endblock %}
- 
+{% block menu %}{% endblock %}

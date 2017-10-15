@@ -1,5 +1,5 @@
 body{
-    background-color:rgb(244, 247, 250); 
+    background-color:#f0f0f0; 
     font-size: 14px;
     padding-top: 40px;
 }
@@ -18,7 +18,7 @@ body{
  * 新建地址按钮
  */
 a.btn-danger{
-    background-color: #e53935;
+    background-color: rgb(201,22,35);
     width: 70%;
     position: fixed;
     bottom:3px;
