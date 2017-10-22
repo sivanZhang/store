@@ -6,31 +6,74 @@
     autoplay: 3000,
     speed: 300,
 });
+$('.swiper-slide').css('max-height', $('.sidebar').height()+ 'px');
 
 /*
- * 分类菜单
+ * 视频
  */
-var min_Height = $('.sidebar').height();
-$('.detailed_menu').css('min-height', min_Height + 'px');
-
-var aMain = $('.main_menu');
-var aSub = $('.detailed_menu');
-for(var i=0;i<$('.main_menu').length;i++){
-    //鼠标移入显示，移出隐藏
-  ~function(i){
-    $(aMain[i]).mouseenter(function(){
-        $(aSub[i]).show();
+$( document ).ready(function() {
+  
+      scaleVideoContainer();
+  
+      initBannerVideoSize('.video-container .poster img');
+      initBannerVideoSize('.video-container .filter');
+      initBannerVideoSize('.video-container video');
+  
+      $(window).on('resize', function() {
+          scaleVideoContainer();
+          scaleBannerVideoSize('.video-container .poster img');
+          scaleBannerVideoSize('.video-container .filter');
+          scaleBannerVideoSize('.video-container video');
       });
   
-      $(aMain[i]).mouseleave(function(){
-          $(aSub[i]).hide();
-      }); 
-  }(i);//匿名函数立即执行
-};  
-aSub.mouseenter(function(){
-    $(this).show();
   });
-  aSub.mouseleave(function(){
-    $(this).hide();
-  });
-$('.swiper-slide').css('max-height', min_Height + 'px');
+  
+  function scaleVideoContainer() {
+  
+      var height = $(window).height() + 5;
+      var unitHeight = parseInt(height) + 'px';
+      $('.homepage-hero-module').css('height',unitHeight);
+  
+  }
+  
+  function initBannerVideoSize(element){
+  
+      $(element).each(function(){
+          $(this).data('height', $(this).height());
+          $(this).data('width', $(this).width());
+      });
+  
+      scaleBannerVideoSize(element);
+  
+  }
+  
+  function scaleBannerVideoSize(element){
+  
+      var windowWidth = $(window).width(),
+      windowHeight = $(window).height() + 5,
+      videoWidth,
+      videoHeight;
+  
+      // console.log(windowHeight);
+  
+      $(element).each(function(){
+          var videoAspectRatio = $(this).data('height')/$(this).data('width');
+  
+          $(this).width(windowWidth);
+  
+          if(windowWidth < 1000){
+              videoHeight = windowHeight;
+              videoWidth = videoHeight / videoAspectRatio;
+              $(this).css({'margin-top' : 0, 'margin-left' : -(videoWidth - windowWidth) / 2 + 'px'});
+  
+              $(this).width(videoWidth).height(videoHeight);
+          }
+  
+          $('.homepage-hero-module .video-container video').addClass('fadeIn animated');
+  
+      });
+  }
+
+
+$('.row_margin').css('margin-left','-30px');
+$('.row_margin').css('margin-right','-30px');

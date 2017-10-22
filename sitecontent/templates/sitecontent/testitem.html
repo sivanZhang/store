@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block pagetitle%}{% trans 'Homepage Content Management' %}{% endblock%}
+{% block content %}
+
+{% if block_instance %}
+<label type="text"  >模块名称：{{block_instance.title}}</label> 
+{% endif %}
+
+<form action="" method="post"  enctype="multipart/form-data">
+    {%csrf_token%}  
+    <input type="hidden" name="itemid" id="itemid" value="3" />  
+    <input type="hidden" name="method"   value="put" /> 
+    <input type="text" name="title" required="required" placeholder="{% trans 'hot product' %}"  value="" /> 
+    <input type="text" name="url"  placeholder="url"  value="" /> 
+    <input type="text" name="status"  placeholder="status"  value="" /> 
+    <input type="text" name="mark"  placeholder="mark"  value="" /> 
+    <input type="file" name="pic" placeholder="pic"  accept="image/*" /> 
+    <input type="submit"  value="{% trans 'submit' %}" /> 
+</form>
+<!--
+
+<form action="" method="post"  enctype="multipart/form-data">
+    {%csrf_token%}   
+    {% if block_instance %}
+    <input type="hidden" name="blockid" id="blockid" value="{{block_instance.id}}" />  
+    {% endif %}
+    <input type="text" name="title" required="required" placeholder="{% trans 'hot product' %}"  value="" /> 
+    <input type="text" name="url"  placeholder="url"  value="" /> 
+    <input type="text" name="status"  placeholder="status"  value="" /> 
+    <input type="text" name="mark"  placeholder="mark"  value="" /> 
+    <input type="file" name="pic" placeholder="pic"  accept="image/*" /> 
+    <input type="submit"  value="New {% trans 'submit' %}" /> 
+</form>
+
+-->
+<table class="table">
+    {% for item in block_instance.adaptorbaseblockitem_set.all %}
+    <tr> 
+        <td>{{item.id}}</td>
+        <td>{{item.title}}</td>
+        <td><a target="__blank" href="{{mediaroot}}{{item.pic}}">点击查看图片</a></td>
+        <td><a target="__blank" href="{{item.url}}">{{blocki.url}}</a></td>
+        <td>{{item.status}}</td>
+        <td>{{item.mark}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock%}

@@ -1,168 +1,56 @@
 {% extends 'base.html' %} {% block css %}
 <link href="/static/css/shophome.css" rel="stylesheet">
+<link href="/static/css/classify.css" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.css"> {% endblock %} {% block content %}
 
-<div class="aj"> {% if request.user.is_anonymous %}未登录{%else%} {{request.user.username}}{% endif%}</div>
+{% include 'classify.html' %}
 <div class="container">
-    <div class="main_top row">
-        <div class="col-sm-2 col-md-2 col-lg-2 sidebar">
-            <ul>
-                <li class="main_menu">分类
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </li>
-                <li class="main_menu">分类
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </li>
-                <li class="main_menu">分类
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </li>
-                <li class="main_menu">分类
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </li>
-                <li class="main_menu">分类
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </li>
-                <li class="main_menu">分类
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </li>
-            </ul>
-        </div>
-        <div class="col-sm-10 col-md-10 col-lg-10 detailed_menu">
-            <ul>
-                <li>总菜单
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </li>
-                <li>分类
-                </li>
-                <li>分类
-                </li>
-                <li>分类
-                </li>
-            </ul>
-
-
-        </div>
-        <div class="col-sm-10 col-md-10 col-lg-10 detailed_menu">
-            <ul>
-                <li>总菜单1
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </li>
-                <li>分类
-                </li>
-                <li>分类
-                </li>
-                <li>分类
-                </li>
-            </ul>
-
-
-        </div>
-        <div class="col-sm-10 col-md-10 col-lg-10 detailed_menu">
-            <ul>
-                <li>总菜单2
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </li>
-                <li>分类
-                </li>
-                <li>分类
-                </li>
-                <li>分类
-                </li>
-            </ul>
-
-
-        </div>
-        <div class="col-sm-10 col-md-10 col-lg-10 detailed_menu">
-            <ul>
-                <li>总菜单3
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </li>
-                <li>分类
-                </li>
-                <li>分类
-                </li>
-                <li>分类
-                </li>
-            </ul>
-
-
-        </div>
-        <div class="col-sm-10 col-md-10 col-lg-10 detailed_menu">
-            <ul>
-                <li>总菜单4
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </li>
-                <li>分类
-                </li>
-                <li>分类
-                </li>
-                <li>分类
-                </li>
-            </ul>
-
-
-        </div>
-        <div class="col-sm-10 col-md-10 col-lg-10 detailed_menu">
-            <ul>
-                <li>总菜单
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </li>
-                <li>分类
-                </li>
-                <li>分类
-                </li>
-                <li>分类
-                </li>
-            </ul>
-
-
-        </div>
-        <div class="col-sm-8 col-md-8 col-lg-8">
-            <div id="swiper-container" class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="/static/img/sli1.jpg">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/static/img/sli3.jpg">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/static/img/sli2.jpg">
+    <div class="row homepage-hero-module">
+            <div class="col-sm-6 col-md-4 demo">
+                    <div class="thumbnail in_video">
+                        <h3>Thumbnail label</h3>
+                        <a href=''>了解更多</a>
                     </div>
                 </div>
+        <div class="video-container">
+            <div class="filter"></div>
+            <video autoplay loop class="fillWidth">
+                <source src="/static/img/clark.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
+                <source src="/static/img/clark.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
+            </video>
+            <div class="poster hidden">
+                <img src="/static/img/clark.jpg" alt="">
             </div>
         </div>
-      <!--   <div class="col-sm-2 col-md-2 col-lg-2 ">
-            <div class="jumbotron">
-                <h1>Hello, world!</h1>
-                <p>...</p>
-                <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-              </div>
-        </div> -->
+        
     </div>
-</div>
-<div class="container">
     <div class="main_top row">
-            <div class="page-header">
-                    <h1>Example page header <small>Subtext for header</small></h1>
+            <div class="page-header price">
+                    <h3 class="text-center">Example page header <small>Subtext for header</small></h3>
                   </div>
     </div>
-    <div class="row">
+    <div class="row row_margin">
             <div class="col-sm-6 col-md-4">
               <div class="thumbnail">
                 <img src="/static/img/list3.jpg" alt="...">
                 <div class="caption">
                   <h3>Thumbnail label</h3>
-                  <p>...</p>
+                  <p class="price">
+                        <i class="fa fa-jpy" aria-hidden="true"></i>
+                         20.00
+                     </p>
                 </div>
               </div>
             </div>
             <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
+                    <div class="thumbnail ">
                       <img src="/static/img/list3.jpg" alt="...">
                       <div class="caption">
                         <h3>Thumbnail label</h3>
-                        <p>...</p>
+                        <p class="price">
+                           <i class="fa fa-jpy" aria-hidden="true"></i>
+                            20.00
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -171,64 +59,73 @@
                           <img src="/static/img/list3.jpg" alt="...">
                           <div class="caption">
                             <h3>Thumbnail label</h3>
-                            <p>...</p>
+                            <p class="price">
+                                    <i class="fa fa-jpy" aria-hidden="true"></i>
+                                     20.00
+                                 </p>
                           </div>
                         </div>
                       </div>
           </div>
 </div>
-<!-- <div class=""> -->
 
-<div class="">
-    <a href="{% url 'category:categories' %}">
-        <div class="pull-left submenu">
-            类别
-        </div>
+<!-- 功能 -->
+<ul class="hide_menu"><a href="{% url 'category:categories' %}">
+    <li class="pull-left submenu">
+        类别
+    </li>
     </a>
     <a href="{% url 'product:products' %}">
-        <div class="pull-left submenu">
-            商品
-        </div>
+    <li class="pull-left submenu">
+        商品
+    </li>
     </a>
     <a href="{% url 'product:products' %}?new">
-        <div class="pull-left submenu">
-            创建商品
-        </div>
+    <li class="pull-left submenu">
+        创建商品
+    </li>
     </a>
     <a href="{% url 'product:products' %}?pic">
-        <div class="pull-left submenu">
-            创建商品图片
-        </div>
+    <li class="pull-left submenu">
+        创建商品图片
+    </li>
     </a>
     <a href="{% url 'product:products' %}">
-        <div class="pull-left submenu">
-            商品列表
-        </div>
+    <li class="pull-left submenu">
+        商品列表
+    </li>
     </a>
     <a href="{% url 'users:logout' %}">
-        <div class="pull-left submenu">
-            退出
-        </div>
+    <li class="pull-left submenu">
+        退出
+    </li>
     </a>
     <a href="{% url 'bill:bills' %}">
-        <div class="pull-left submenu">
-            我的订单
-        </div>
+    <li class="pull-left submenu">
+        我的订单
+    </li>
     </a>
-
+    
     <a href=" {% url 'apis:apis' %}">
-        <div class="pull-left submenu">
-            API
-        </div>
+    <li class="pull-left submenu">
+        API
+    </li>
     </a>
-    <a href=" {% url 'sitecontent:sitecontents' %}">
-        <div class="pull-left submenu">
-            网站管理
-        </div>
+    <a href=" {% url 'sitecontent:blockcontents' %}?new">
+    <li class="pull-left submenu">
+       | 网站模块管理
+    </li>
     </a>
-</div>
+    <a href=" {% url 'sitecontent:blockitemcontents' %}?new">
+        <li class="pull-left submenu">
+           |     网站模块内容管理 |
+        </li>
+        </a></ul>
 
-</div>
+
+<div class="aj"> {% if request.user.is_anonymous %}未登录{%else%} {{request.user.username}}{% endif%}</div>
+
 {% endblock %} {% block js %}
 <script type="text/javascript " src="/static/js/swiper-3.4.2.jquery.min.js "></script>
-<script type="text/javascript " src="/static/js/home.js "></script> {% endblock %}
+<script type="text/javascript " src="/static/js/home.js "></script>
+<script type="text/javascript " src="/static/js/classify.js "></script> {% endblock %}

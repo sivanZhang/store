@@ -49,3 +49,6 @@ function fnLimited(inputLimited){
         }
     });
 }
+
+var bodyHeight=window.innerHeight;
+$('body').css('min-height',bodyHeight+'px');

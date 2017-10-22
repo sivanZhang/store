@@ -45,6 +45,7 @@ $(document).ready(function() {
         var picid = btn.attr('picid');
         var productid = btn.attr('productid');
         var formData = new FormData(document.querySelector("#csrftocken_form"));
+     
         formData.append('picid', picid);
         formData.append('productid', productid);
         $.ajax('/product/products/' + productid + '/', {

@@ -179,8 +179,7 @@ class ProductView(View):
                 # price【可选字段】： 商品的计量单位，如：个、只
                 # parameters【可选字段】： 商品的自定义规格，是一个json数据
                 # detail【可选字段】： 商品的详情 
-        """
-        result = {} 
+        """ 
         
         if 'method' in request.POST:
             method = request.POST['method'].lower()
@@ -191,9 +190,7 @@ class ProductView(View):
             elif method == 'fallback': # 下架
                 return self.fallback(request)
             elif method == 'create': # 创建
-                return self.create(request)
-            elif method == 'detail_file': # 上传详情图片
-                return HttpResponse('geu')
+                return self.create(request) 
         else:
             return self.create(request)
         

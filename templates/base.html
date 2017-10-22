@@ -15,66 +15,70 @@
     {% block menu %}
     <!--页眉-->
     <div class="header-wrap">
-        <header class="clearfix">
-            <ul class="pull-left">
-                <li>
-                    <a href="javascript:;">购买指南</a>
-                </li>
-                <li>订单满¥99顺丰包邮，支持支付宝、微信、银联、顺丰到付、分期支付。
-                </li>
-            </ul>
-            <ul class="pull-right">
-
-                <li>
-                    <a href="{% url 'shopcar:shopcar_detail'  %}">
-                        <i class="fa fa-shopping-cart fa-shop" aria-hidden="true"></i> 购物车
-                    </a>
-                    <span class="badge">4</span>
-                </li>
-
-                <a href="{% url 'users:login' %}">
-                    <li>登录</li>
-                </a>
-                <a href="{% url 'users:register' %}">
-                    <li>注册</li>
-                </a>
-                <a href="javascript:;">
-                    <li>中国大陆 (简体中文 / ¥ CNY)</li>
-                </a>
-            </ul>
+        <header class="container clearfix">
+           <div class="row">
+                <ul class="pull-left">
+                        <li>
+                            <a href="javascript:;">购买指南</a>
+                        </li>
+                        <li>订单满¥99顺丰包邮，支持支付宝、微信、银联、顺丰到付、分期支付。
+                        </li>
+                    </ul>
+                    <ul class="pull-right">
+        
+                        <li>
+                            <a href="{% url 'shopcar:shopcar_detail'  %}">
+                                <i class="fa fa-shopping-cart fa-shop" aria-hidden="true"></i> 购物车
+                            </a>
+                            <span class="badge">4</span>
+                        </li>
+        
+                        <a href="{% url 'users:login' %}">
+                            <li>登录</li>
+                        </a>
+                        <a href="{% url 'users:register' %}">
+                            <li>注册</li>
+                        </a>
+                        <a href="javascript:;">
+                            <li>中国大陆 (简体中文 / ¥ CNY)</li>
+                        </a>
+                    </ul>
+           </div>
         </header>
     </div>
 
     <!--菜单开始-->
     <div class="nav-wrap">
-        <nav class="clearfix">
+        <nav class="container clearfix">
             <ul class="pull-left">
-                <li class="logo">
-                    <img src="/static/img/m1.png" height="25px">
-                </li>
-                <li>
-                    <a href="{% url 'home' %}">主页</a>
-                </li>
-                <li>
-                    <a href="{% url 'category:categories' %}">
-                    商品分类
-                    <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                </li>
-                <li>优惠
-                    <i class="fa fa-angle-down" aria-hidden="true"></i>
-                </li>
-
-                <li>
-                    <a href="javascript:;">移动版商城</a>
-                </li>
-
-            </ul>
-            <form id="search-form" class="pull-right">
-                <input class="search" type="text" placeholder="搜索" />
-                <button class="search pull-right" type="button">    
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
-            </form>
+               <div class="row">
+                    <li class="logo">
+                            <img src="/static/img/m1.png" height="25px">
+                        </li>
+                        <li>
+                            <a href="{% url 'home' %}">主页</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'category:categories' %}">
+                            商品分类
+                            <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        </li>
+                        <li>优惠
+                            <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </li>
+        
+                        <li>
+                            <a href="javascript:;">移动版商城</a>
+                        </li>
+        
+                    </ul>
+                    <form id="search-form" class="pull-right">
+                        <input class="search" type="text" placeholder="搜索" />
+                        <button class="search pull-right" type="button">    
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </form>
+               </div>
         </nav>
     </div>
     <!--菜单结束-->

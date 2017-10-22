@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block pagetitle%}{% trans 'Homepage Content Management' %}{% endblock%}
+{% block css %}
+<link href="/static/sitecontent/css/blocknew.css" rel="stylesheet">
+ {% endblock %}
+{% block content %}
+<form action="" method="post"  enctype="multipart/form-data">
+    {%csrf_token%} 
+    <input type="hidden" name="method" value="detail_file" /> 
+    {% if block_instance %}
+    <input type="hidden" name="blockid" id="blockid" value="{{block_instance.id}}" /> 
+    {% endif %}
+</form>
+<form class="container">
+    <div class="row margin-30">
+        <div class="col-sm-4 col-md-4">
+
+            <input type="text" class="form-control" title="产品名称" placeholder="产品名称">
+
+        </div>
+        <div class="col-sm-4 col-md-4">
+
+            <input type="text" class="form-control" title="连接地址" placeholder="连接地址">
+
+        </div>
+        <div class="col-sm-4 col-md-4">
+
+            <input type="text" class="form-control" title="服务器状态" placeholder="服务器状态">
+
+        </div>
+
+        <div class="col-sm-4 col-md-4">
+
+            <input type="text" class="form-control" title="ID" placeholder="ID">
+
+        </div>
+        <div class="col-sm-4 col-md-4">
+
+            <input type="file" title="上传图片">
+
+        </div>
+    </div>
+    </div>
+</form>
+{% endblock%}

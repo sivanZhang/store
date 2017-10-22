@@ -1,11 +1,15 @@
 /*
  * 更改默认
  */
-
+*{
+    z-index: 2;
+}
 body {
     margin: 0px;
     padding: 0px;
-    background-color:rgb(246,246,246);
+    background-color: rgb(239,240,241);
+    padding-bottom: 230px;
+    position: relative;
 }
 li{
     
@@ -28,11 +32,15 @@ a:hover,
 a:active {
     text-decoration: none;
 }
-
+/*
+ *通用
+ */
 .font-gray {
     color: #707473;
 }
-
+.del_padding{
+    margin: 0 -15px;
+}
 
 /*
  * header
@@ -96,7 +104,6 @@ nav ul.pull-left li {
 }
 
 nav li:hover {
-    /* color: #ffc107; */
     font-size: 15px;
 }
 
@@ -127,10 +134,12 @@ nav ul.pull-left li.logo {
  */
 
 footer {
+    z-index: 1;
+    position: absolute;
+     bottom:0px;
     background-color: #757575;
     width: 100%;
     color: #fff;
-    position: relative;
     text-align: center;
     margin-top: 50px;
     height:200px;
@@ -187,4 +196,11 @@ section {
 .btn-primary {
     background-color: #4b9be0;
     border-color: #337ab7;
+}
+.price{
+    color: rgb(201,22,35);
+}
+.margin-30{
+    margin-left:-30px;
+    margin-right: -30px;
 }
