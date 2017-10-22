@@ -1,0 +1,22 @@
+body {
+    width:100%;
+    min-width:750px；
+    }
+
+header{
+    background-color:rgb(201,22,35);
+    min-height: 60px;
+    width:100%;
+}
+.user_photo{
+ width:30%;
+
+}
+.user_photo img{
+width: 60px;
+height: 60px;
+}
+.sidebar{
+    background-color:rgb(36, 48, 52);
+    color: #fefefe;
+}

@@ -5,11 +5,13 @@
 body {
     margin: 0px;
     padding: 0px;
-    background-color:#efefef;
+    background-color:rgb(246,246,246);
 }
-
-li {
+li{
+    
     list-style-type: none;
+}
+header ul li,nav ul li {
     display: inline-block;
 }
 
@@ -127,10 +129,11 @@ nav ul.pull-left li.logo {
 footer {
     background-color: #757575;
     width: 100%;
-    height: 100px;
     color: #fff;
     position: relative;
     text-align: center;
+    margin-top: 50px;
+    height:200px;
 }
 
 footer>div {

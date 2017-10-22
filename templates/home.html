@@ -1,64 +1,234 @@
 {% extends 'base.html' %} {% block css %}
-<link href="/static/css/shophome.css" rel="stylesheet"> {% endblock %} {% block content %}
+<link href="/static/css/shophome.css" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.css"> {% endblock %} {% block content %}
 
 <div class="aj"> {% if request.user.is_anonymous %}未登录{%else%} {{request.user.username}}{% endif%}</div>
-  <div class="swiper-container swiper-container-2 subnav-wrap f12">
-    <div class="swiper-wrapper">
-        <div class="swiper-slide">
-
-
-            <a href="{% url 'category:categories' %}">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if3.png"> 类别
-                </div>
-            </a>
-            <a href="{% url 'product:products' %}">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if4.png"> 商品
-                </div>
-            </a>
-            <a href="{% url 'product:products' %}?new">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if5.png"> 创建商品
-                </div>
-            </a>
-            <a href="{% url 'product:products' %}?pic">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if6.png"> 创建商品图片
-                </div>
-            </a>
-            <a href="{% url 'product:products' %}">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if20.png"> 商品列表
-                </div>
-            </a>
-            <a href="{% url 'users:logout' %}">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if7.png"> 退出
-                </div>
-            </a>
-            <a href="{% url 'bill:bills' %}">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if8.png"> 我的订单
-                </div>
-            </a>
-
-
-            <a href="javascript:;">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if17.png"> 数据
-                </div>
-            </a>
-            <a href=" {% url 'apis:apis' %}">
-                <div class="pull-left submenu">
-                    <img src="/static/img/if17.png"> API
-                </div>
-            </a>
+<div class="container">
+    <div class="main_top row">
+        <div class="col-sm-2 col-md-2 col-lg-2 sidebar">
+            <ul>
+                <li class="main_menu">分类
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </li>
+                <li class="main_menu">分类
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </li>
+                <li class="main_menu">分类
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </li>
+                <li class="main_menu">分类
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </li>
+                <li class="main_menu">分类
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </li>
+                <li class="main_menu">分类
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-10 col-md-10 col-lg-10 detailed_menu">
+            <ul>
+                <li>总菜单
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </li>
+                <li>分类
+                </li>
+                <li>分类
+                </li>
+                <li>分类
+                </li>
+            </ul>
 
 
         </div>
+        <div class="col-sm-10 col-md-10 col-lg-10 detailed_menu">
+            <ul>
+                <li>总菜单1
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </li>
+                <li>分类
+                </li>
+                <li>分类
+                </li>
+                <li>分类
+                </li>
+            </ul>
 
+
+        </div>
+        <div class="col-sm-10 col-md-10 col-lg-10 detailed_menu">
+            <ul>
+                <li>总菜单2
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </li>
+                <li>分类
+                </li>
+                <li>分类
+                </li>
+                <li>分类
+                </li>
+            </ul>
+
+
+        </div>
+        <div class="col-sm-10 col-md-10 col-lg-10 detailed_menu">
+            <ul>
+                <li>总菜单3
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </li>
+                <li>分类
+                </li>
+                <li>分类
+                </li>
+                <li>分类
+                </li>
+            </ul>
+
+
+        </div>
+        <div class="col-sm-10 col-md-10 col-lg-10 detailed_menu">
+            <ul>
+                <li>总菜单4
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </li>
+                <li>分类
+                </li>
+                <li>分类
+                </li>
+                <li>分类
+                </li>
+            </ul>
+
+
+        </div>
+        <div class="col-sm-10 col-md-10 col-lg-10 detailed_menu">
+            <ul>
+                <li>总菜单
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </li>
+                <li>分类
+                </li>
+                <li>分类
+                </li>
+                <li>分类
+                </li>
+            </ul>
+
+
+        </div>
+        <div class="col-sm-8 col-md-8 col-lg-8">
+            <div id="swiper-container" class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="/static/img/sli1.jpg">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/static/img/sli3.jpg">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/static/img/sli2.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+      <!--   <div class="col-sm-2 col-md-2 col-lg-2 ">
+            <div class="jumbotron">
+                <h1>Hello, world!</h1>
+                <p>...</p>
+                <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+              </div>
+        </div> -->
     </div>
-    <div class="swiper-pagination2 pagination-2"></div>
-</div>  
-{% endblock %} {% block js %} {% endblock %}
+</div>
+<div class="container">
+    <div class="main_top row">
+            <div class="page-header">
+                    <h1>Example page header <small>Subtext for header</small></h1>
+                  </div>
+    </div>
+    <div class="row">
+            <div class="col-sm-6 col-md-4">
+              <div class="thumbnail">
+                <img src="/static/img/list3.jpg" alt="...">
+                <div class="caption">
+                  <h3>Thumbnail label</h3>
+                  <p>...</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                      <img src="/static/img/list3.jpg" alt="...">
+                      <div class="caption">
+                        <h3>Thumbnail label</h3>
+                        <p>...</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                          <img src="/static/img/list3.jpg" alt="...">
+                          <div class="caption">
+                            <h3>Thumbnail label</h3>
+                            <p>...</p>
+                          </div>
+                        </div>
+                      </div>
+          </div>
+</div>
+<!-- <div class=""> -->
+
+<div class="">
+    <a href="{% url 'category:categories' %}">
+        <div class="pull-left submenu">
+            类别
+        </div>
+    </a>
+    <a href="{% url 'product:products' %}">
+        <div class="pull-left submenu">
+            商品
+        </div>
+    </a>
+    <a href="{% url 'product:products' %}?new">
+        <div class="pull-left submenu">
+            创建商品
+        </div>
+    </a>
+    <a href="{% url 'product:products' %}?pic">
+        <div class="pull-left submenu">
+            创建商品图片
+        </div>
+    </a>
+    <a href="{% url 'product:products' %}">
+        <div class="pull-left submenu">
+            商品列表
+        </div>
+    </a>
+    <a href="{% url 'users:logout' %}">
+        <div class="pull-left submenu">
+            退出
+        </div>
+    </a>
+    <a href="{% url 'bill:bills' %}">
+        <div class="pull-left submenu">
+            我的订单
+        </div>
+    </a>
+
+    <a href=" {% url 'apis:apis' %}">
+        <div class="pull-left submenu">
+            API
+        </div>
+    </a>
+    <a href=" {% url 'sitecontent:sitecontents' %}">
+        <div class="pull-left submenu">
+            网站管理
+        </div>
+    </a>
+</div>
+
+</div>
+{% endblock %} {% block js %}
+<script type="text/javascript " src="/static/js/swiper-3.4.2.jquery.min.js "></script>
+<script type="text/javascript " src="/static/js/home.js "></script> {% endblock %}

@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^product/', include('product.urls', namespace="product")),
     url(r'^shopcar/', include('shopcar.urls', namespace="shopcar")),
     url(r'^bill/', include('bill.urls', namespace="bill")),
+    url(r'^sitecontent/', include('sitecontent.urls', namespace="sitecontent")),
     url(r'^address/', include('address.urls', namespace="address")),
     url(r'^area/', include('area.urls', namespace="area")),
     url(r'^apis/', include('apis.urls', namespace="apis")),

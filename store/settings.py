@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'address',
     'area',
     'apis',
+    'sitecontent',
 ]
 
 MIDDLEWARE = [

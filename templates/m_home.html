@@ -1,6 +1,6 @@
 {% extends 'm_base.html' %} {% block css %}
 <link type="text/css" rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.css">
-<link href="/static/css/m_shophome.css" rel="stylesheet"> {% endblock %} {% block content %}
+<link href="/static/css/m_shophome.css" rel="stylesheet"> {% endblock %}<script type="text/javascript" src="/static/js/swiper-3.4.2.jquery.min.js"></script> {% block content %}
 
 <header class="container">
     <div class="row">
@@ -155,6 +155,6 @@
 <div class="aj"> {% if request.user.is_anonymous %}未登录{%else%} {{request.user.username}}{% endif%}</div>
 
 {% endblock %} {% block menuhome %} menu-act{% endblock %} {% block js %}
-<script type="text/javascript" src="/static/js/swiper-3.4.2.jquery.min.js"></script>
-<script type="text/javascript" src="/static/js/home.js"></script>
+
+<script type="text/javascript" src="/static/js/m_home.js"></script>
 {% endblock %}
