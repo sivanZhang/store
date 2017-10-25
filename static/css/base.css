@@ -35,6 +35,9 @@ a:active {
 /*
  *通用
  */
+ .hide{
+     display: none;
+ }
 .font-gray {
     color: #707473;
 }

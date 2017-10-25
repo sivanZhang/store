@@ -149,7 +149,7 @@ $('#pro-table').on('click', '.fa-trash-o', function() {
 
 //  内容简介    >>> 输入字数监听     
 $(".ta-wrap input").on('keyup input', function(event) {
-    console.log(event.type)
+   
     var val = $(this).val();
     var len = val.length;
     var count = $(this).siblings('span');

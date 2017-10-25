@@ -1,0 +1,226 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-25 18:37+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\address\models.py:12 .\product\models.py:37
+msgid "Detail"
+msgstr ""
+
+#: .\address\models.py:14
+msgid "Receiver"
+msgstr ""
+
+#: .\address\models.py:16 .\bill\models.py:52
+msgid "Phone"
+msgstr ""
+
+#: .\apis\models.py:8 .\bill\models.py:71
+msgid "Address"
+msgstr ""
+
+#: .\apis\models.py:10 .\bill\models.py:73
+msgid "Rule"
+msgstr ""
+
+#: .\basedatas\templates\guide\guide.html:2
+#: .\basedatas\templates\guide\guide_l1.html:2
+msgid "L2 tools management"
+msgstr ""
+
+#: .\bill\models.py:24
+msgid "failed"
+msgstr ""
+
+#: .\bill\models.py:25
+msgid "submitted"
+msgstr ""
+
+#: .\bill\models.py:26
+msgid "unpayed"
+msgstr ""
+
+#: .\bill\models.py:27
+msgid "payed"
+msgstr ""
+
+#: .\bill\models.py:28
+msgid "finished"
+msgstr ""
+
+#: .\bill\models.py:33
+msgid "Bill No."
+msgstr ""
+
+#: .\bill\models.py:40
+msgid "phone"
+msgstr "电话"
+
+#: .\bill\models.py:42
+msgid "reciever"
+msgstr "收货人"
+
+#: .\bill\models.py:45
+msgid "Money"
+msgstr "钱"
+
+#: .\bill\models.py:55
+msgid "Remark"
+msgstr "备注"
+
+#: .\bill\models.py:81
+msgid "Price"
+msgstr "价格"
+
+#: .\bill\models.py:83
+msgid "Number"
+msgstr "数字"
+
+#: .\bill\views.py:64
+msgid "Not Found..."
+msgstr "未找到..."
+
+#: .\bill\views.py:66
+msgid "Need billno, Not Found..."
+msgstr ""
+
+#: .\comment\pageviews.py:101 .\comment\pageviews.py:114
+msgid "Saved"
+msgstr "已保存"
+
+#: .\comment\pageviews.py:101 .\comment\pageviews.py:114
+msgid "Complately"
+msgstr "完成"
+
+#: .\comment\pageviews.py:106
+msgid "404 Parent comment not found."
+msgstr "404 主评论未找到."
+
+#: .\comment\pageviews.py:110
+msgid " cannot be null."
+msgstr "不能为空."
+
+#: .\comment\pageviews.py:118
+msgid "404 Page not found ID:{}"
+msgstr "404 未找到Page id {}"
+
+#: .\comment\pageviews.py:137
+msgid "Done"
+msgstr "完成"
+
+#: .\comment\pageviews.py:140
+msgid "404 Not found the id {}"
+msgstr "404 未找到id {}"
+
+#: .\comment\pageviews.py:143
+msgid "Need id in POST"
+msgstr "post中需要id参数"
+
+#: .\product\models.py:24
+msgid "title"
+msgstr ""
+
+#: .\product\models.py:31
+msgid "Product Parameters"
+msgstr "产品参数"
+
+#: .\product\models.py:40
+msgid "thumbnail"
+msgstr "缩略图"
+
+#: .\product\models.py:43
+msgid "Permission to manage product"
+msgstr "产品管理权限"
+
+#: .\product\models.py:87
+msgid "name"
+msgstr "名称"
+
+#: .\product\models.py:89
+msgid "price"
+msgstr "价格"
+
+#: .\product\models.py:94
+msgid "real inventory"
+msgstr "实物库存"
+
+#: .\product\models.py:96
+msgid "available inventory"
+msgstr "可用库存"
+
+#: .\product\models.py:99
+msgid "unit"
+msgstr "单位"
+
+#: .\product\templates\new.html:48
+#, fuzzy
+#| msgid "Product Parameters"
+msgid "Product Detail"
+msgstr "产品详情"
+
+#: .\product\templates\new.html:48
+#: .\sitecontent\templates\sitecontent\test.html:10
+#: .\sitecontent\templates\sitecontent\test.html:21
+#: .\sitecontent\templates\sitecontent\testitem.html:14
+#: .\sitecontent\templates\sitecontent\testitem.html:28
+msgid "hot product"
+msgstr "热销产品"
+
+#: .\shopcar\views.py:69
+msgid "login required...."
+msgstr "请先登录"
+
+#: .\shopcar\views.py:82
+msgid "Delete successfully...."
+msgstr "删除成功..."
+
+#: .\shopcar\views.py:90
+msgid "Add successfully...."
+msgstr "添加成功..."
+
+#: .\shopcar\views.py:93
+msgid "Not found...."
+msgstr "未找到..."
+
+#: .\shopcar\views.py:97
+msgid "Need method in post..."
+msgstr "post需要method参数..."
+
+#: .\shopcar\views.py:100
+msgid "Method error.."
+msgstr "方法错误.."
+
+#: .\sitecontent\templates\sitecontent\blocknew.html:3
+#: .\sitecontent\templates\sitecontent\test.html:3
+#: .\sitecontent\templates\sitecontent\testitem.html:3
+msgid "Homepage Content Management"
+msgstr "主页内容管理"
+
+#: .\sitecontent\templates\sitecontent\test.html:15
+#: .\sitecontent\templates\sitecontent\test.html:26
+#: .\sitecontent\templates\sitecontent\testitem.html:19
+#: .\sitecontent\templates\sitecontent\testitem.html:33
+msgid "submit"
+msgstr "提交"
+
+#: .\sitecontent\views.py:109 .\sitecontent\views.py:152
+#: .\sitecontent\views.py:252 .\sitecontent\views.py:297
+msgid "Saved completely!"
+msgstr "保存完成！"
+
+#: .\sitecontent\views.py:255
+msgid "Not found"
+msgstr "没有找到"

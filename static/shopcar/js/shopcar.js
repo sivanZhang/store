@@ -146,8 +146,8 @@ $('.carlist').on('click','.fa-times',function(){
             }
             
         },
-        error: function() {
-            alert('server is down!')
+        error: function(){
+          /*   alert('server is down!'); */
         }
     })
 });

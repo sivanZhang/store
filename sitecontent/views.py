@@ -68,6 +68,8 @@ class BlockContentView(View):
                 return   self.get(request)
             elif method == 'create': # 创建
                 return self.create(request) 
+            elif method == 'delete': # 删除
+                return self.delete(request) 
         else:
             self.create(request)
             return self.get(request)
@@ -153,6 +155,25 @@ class BlockContentView(View):
         else:
             result['status'] ='error'
             result['msg'] ='Need title  in POST'
+        return self.httpjson(result)
+
+    def delete(self, request):
+        user = request.user
+        result = {}
+        if 'id' in request.POST : 
+            blockid = request.POST['id'].strip() 
+            try:
+                block = models.AdaptorBaseBlock.objects.get(pk = blockid)
+                block.delete()
+                result['status'] ='ok'
+                result['msg'] = _('Done')
+            except models.AdaptorBaseBlock.DoesNotExist:
+                result['status'] ='error'
+                result['msg'] = _('Not found')
+        else:
+            result['status'] ='error'
+            result['msg'] = 'Need title  in POST'
+        
         return self.httpjson(result)
 
     def httpjson(self, result):

@@ -1,0 +1,49 @@
+
+
+button[type=submit],label.control-label{
+    border-radius: 17px;
+    padding: 6px 15px;
+}
+.form_title{
+    color:rgb(100, 100, 100);
+    font-size: 20px;
+}
+
+.table>tbody>tr>td,.table>tbody>tr>th{
+    border-top: 1px dotted #ddd; 
+}
+.fa-picture-o{
+    font-size: 80px;
+}
+.img_wrap{
+    border: 1px solid #ddd;
+    background-color: #fefefe;
+    display: inline-block;
+    padding: 2px;
+    margin-right:60px; 
+    position: absolute;
+    top: -160px;
+    left: 5%;
+}
+form{
+    position: relative;
+}
+.thumb-image{
+    width: 100%;
+    height: auto;
+}
+.table_wrap{
+    padding:0; 
+}
+tr.table_con{
+    position:relative;
+}
+i.fa-pencil-square-o{
+    color:blue;
+}
+i.fa-trash-o{
+    color:red;
+ }
+ td>.fa{
+    cursor: pointer
+ }
