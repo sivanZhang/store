@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-25 18:37+0800\n"
+"POT-Creation-Date: 2017-10-25 21:13+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,7 +117,7 @@ msgstr "不能为空."
 msgid "404 Page not found ID:{}"
 msgstr "404 未找到Page id {}"
 
-#: .\comment\pageviews.py:137
+#: .\comment\pageviews.py:137 .\sitecontent\views.py:169
 msgid "Done"
 msgstr "完成"
 
@@ -129,9 +129,11 @@ msgstr "404 未找到id {}"
 msgid "Need id in POST"
 msgstr "post中需要id参数"
 
-#: .\product\models.py:24
+#: .\product\models.py:24 .\sitecontent\templates\sitecontent\blocknew.html:26
+#: .\sitecontent\templates\sitecontent\blocknew.html:28
+#: .\sitecontent\templates\sitecontent\blocknew.html:77
 msgid "title"
-msgstr ""
+msgstr "标题"
 
 #: .\product\models.py:31
 msgid "Product Parameters"
@@ -166,8 +168,6 @@ msgid "unit"
 msgstr "单位"
 
 #: .\product\templates\new.html:48
-#, fuzzy
-#| msgid "Product Parameters"
 msgid "Product Detail"
 msgstr "产品详情"
 
@@ -209,6 +209,16 @@ msgstr "方法错误.."
 msgid "Homepage Content Management"
 msgstr "主页内容管理"
 
+#: .\sitecontent\templates\sitecontent\blocknew.html:40
+msgid "status"
+msgstr "状态"
+
+#: .\sitecontent\templates\sitecontent\blocknew.html:51
+#: .\sitecontent\templates\sitecontent\blocknew.html:81
+msgid "mark"
+msgstr "备注"
+
+#: .\sitecontent\templates\sitecontent\blocknew.html:67
 #: .\sitecontent\templates\sitecontent\test.html:15
 #: .\sitecontent\templates\sitecontent\test.html:26
 #: .\sitecontent\templates\sitecontent\testitem.html:19
@@ -216,11 +226,11 @@ msgstr "主页内容管理"
 msgid "submit"
 msgstr "提交"
 
-#: .\sitecontent\views.py:109 .\sitecontent\views.py:152
-#: .\sitecontent\views.py:252 .\sitecontent\views.py:297
+#: .\sitecontent\views.py:111 .\sitecontent\views.py:154
+#: .\sitecontent\views.py:273 .\sitecontent\views.py:318
 msgid "Saved completely!"
 msgstr "保存完成！"
 
-#: .\sitecontent\views.py:255
+#: .\sitecontent\views.py:172 .\sitecontent\views.py:276
 msgid "Not found"
 msgstr "没有找到"
