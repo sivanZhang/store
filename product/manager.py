@@ -33,6 +33,48 @@ class RuleManager(models.Manager):
         for rule in rules:  
             self.create(product = product, name=rule['name'], price = float(rule['price']), 
                              real_inventory=rule['inv'],available_inventory=rule['inv'], unit=rule['unit'] )
+    
+
+    def mul_modify(self, rules_str, product):
+        """
+        批量修改规格
+        rules_str参数的样式：'[{"key":"23","value":"JK37"},{"key":"2332","value":"WL7"}]'
+        """
+        rules = json.loads(rules_str)
+        error_list = []
+
+        for rule in rules:  
+            if int(rule['ruleid']) == -1:
+                # 新添加的规格
+                obj = self.create(product = product, name=rule['name'], price = float(rule['price']), 
+                             real_inventory=rule['inv'],available_inventory=rule['inv'], unit=rule['unit'] )
+            else:
+                obj, created = self.get_or_create(product = product, pk = rule['ruleid'])
+                
+                if obj.has_unpayedbill() > 0: # 有未支付的订单
+                    difference =  obj.real_inventory - obj.available_inventory
+                    if int(rule['inv']) < difference:
+                        rule_error = {}
+                        # 新库存数量不足以满足那些未支付的订单出库
+                        rule_error['ruleid'] = obj.id
+                        rule_error['difference'] = difference
+                        rule_error['real_inventory'] = obj.real_inventory
+                        error_list.append(rule_error)
+                    else:
+                        obj.real_inventory = rule['inv']
+                        obj.available_inventory = int(rule['inv']) - difference
+                else:
+                    obj.real_inventory = rule['inv']
+                    obj.available_inventory = rule['inv']
+                  
+                obj.name = rule['name']
+                obj.price = float(rule['price']) 
+                obj.unit = rule['unit']
+                obj.deleted = 0 # 代表这个字段没有被用户删除
+                obj.save()
+        
+        return error_list
+            
 
     def inventory_op(self, rules = None, reduce_type=None, op_type= OP_REDUCE, billstatus=None):
         """

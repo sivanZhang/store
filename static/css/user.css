@@ -2,12 +2,13 @@ li {
     display: inline;
 }
 
-
 button.btn-block:hover{
     color: #eee;
 }
+
 form {
-    margin: 0 5%;
+width: 30%;
+margin: 0 auto;
 }
 
 button.btn {

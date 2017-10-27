@@ -36,7 +36,7 @@ $('body').on("click", "input[type='checkbox']", function() {
 $('.carlist').on("blur", '.carnum', function() {
            var sum = cal_sum();
            $('.sum_price').text(sum.toFixed(2));
-   });
+});
 
 fnLimited($('.carnum'));//限制用户输入除数字外的其他字符
 

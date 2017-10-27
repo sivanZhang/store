@@ -2,6 +2,7 @@
 */__pycache__/*
 */migrations/*
 /docs/
+/locale/
 /static/plugins/
 /media/
 *.json

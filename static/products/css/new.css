@@ -77,3 +77,26 @@ i.fa-trash-o {
     color: red;
     padding: 0 10px;
 }
+/* .fa-floppy-o{
+    cursor: pointer;
+    color: #204d74;
+} */
+td>input{
+    border: 0px;
+    outline: 0px;
+    background-color: transparent;
+  display: inline-block;
+}
+
+.operate{
+min-width: 50px;
+text-align: center;
+}
+/* 铅笔样式 */
+.fa-pencil{
+    color: #bbb;
+margin-left:10px; 
+}
+.bill{
+    min-width: 90px;
+}

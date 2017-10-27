@@ -25,7 +25,7 @@
             <div class="form-group">
                 <label for="title" class="col-sm-2 control-label">{% trans "title" %}</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="title" name="title" placeholder="{% trans "title" %}">
+                    <input type="text" class="form-control" id="title" name="title" required="required" placeholder="{% trans "title" %}">
                 </div>
             </div>
 
@@ -61,7 +61,7 @@
                 </div>
             
                 <div class="col-sm-10">
-                    <label for="fileUpload" class="control-label btn btn-primary" title="上传图片">上传图片
+                    <label id="file" for="fileUpload" class="control-label btn btn-primary" title="上传图片">上传图片
                             <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                     </label>
                     <button type="submit" class="btn btn-primary" title="{% trans "submit" %}">{% trans "submit" %}</button>
@@ -75,9 +75,9 @@
                         <tr>
                             <th>ID</th>
                             <th>{% trans "title" %}</th>
-                            <th>图片</th>
+                            <th>{% trans "picture" %}</th>
                             <th>链接</th>
-                            <th>状态</th>
+                            <th>{% trans "status" %}</th>
                             <th>{% trans "mark" %}</th>
                             <th>操作</th>
                         </tr>
@@ -92,10 +92,10 @@
                         {% else %}
                         <td class="b_status">发布</td>
                         {% endif %}
-                        <td class="b_mark">{{blocki.mark}}</td>
-                        <td>
+                        <td class="b_mark">{{blocki.mark}} - {{block.status}}</td>
+                        <td class="text-center">
                             <i class="fa fa-pencil-square-o edit" aria-hidden="true" title="编辑"></i>
-                            <i class="fa fa-trash-o pull-right" aria-hidden="true" title='删除'></i>
+                            <i class="fa fa-trash-o" aria-hidden="true" title='删除'></i>
                         </td>
                     </tr>
                     {% endfor %}

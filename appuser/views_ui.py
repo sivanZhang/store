@@ -47,14 +47,16 @@ def login(request):
                 auth.login(request, user)
                 # redirect to the value of next if it is entered, otherwise
                 # to settings.APP_WEB_PC_LOGIN_URL
-                next_url
+               
                 if next_url:
                     #after login, return to the previous page, but if the previous page is logout, 
                     #then return to the host page
                     if 'logout' not in str(next_url): 
                          return redirect(next_url)
-            
-                return redirect(reverse('home'))
+                    else:
+                        return redirect(reverse('home'))
+                else:
+                    return redirect(reverse('home'))
             else:
                 try: 
                     user_instance = User.objects.get(email = email)
@@ -79,6 +81,7 @@ def login(request):
             return render(request, 'user/m_login.html', context)
         else:  
             return render(request, 'user/login.html', context)
+
 def logout(request):
     auth.logout(request)
     isMble  = dmb.process_request(request)

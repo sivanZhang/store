@@ -8,7 +8,11 @@ button[type=submit],label.control-label{
     color:rgb(100, 100, 100);
     font-size: 20px;
 }
-
+button[type=submit],#file{
+background: #306efe linear-gradient(120deg,#30cde2 0,#306efe 100%) no-repeat;
+border: none;
+line-height: 1.5;
+}
 .table>tbody>tr>td,.table>tbody>tr>th{
     border-top: 1px dotted #ddd; 
 }
@@ -45,5 +49,5 @@ i.fa-trash-o{
     color:red;
  }
  td>.fa{
-    cursor: pointer
+    cursor: pointer;
  }

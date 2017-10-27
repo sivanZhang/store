@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block pagetitle%}创建商品信息{% endblock%}
+{% block pagetitle%}修改商品信息{% endblock%}
  {% block css %}
 <link href="/static/products/css/new.css" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="/static/css/HoldOn.css">  {% endblock %} 
@@ -8,7 +8,9 @@
 <form action="" method="post">
     {%csrf_token%} 
     <input type="hidden" name="method" value="detail_file" /> 
-     
+    {% if product %}
+    <input type="hidden" name="productid" id="productid" value="{{product.id}}" /> 
+    {% endif %}
 </form>
 
 <section>
@@ -26,9 +28,12 @@
             <label for="id" class="col-sm-2 control-label">商品类型：</label>
             <div class="col-sm-4">
                 <select class="form-control " id="sel-category">
-                    {% for category in categories %} 
+                    {% for category in categories %}
+                           {% if product.category.id == category.id %}
+                                <option value ="{{category.id}}" selected="selected">{{category.name}}</option>
+                                {% else %}
                                 <option value ="{{category.id}}"  >{{category.name}}</option>
-                         
+                           {% endif %}
                     {% endfor%}
                 </select>
             </div>
@@ -82,16 +87,48 @@
                     <button type="button" class="btn btn-primary add-rule blue-btn"><i class="fa fa-plus" aria-hidden="true"></i></button>
 
                 </div>
-                
-                    <table class="table table-hover table-bordered" id="tb_rule">
-                        <tr>
-                            <th>名称</th>
-                            <th>型号</th>
-                            <th>价格</th>
-                            <th>库存</th>
-                            <th>删除</th>
-                        </tr> 
-                    </table> 
+                {% if product %}
+                <table class="table table-hover table-bordered" id="tb_rule">
+                    <tr>
+                        <th colspan="6">
+                            <div>
+                                <h4>规格修改时应注意：</h4>
+                                有订单时：<br/>
+                                有未支付的订单:不能删除，可以修改，但新库存数不能低于锁定的库存数量。<br/>
+                                订单均已完成:	可以修改、删除。删除之后已完成的订单只可查询当时的商品名称和价格，不能查看商品的链接。<br/>
+                                无订单时:可删除、修改 <br/> 
+                            </div> 
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="bill">是否有订单</th>
+                        <th>名称<i class="fa fa-pencil" aria-hidden="true"></i></th>
+                        <th>型号<i class="fa fa-pencil" aria-hidden="true"></i></th>
+                        <th>价格<i class="fa fa-pencil" aria-hidden="true"></i></th> 
+                        <th>实物库存<i class="fa fa-pencil" aria-hidden="true"></i></th>
+                        <th>操作</th>
+                    </tr>
+
+                    {% for rule in product.adaptorrule_set.all %}
+                    <tr class="tr_rule" ruleid="{{rule.id}}">
+                        {% if rule.adaptorbillitem_set.all %}
+                        <td class="hasbiil">有</td>
+                        {% else  %}
+                        <td class="hasbiil">无</td>
+                        {% endif  %}
+                        <td class="name" ><input type="text" value="{{rule.name}}" title="点击修改"/></td>
+                        <td class="unit"><input type="text" value="{{rule.unit}}" title="点击修改"/></td>
+                        <td class="price"> <input type="text" value="{{rule.price}}" title="点击修改"/></td> 
+                        <td class="inv" available_inventory="{{rule.available_inventory}}" >
+                                <input type="text" value="{{rule.real_inventory}}" title="点击修改"/></td>
+                        <td class="operate">
+                            <!-- <i class="fa fa-floppy-o" aria-hidden="true" title="保存"></i> -->
+                            <i class="fa fa-trash-o " aria-hidden="true" title="删除"></i>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table> 
+                {% endif %}
             </div>
         </div>
 
@@ -139,7 +176,21 @@
 <script src="/static/plugins/tinymce_4.6.6/tinymce/tinymce.min.js "></script>
 <script src="/static/plugins/tinymce_4.6.6/tinymce/languages/zh_CN.js "></script>
 <script type="text/javascript" src="/static/js/HoldOn.min.js"></script>
- 
+{% if product %}
+<script>
+    var items = {{product.parameters|safe}};
+    var html =''; 
+    for(var i = 0 ; i < items.length; i++){
+       html= ' <tr class="parameter_tr ">'+
+                '<td class="key ">'+items[i]['key']+'</td>'+
+                '<td class="value ">'+items[i]['value']+'</td>'+
+                '<td><i class="fa fa-trash-o " aria-hidden="true "></i></td>'+
+            '</tr>';
+        $('#pro-table>tbody').append(html);
+    }
+    
+</script>
+{% endif %}
 <script>
     tinymce.init({
     selector: 'textarea',
@@ -160,6 +211,6 @@ tinymce.addI18n('zh_CN', {
 
 });
 </script>
-<script src="/static/products/js/new.js " rel="stylesheet "></script>
+<script src="/static/products/js/change.js " rel="stylesheet "></script>
  
 {% endblock %}

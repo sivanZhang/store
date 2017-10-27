@@ -54,9 +54,9 @@ def change(request, pk):
                 return render(request, 'pic.html', content)
         else: 
             if isMble:
-                return render(request, 'm_new.html', content)
+                return render(request, 'change.html', content)
             else:
-                return render(request, 'new.html', content)
+                return render(request, 'change.html', content)
 
     return HttpResponse()
 class ProductDetailView(APIView):
@@ -98,7 +98,7 @@ class ProductDetailView(APIView):
                     productpic = ProductPic.objects.get(pk = picid)
                     productpic.delete()
                     result['status'] = 'OK'
-                    result['msg']    = '删除成功...' 
+                    result['msg']    = _('Delete sucessfully')#'删除成功...' 
             elif 'picid' in request.POST: # 说明是在设置主缩略图
                 picid = request.POST['picid']
                 productpic = ProductPic.objects.get(pk = picid)
@@ -106,7 +106,7 @@ class ProductDetailView(APIView):
                 product.save()
                 
                 result['status'] = 'OK'
-                result['msg']    = '设置成功...'
+                result['msg']    = _('Config sucessfully') # '设置成功...'
             else: 
                 code    = ''.join(random.choice(string.ascii_letters + string.digits) for i in range(4))
                 filename = handle_uploaded_file(request.FILES['pic'], str(user.id)+'_'+ code)
@@ -114,7 +114,7 @@ class ProductDetailView(APIView):
                 ProductPic.objects.create(product=product, url=filename.replace('\\', '/'))
                 
                 result['status'] = 'OK'
-                result['msg']    = '上传成功...' 
+                result['msg']    = _('Upload sucessfully')
         else:
             result['status'] = 'ERROR'
             result['msg']    = 'Method error..'
@@ -234,7 +234,7 @@ class ProductView(View):
                 product.save()
                 result['id'] = product.id
                 result['status'] ='ok'
-                result['msg'] ='Done'
+                result['msg'] = _('Created sucessfully')
             except Category.DoesNotExist:
                 result['status'] ='error'
                 result['msg'] ='404 Category not found ID:{}'.format(categoryid)  
@@ -245,7 +245,7 @@ class ProductView(View):
 
     def put(self, request):
         """
-        修改分类名称
+        修改 
         """
         result = {}  
         data = QueryDict(request.body.decode('utf-8'))  
@@ -282,13 +282,18 @@ class ProductView(View):
                     detail = data['detail']
                     product.detail = detail 
                 if 'rules' in request.POST:  
-                    product.adaptorrule_set.all().delete()
+
                     rules = request.POST['rules'].strip()
-                    AdaptorRule.objects.mul_create(rules, product)
+                    
+                    product.set_undeleted()
+                    error_list = AdaptorRule.objects.mul_modify(rules, product)
+                    if len(error_list) > 0:
+                        result['error_list'] = error_list
+                    product.delete_droped_rules()
                 
                 product.save() 
                 result['status'] ='ok'
-                result['msg'] ='Done'
+                result['msg'] = _('Modified sucessfully')
             except AdaptorProduct.DoesNotExist:
                 result['status'] ='error'
                 result['msg'] ='404 Not found the Product ID:{}'.format(productid) 
@@ -310,7 +315,7 @@ class ProductView(View):
                 product = AdaptorProduct.objects.get(id=productid)
                 product.delete() 
                 result['status'] ='ok'
-                result['msg'] ='Done'
+                result['msg'] = _('Done sucessfully')
             except AdaptorProduct.DoesNotExist:
                 result['status'] ='error'
                 result['msg'] ='404 Not found the id {}'.format(productid) 
@@ -330,7 +335,7 @@ class ProductView(View):
                 product = AdaptorProduct.objects.get(id=productid)
                 AdaptorProduct.objects.fallback(product)
                 result['status'] ='ok'
-                result['msg'] ='Done'
+                result['msg'] = _('Done sucessfully')
             except AdaptorProduct.DoesNotExist:
                 result['status'] ='error'
                 result['msg'] ='404 Not found the id {}'.format(productid) 
