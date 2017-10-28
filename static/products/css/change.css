@@ -104,3 +104,9 @@ margin-left:10px;
 /* td.price>input{
    
 } */
+
+.table_error{
+    background-color: orangered;
+    color: white;
+    font-weight: 700;
+}

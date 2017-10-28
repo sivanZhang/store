@@ -6,26 +6,10 @@ $('#tb_rule').on('click', '.fa-trash-o', function () {
 
 //  规格设置    >>> 添加
 var rule_el, name, price, rule, inventory,newhtml,html;
-
-
-newhtml = ' <tr class="tr_rule" ruleid="-1">' +
-'<td class="name">' + name + '</td>' +
-'<td class="unit">' + rule + '</td>' +
-'<td class="price">' + price + '</td>' +
-'<td class="inv" >' + inventory + '</td>' +
-' <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>' +
-' </tr>';
-html = '<div class="alert-text">价格或库存只能输入数字!</div>';
 //表单数字输入验证
-$('#price,#inventory,.inv>input,.price>input').change(function(){
-    var oThis =$(this);
-    var oVal = $(this).val();
-   if (isNaN(oThis)) {
-        $('#tb_rule').before(html);
-        oThis.val("");
-    }
-});
-$('.add-inp input,.inv>input,.price>input').focus(function(){
+fnLimited($('#price,#inventory,.inv>input,.price>input'));
+
+$('.add-inp input').focus(function(){
     $(".alert-text").remove();
 })
 
@@ -35,6 +19,15 @@ $('.add-rule').click(function () {
     price = $('#price').val();
     rule = $('#rule').val();
     inventory = $('#inventory').val();
+    newhtml = ' <tr class="tr_rule" ruleid="-1">' +
+    '<td class="hasbiil">无</td>'+
+    '<td class="name"><input type="text" value="' + name + '"/></td>' +
+    '<td class="unit"><input type="text" value="' + rule + '"/></td>' +
+    '<td class="price"><input type="text" value="' + price + '"/></td>' +
+    '<td class="inv" ><input type="text" value="' + inventory + '"/></td>' +
+    '<td class="operate"><i class="fa fa-trash-o" aria-hidden="true"></i></td>' +
+    '</tr>';
+
     if (name.length == 0 || price.length == 0 || rule.length == 0 || inventory.length == 0) {
         var html = '<div class="alert-text">内容不能为空!</div>';
         $('#tb_rule').before(html);
@@ -86,8 +79,8 @@ $('.submit button').click(function () {
     var parameters_tr = $('.parameter_tr');
     var obj_para = {};
     parameters_tr.each(function () {
-        obj_para['key'] = $(this).find('.key').text();
-        obj_para['value'] = $(this).find('.value').text();
+        obj_para['key'] = $(this).find('.key>input').val();
+        obj_para['value'] = $(this).find('.value>input').val();
         parameters.push(obj_para);
         obj_para = {};
     });
@@ -111,13 +104,45 @@ $('.submit button').click(function () {
     }
 
     var html = '<div class="alert alert-danger" role="alert">####</div>';
+
     $.ajax({
         type: 'post',
         url: '/product/products/',
         data: data,
         success: function (result) {
             HoldOn.close();
-            $('.msg').append(html.replace('###', result['msg']));
+            if (result['status'] == 'ok'){
+                $().message(result['msg']); 
+                if (result['error_list'] != undefined){
+                    //修改库存时，新库存不足已满足未支付订单的出库需求
+                    var error_list = result['error_list'];
+                    var tr = '';
+                    //table_error
+                    for (var i = 0; i < error_list.length; i ++){
+                         var name = error_list[i].name;
+                         var difference = error_list[i].difference;
+                         var msg = result['error_list_msg'];
+                         tr += '<tr><td>'+name+'</td><td>'+difference+'</td><td>'+msg+'</td></tr>'
+                    }
+                    $('.table_error').append(tr);
+                    
+                }
+                if (result['undeleted_list'] != undefined){
+                    //删除了还有未支付订单的规格
+                    var undeleted_list = result['undeleted_list'];
+                    var tr = '';
+                    //table_error
+                    for (var i = 0; i < undeleted_list.length; i ++){
+                         var name = undeleted_list[i].name;
+                         var msg = result['undeleted_msg'];
+                         tr += '<tr><td >'+name+'</td> <td colspan="2">'+msg+'</td></tr>'
+                    }
+                    $('.table_error').append(tr);
+                }
+            }
+            else{
+                $().errormessage(result['msg']);
+            } 
         },
         error: function () {
             HoldOn.close();
@@ -133,8 +158,8 @@ $('#add-pro').click(function () {
     var pro = $('#pro').val();
     var val = $('#val').val();
     var proTr = '<tr class="parameter_tr">' +
-        '<td><input type="text" value="' + pro + '"/></td>' +
-        '<td><input type="text" value="' + val + '"/></td>' +
+        '<td class="key "><input type="text" value="' + pro + '"/></td>' +
+        '<td class="value "><input type="text" value="' + val + '"/></td>' +
         '<td><i class="fa fa-trash-o" aria-hidden="true"></i></td>' +
         '</tr>';
 

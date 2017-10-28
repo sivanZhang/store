@@ -85,13 +85,30 @@ class StoreProduct(Product):
         """
         修改product时，有些规格可能被用户删除了
         被删除的规格的deleted字段标记为1
+
+        注意：有未支付订单的规格不能删除
+        返回没有删除的记录列表
         """
-        self.adaptorrule_set.filter(deleted=1).delete() 
+        rules = self.adaptorrule_set.filter(deleted=1)
+        undeleted_list = []
+        for rule in rules:
+            if rule.has_unpayedbill() > 0:
+                rule_error = {}
+                rule_error['ruleid'] = rule.id  
+                rule_error['name'] = rule.name                
+                undeleted_list.append(rule_error)
+                rule.deleted = 0
+                rule.save()
+            else:
+                rule.delete()
+        
+        return undeleted_list
 
     def publish(self):
         """发布商品， 商品上架"""
         self.status = self.PUBLISHED
         self.save()
+
     objects = AdaptorProductManager() 
     def __str__(self):
         return self.title

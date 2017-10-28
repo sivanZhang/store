@@ -74,8 +74,8 @@ class BillItem(models.Model):
     
     # 外键，规格和产品都有可能被删除和编辑，所以这里的外键仅作为减库存时的依据
     # 如果在减库存的时候，
-    rule = models.ForeignKey(AdaptorRule)
-    product = models.ForeignKey(AdaptorProduct)
+    rule = models.ForeignKey(AdaptorRule, on_delete=models.SET_NULL, null = True)
+    product = models.ForeignKey(AdaptorProduct, on_delete=models.SET_NULL, null = True)
 
     # 下订单时的价格
     price = models.DecimalField(_('Price'), max_digits = 9, decimal_places = 2, default = 0.0)

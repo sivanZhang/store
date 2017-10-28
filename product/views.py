@@ -281,15 +281,18 @@ class ProductView(View):
                 if 'detail' in data:
                     detail = data['detail']
                     product.detail = detail 
-                if 'rules' in request.POST:  
-
+                if 'rules' in request.POST:   
                     rules = request.POST['rules'].strip()
                     
-                    product.set_undeleted()
-                    error_list = AdaptorRule.objects.mul_modify(rules, product)
+                    product.set_undeleted() 
+                    error_list = AdaptorRule.objects.mul_modify(rules, product) 
                     if len(error_list) > 0:
                         result['error_list'] = error_list
-                    product.delete_droped_rules()
+                        result['error_list_msg'] = _('The new inventory cannot satisfied with the unpayed bill')
+                    undeleted_list = product.delete_droped_rules() 
+                    if len(undeleted_list) > 0:
+                        result['undeleted_list'] = undeleted_list
+                        result['undeleted_msg'] = _('There are unpayed bill for this item')
                 
                 product.save() 
                 result['status'] ='ok'
@@ -300,6 +303,7 @@ class ProductView(View):
         else:
             result['status'] ='error'
             result['msg'] ='Need id  in POST'
+
 
         return self.httpjson(result)
 

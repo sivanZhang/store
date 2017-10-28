@@ -39,9 +39,13 @@
     <tr> 
         <td>{{item.id}}</td>
         <td>{{item.title}}</td>
-        <td><a target="__blank" href="{{mediaroot}}{{item.pic}}">点击查看图片</a></td>
-        <td><a target="__blank" href="{{item.url}}">{{blocki.url}}</a></td>
-        <td>{{item.status}}</td>
+        <td><a target="_blank" href="{{mediaroot}}{{item.pic}}">点击查看图片</a></td>
+        <td><a target="_blank" href="{{item.url}}">{{blocki.url}}</a></td>
+        {% if item.status == 0 %}
+        <td class="b_status">草稿</td>
+        {% else %}
+        <td class="b_status">发布</td>
+        {% endif %}
         <td>{{item.mark}}</td>
     </tr>
     {% endfor %}

@@ -275,6 +275,7 @@ class RabbitBillDetailView(APIView):
             for item in bill.adaptorbillitem_set.all():
                 item.product_title = item.product.title
                 item.rule_title = item.rule.name
+                item.price = item.rule.price
                 item.save()
                 rule = {}
                 rule['ruleid'] = item.rule.id

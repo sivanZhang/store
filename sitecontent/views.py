@@ -191,6 +191,7 @@ class BlockItemContentView(View):
             blockid = request.GET['blockid'].strip()  
             try:
                 block = models.AdaptorBaseBlock.objects.get(pk = blockid )
+  
                 content['block_instance'] = block
             except models.AdaptorBaseBlock.DoesNotExist:
                 raise Http404
@@ -244,6 +245,7 @@ class BlockItemContentView(View):
         if 'blockid' in request.POST and 'title' in request.POST : 
             title = request.POST['title'].strip() 
             blockid = request.POST['blockid'].strip() 
+          
 
             try:
                 block = models.AdaptorBaseBlock.objects.get(pk = blockid )
@@ -319,6 +321,25 @@ class BlockItemContentView(View):
         else:
             result['status'] ='error'
             result['msg'] ='Need title  in POST'
+        return self.httpjson(result)
+    
+    def delete(self, request):
+        user = request.user
+        result = {}
+        if 'id' in request.POST : 
+            id = request.POST['id'].strip() 
+            try:
+                block = models.AdaptorBaseBlockItem.objects.get(pk = id)
+                block.delete()
+                result['status'] ='ok'
+                result['msg'] = _('Done')
+            except models.AdaptorBaseBlockItem.DoesNotExist:
+                result['status'] ='error'
+                result['msg'] = _('Not found')
+        else:
+            result['status'] ='error'
+            result['msg'] = 'Need title  in POST'
+        
         return self.httpjson(result)
 
     def httpjson(self, result):

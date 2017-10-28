@@ -57,6 +57,7 @@ class RuleManager(models.Manager):
                         rule_error = {}
                         # 新库存数量不足以满足那些未支付的订单出库
                         rule_error['ruleid'] = obj.id
+                        rule_error['name'] = obj.name
                         rule_error['difference'] = difference
                         rule_error['real_inventory'] = obj.real_inventory
                         error_list.append(rule_error)
