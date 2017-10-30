@@ -1,0 +1,112 @@
+/* 
+ *评论编辑
+ */
+
+.com_edit{
+    background-color: #fefefe;
+    padding:15px; 
+    margin:20px 0px;
+    border-top:1px solid #ddd; 
+    border-bottom:1px solid #ddd;
+}
+button.publish{
+    background: #306efe linear-gradient(120deg,#30cde2 0,#306efe 100%) no-repeat;
+    border: none;
+    line-height:1.5;
+    padding:6px 14px;
+    }
+    .star{
+        color: #bbb;
+        margin-bottom: 15px;
+    }
+textarea{
+    width: 100%;
+    min-height: 100px;
+    border: 1px solid #ddd;
+    outline: none;
+    color:#333;
+}
+/* 
+ *评论列表
+ */
+.com_content {
+    padding: 10px 0px 0px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    overflow: hidden;
+}
+.com_con_detail{
+    margin-left:-15px; 
+}
+.user-img img {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.thumbs-up {
+    overflow: hidden;
+}
+
+.thumbs-up i {
+    margin-right: 6px;
+}
+
+
+.msg {
+    color: #666;
+    padding: 2px 0 8px;
+    font-size: 12px;
+}
+.thumbs-up {
+    overflow: hidden;
+}
+
+.thumbs-up i {
+    margin-right: 6px;
+}
+.thumbnail{
+    width: 68px;
+    height: 68px;
+    margin: 0px;
+}
+.thumbnail>img{
+    height:100%;
+    width: 100%;
+}
+
+.thumbnail_list{
+    clear: left;
+}
+.thumbnail_list li,.com_content li{
+display: inline-block;
+vertical-align:middle;
+}
+.img_magnify{
+    width:30%;
+}
+#big_img{
+    display: none;
+    max-width:100%;
+    max-height: 400px;
+    border: 1px solid #ddd;
+    border-radius:4px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .2),0 5px 10px rgba(0, 0, 0, .1);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.fa-thumbs-up:hover{
+    color:rgb(201,22,35);
+}
+.fa-thumbs-up,.fa-star{
+    cursor:pointer;
+}
+
+.red_star{
+    color:rgb(201,22,35);
+}

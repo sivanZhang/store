@@ -1,4 +1,4 @@
-from django.conf.urls import include, url 
+from django.conf.urls import   url 
 from sitecontent.views import BlockContentView, BlockItemContentView
 from sitecontent import views
  

@@ -15,7 +15,7 @@ $('.easy-tree').on('change', '.easy-tree-editor', function() {
         data: {
             'name': newname,
             'id': id,
-            'method': 'put',
+            'method': 'put'
         },
         context: document.body,
         success: function(data) {

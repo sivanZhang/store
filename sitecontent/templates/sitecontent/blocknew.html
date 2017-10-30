@@ -87,7 +87,8 @@
                         <td class="b_title"><a target="__blank" href="{% url 'sitecontent:blockitemcontents' %}?new=&blockid={{blocki.id}}">{{blocki.title}}</a></td>
                         <td class="b_picture"><a target="__blank" href="{{mediaroot}}{{blocki.pic}}">点击查看图片</a></td>
                         <td class="b_url"><a target="__blank" href="{{blocki.url}}">{{blocki.url}}</a></td>
-                        {% if block.status == 0 %}
+                        
+                        {% if blocki.status == 0 %}
                         <td class="b_status">草稿</td>
                         {% else %}
                         <td class="b_status">发布</td>

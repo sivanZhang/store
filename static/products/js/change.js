@@ -104,45 +104,13 @@ $('.submit button').click(function () {
     }
 
     var html = '<div class="alert alert-danger" role="alert">####</div>';
-
     $.ajax({
         type: 'post',
         url: '/product/products/',
         data: data,
         success: function (result) {
             HoldOn.close();
-            if (result['status'] == 'ok'){
-                $().message(result['msg']); 
-                if (result['error_list'] != undefined){
-                    //修改库存时，新库存不足已满足未支付订单的出库需求
-                    var error_list = result['error_list'];
-                    var tr = '';
-                    //table_error
-                    for (var i = 0; i < error_list.length; i ++){
-                         var name = error_list[i].name;
-                         var difference = error_list[i].difference;
-                         var msg = result['error_list_msg'];
-                         tr += '<tr><td>'+name+'</td><td>'+difference+'</td><td>'+msg+'</td></tr>'
-                    }
-                    $('.table_error').append(tr);
-                    
-                }
-                if (result['undeleted_list'] != undefined){
-                    //删除了还有未支付订单的规格
-                    var undeleted_list = result['undeleted_list'];
-                    var tr = '';
-                    //table_error
-                    for (var i = 0; i < undeleted_list.length; i ++){
-                         var name = undeleted_list[i].name;
-                         var msg = result['undeleted_msg'];
-                         tr += '<tr><td >'+name+'</td> <td colspan="2">'+msg+'</td></tr>'
-                    }
-                    $('.table_error').append(tr);
-                }
-            }
-            else{
-                $().errormessage(result['msg']);
-            } 
+            $('.msg').append(html.replace('###', result['msg']));
         },
         error: function () {
             HoldOn.close();
@@ -193,6 +161,3 @@ $(".ta-wrap input").on('keyup input', function (event) {
 });
 
 ///以下是修改product时用到的js
-
-
-//tr hover    >>> 提示可编辑

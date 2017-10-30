@@ -3,7 +3,7 @@
 from django.db import models
 
 from basedatas.models import BaseDate
-from product.models import AdaptorProduct
+from product.models import AdaptorProduct# as PageAdaptor
 from appuser.models import AdaptorUser as User 
 
 class PageAdaptor(AdaptorProduct):
@@ -12,7 +12,8 @@ class PageAdaptor(AdaptorProduct):
     修改这个类的父类即可
 
     """
-    pass
+    class Meta:
+        proxy = True
 
 class Comment(BaseDate):
     COMMENT_REPLAY = 1
@@ -38,11 +39,12 @@ class PageComment(Comment):
     新添加的类。
     """
     page = models.ForeignKey(PageAdaptor)
+    rating = models.SmallIntegerField(default=0)
 
     class Meta:
         abstract = True
 
 class AdaptorPageComment(PageComment):
-    pass
+    
     class Meta:
         db_table = 'page_comment' 

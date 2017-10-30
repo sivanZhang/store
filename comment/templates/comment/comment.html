@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<link href="/static/comment/css/comment.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="com_edit">
+    <div class="star">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+    </div>
+
+    <form class="edit_text text-center">
+            {%csrf_token%} 
+        <textarea></textarea> 
+    </form>
+    <button class="btn btn-primary publish" type="button">发表</button>
+</div>
+<div id="comment">
+    <!-- 评论筛选菜单 -->
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active">
+            <a href="#">全部(<span id="all_num"></span>)</a>
+        </li>
+        <li role="presentation">
+            <a href="#">有图</a>
+        </li>
+        <li role="presentation">
+            <a href="#">好评</a>
+        </li>
+        <li role="presentation">
+            <a href="#">差评</a>
+        </li>
+    </ul>
+    <!-- 评论筛选菜单 end-->
+
+    <!--评论内容-->
+    <div class="com_content">
+    
+        <div class="col-md-1 col-sm-1 user-img ">
+            <img src='/static/img/ic2.png' />
+        </div>
+    
+        <div class="col-md-11 col-sm-11 com_con_detail">
+    
+            <div class="pull-left">
+                <div class="user-name">用户昵称</div>
+                <div class="rating">★★★★★</div>
+            </div>
+            <div class="pull-right msg">2017-09-20</div>
+    
+            <div class="pull-left">评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容
+            </div>
+    
+            <ul class="thumbnail_list">
+                <li>
+                    <a href="#" class="thumbnail">
+                        <img src="/static/img/list3.jpg" alt="缩略图">
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="thumbnail">
+                        <img src="/static/img/list1.jpg" alt="缩略图">
+                    </a>
+                </li>
+            </ul>
+            <div class="img_magnify">
+                <img id="big_img" src="" />
+            </div>
+    
+            <div class="thumbs-up msg">
+                <div class="pull-left">型号：购买日期2017-09-20</div>
+                <i class="fa fa-thumbs-up fa-pull-right" aria-hidden="true">
+                    <span class="msg">10</span>
+                </i>
+                <i class="fa fa-commenting fa-pull-right" aria-hidden="true">20</i>
+            </div>
+    
+        </div>
+    </div>
+    <!--评论内容 end-->
+    
+    </div>
+{% endblock %}
+
+{% block js %}
+<script src="/static/comment/js/comment.js"></script>
+{% endblock %}

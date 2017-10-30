@@ -6,8 +6,9 @@ button.btn-block:hover{
     color: #eee;
 }
 
-form {
+form#signup-Form {
 width: 30%;
+min-width: 400px;
 margin: 0 auto;
 }
 

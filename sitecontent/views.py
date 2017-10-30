@@ -102,8 +102,8 @@ class BlockContentView(View):
             
             if 'status' in request.POST:
                 status = request.POST['status'].strip() 
-                if status:
-                    block.status = status
+                if int(status):
+                    block.status = int(status)
     
             block.save()
             result['id'] = block.id
@@ -144,10 +144,9 @@ class BlockContentView(View):
                     block.mark = mark
             
             if 'status' in request.POST:
-                status = request.POST['status'].strip() 
-                if status:
-                    block.status = status
-                 
+                status = request.POST['status'].strip()   
+                block.status = int(status)
+            
             block.save()
             result['id'] = block.id
             result['status'] ='ok'

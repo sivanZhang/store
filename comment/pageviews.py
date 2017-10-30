@@ -20,12 +20,18 @@ from django.conf import settings
 from django.utils.translation import ugettext  as _
 
 from comment.models import AdaptorPageComment, PageAdaptor
-
+#from product.models import AdaptorProduct as PageAdaptor
+from mobile.detectmobilebrowsermiddleware import DetectMobileBrowser
+dmb     = DetectMobileBrowser()
 class PageCommentView(View):
 
     def get(self, request):
         isMble  = dmb.process_request(request)
         content = {} 
+        if 'id' in request.GET:
+            id = request.GET['id']
+            comments = AdaptorPageComment.objects.filter(id = id)
+            content['comments'] = comments
 
         if 'new' in request.GET:
             if isMble:
@@ -39,9 +45,9 @@ class PageCommentView(View):
                 return render(request, 'test.html', content) 
         else:
             if isMble:
-                return render(request, 'm_lists.html', content)
+                return render(request, 'comment\comment.html', content)
             else:
-                return render(request, 'lists.html', content)
+                return render(request, 'comment\comment.html', content)
 
     
     @method_decorator(login_required)
@@ -53,11 +59,7 @@ class PageCommentView(View):
                 # # id【必须字段】：Comment id 
             新建: 参数中带没有method，或method的值不等于put或者delete
                 # id【必须字段】：page id ,如，产品id或者文章id等
-                # content【必须字段】：Comment 内容  
-                # unit【可选字段】： Comment的计量单位，如：个、只
-                # price【可选字段】： Comment的计量单位，如：个、只
-                # parameters【可选字段】： Comment的自定义规格，是一个json数据
-                # detail【可选字段】： Comment的详情 
+                # content【必须字段】：Comment 内容   
         """ 
         
         if 'method' in request.POST:
@@ -82,11 +84,15 @@ class PageCommentView(View):
             id = request.POST['id'].strip()
    
             # 创建Comment
-            try:
+            try: 
                 page = PageAdaptor.objects.get(pk=id)  
                 pagecomment = AdaptorPageComment.objects.create(user=user, content=content, 
                           page=page)
-       
+                if 'rating' in request.POST:
+                    rating = request.POST['rating'].strip()
+                    pagecomment.rating = int(rating)
+                    pagecomment.save()
+
                 if 'parentid' in request.POST:
                     # 这条评论是回复别人的评论，parentid代表上一条评论的ID
                     parentid = request.POST['parentid'].strip()
@@ -143,3 +149,6 @@ class PageCommentView(View):
             result['msg'] = _('Need id in POST')
 
         return self.httpjson(result)
+    
+    def httpjson(self, result):
+        return HttpResponse(json.dumps(result), content_type="application/json")

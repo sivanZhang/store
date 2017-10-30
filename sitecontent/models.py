@@ -3,6 +3,7 @@
 from django.db import models
 from appuser.models import AdaptorUser as User
 
+from sitecontent.manager import AdaptorSiteContentManager
 
 class BaseBlock(models.Model):
     """
@@ -25,7 +26,8 @@ class BaseBlock(models.Model):
         abstract = True
         
 class AdaptorBaseBlock(BaseBlock):
-    pass
+    objects = AdaptorSiteContentManager()
+    
 
 class BaseBlockItem(models.Model):
     """

@@ -112,33 +112,39 @@
         </div>
         <!-- 轮播图 -->
         <div class="col-sm-12 col-md-8 col-lg-8">
-            <div id="swiper-container" class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="/static/img/sli1.jpg">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/static/img/sli3.jpg">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/static/img/sli2.jpg">
+                <div id="swiper-container" class="swiper-container">
+                    <div class="swiper-wrapper">
+                            {% for site in sitecontents %}
+                                {% if site.mark == 'lunbotu' %}
+                                   {% for siteitem in site.adaptorbaseblockitem_set.all %}
+                                    <div class="swiper-slide">
+                                        <a href="{{siteitem.url}}">
+                                        <img src="{{mediaroot}}{{siteitem.pic}}">{{siteitem.pic}}</a>
+                                    </div>
+                                    {% endfor %} 
+                                {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
-            </div>
-        </div> 
-        <div class="col-sm-12 col-md-2 col-lg-2">
-                <div class="panel panel-default">
-                        <div class="panel-heading">公告</div>
-                        <ul class="panel-body">
-                         <li>
-                                <a href=''>江南皮革厂倒闭了</a>
-                         </li>
-                         <li>
-                              <a href=''>江南皮革厂倒闭了</a>
+            </div> 
+        <div class="col-sm-12 col-md-2 col-lg-2"> 
+            <div class="panel panel-default">
+                {% for site in sitecontents %}
+                
+                {% if site.mark == 'gonggao' %}
+                <div class="panel-heading">{{site.title}} </div>
+                <ul class="panel-body">
+                        {% for siteitem in site.adaptorbaseblockitem_set.all %}
+                            <li>
+                                <a href="{{siteitem.url}}">{{siteitem.title}}</a>
                             </li>
-                        </ul>
-                      </div>
-        </div>
+                        {% endfor %} 
+                    </ul> 
+                    {% endif %}
+                {% endfor %}
+          </div>
+       </div>
+       
         <!-- 轮播图结束 -->
     </div>
 </div>
