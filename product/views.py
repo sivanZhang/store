@@ -78,7 +78,7 @@ class ProductDetailView(APIView):
         if isMble:
             return render(request, 'm_detail.html', content)
         else:
-            return render(request, 'detail.html', content)
+            return render(request, 'm_detail.html', content)
 
 
     @method_decorator(csrf_exempt)
@@ -248,6 +248,10 @@ class ProductView(View):
                 if 'status' in request.POST:
                     status = request.POST['status'].strip()
                     product.status = status
+                
+                if 'taobaourl' in request.POST:
+                    taobaourl = request.POST['taobaourl'].strip()
+                    product.taobaourl = taobaourl
                  
                 if 'rules' in request.POST:  
                     rules = request.POST['rules'].strip()
@@ -302,6 +306,11 @@ class ProductView(View):
                 if 'detail' in data:
                     detail = data['detail']
                     product.detail = detail 
+     
+                if 'taobaourl' in request.POST:
+                    taobaourl = request.POST['taobaourl'].strip()
+                    product.taobaourl = taobaourl
+
                 if 'rules' in request.POST:   
                     rules = request.POST['rules'].strip()
                     

@@ -29,8 +29,8 @@ class PageCommentView(View):
         isMble  = dmb.process_request(request)
         content = {} 
         if 'id' in request.GET:
-            id = request.GET['id']
-            comments = AdaptorPageComment.objects.filter(id = id)
+            pageid = request.GET['id']
+            comments = AdaptorPageComment.objects.filter(page__id = pageid, parent__isnull= True)
             content['comments'] = comments
 
         if 'new' in request.GET:
@@ -42,7 +42,7 @@ class PageCommentView(View):
             if isMble:
                 return render(request, 'm_new.html', content)
             else:
-                return render(request, 'test.html', content) 
+                return render(request, 'comment\comment.1.html', content) 
         else:
             if isMble:
                 return render(request, 'comment\comment.html', content)
@@ -82,7 +82,7 @@ class PageCommentView(View):
         if 'content' in request.POST and 'id' in request.POST: 
             content = request.POST['content'].strip()
             id = request.POST['id'].strip()
-   
+             
             # 创建Comment
             try: 
                 page = PageAdaptor.objects.get(pk=id)  
@@ -135,7 +135,7 @@ class PageCommentView(View):
         result = {}
         data = request.POST
         if 'id' in data:
-            commentid = data['id'] 
+            commentid = data['id']  
             try: 
                 pagecomment = AdaptorPageComment.objects.get(id=commentid)
                 pagecomment.delete() 
@@ -143,7 +143,7 @@ class PageCommentView(View):
                 result['msg'] = _('Done')
             except AdaptorPageComment.DoesNotExist:
                 result['status'] ='error'
-                result['msg'] = _('404 Not found the id {}'.format(id) )
+                result['msg'] = _('404 Not found the id {}'.format(commentid) )
         else:
             result['status'] ='error'
             result['msg'] = _('Need id in POST')

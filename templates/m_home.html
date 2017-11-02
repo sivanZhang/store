@@ -149,12 +149,10 @@
     <div class="swiper-pagination2 pagination-2"></div>
 </div>
 <!-- swiper2 end-->
-<button class="st" type="button">kaishi</button>
-<button class="end" type="button">jieshu</button>
 
 <div class="aj"> {% if request.user.is_anonymous %}未登录{%else%} {{request.user.username}}{% endif%}</div>
 
 {% endblock %} {% block menuhome %} menu-act{% endblock %} {% block js %}
-
+<script type="text/javascript " src="/static/js/swiper-3.4.2.jquery.min.js "></script>
 <script type="text/javascript" src="/static/js/m_home.js"></script>
 {% endblock %}

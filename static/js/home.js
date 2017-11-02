@@ -25,6 +25,12 @@ $( document ).ready(function() {
           scaleBannerVideoSize('.video-container .filter');
           scaleBannerVideoSize('.video-container video');
       });
+
+      //开始加载评论
+    $.get('/comment/comment/?id=1', {}, function(result){
+        $('#comment').append(result);
+    })
+
   
   });
   
@@ -54,7 +60,6 @@ $( document ).ready(function() {
       videoWidth,
       videoHeight;
   
-      // console.log(windowHeight);
   
       $(element).each(function(){
           var videoAspectRatio = $(this).data('height')/$(this).data('width');

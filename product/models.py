@@ -110,6 +110,7 @@ class StoreProduct(Product):
         self.save()
 
     objects = AdaptorProductManager() 
+    taobaourl = models.CharField(_('taobao url'), max_length = 2048, null=True)
     def __str__(self):
         return self.title
 
@@ -119,6 +120,7 @@ class StoreProduct(Product):
 class AdaptorProduct(StoreProduct):
     """Product 适配器""" 
     objects = AdaptorProductManager() 
+    
     def __str__(self):
         return self.title  
  
@@ -132,6 +134,9 @@ class ProductPic(Pic):
     type = models.SmallIntegerField(default=SWIPER)
     def __str__(self):
         return self.name  
+
+    class Meta:
+        db_table = 'pic'
      
  
 class Rule(models.Model):

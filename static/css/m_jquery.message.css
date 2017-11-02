@@ -12,19 +12,19 @@
  *   http://www.gnu.org/licenses/gpl.html
  */
 .jquery-message {
-    font: normal 20px / 30px Helvetica, Arial, Sans-Serif;
-    letter-spacing: -1px;
+    font: normal 14px/150% Helvetica, Arial, Sans-Serif;
     position: fixed;
-	bottom: 90px;
-    left: 5%;
-    width: 90%;
-    
+	bottom: 100px;
+    left: 10%;
+    width: 80%;
+    padding-top:4px;
+    padding-bottom:4px;
     color: white;
-    background-color: green;
+    background-color: rgba(0, 128, 0, 0.9);
     text-align: center;
     display: none;
     opacity: 0; 
-    border-radius: 10px;
+    border-radius: 4px;
     box-shadow:  12px 0px 20px -2px #003333;
     -moz-box-shadow:  12px 0px 20px -2px #003333;
     -webkit-box-shadow:  5px 5px 20px -2px #003333;
@@ -32,19 +32,19 @@
 }
 .jquery-error-message
 { 
-    font: normal 20px / 30px Helvetica, Arial, Sans-Serif;
-    letter-spacing: -1px;
+    font: normal 120%/ 150% Helvetica, Arial, Sans-Serif;
     position: fixed;
-	bottom: 90px;
-    left: 5%;
-    width: 90%;
-    
+	bottom: 100px;
+    left: 10%;
+    width: 80%;
+    padding-top:4px;
+    padding-bottom:4px;
     color: white;
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.9);
     text-align: center;
     display: none;
     opacity: 0; 
-    border-radius: 10px;
+    border-radius: 4px;
     box-shadow:  12px 0px 20px -2px #003333;
     -moz-box-shadow:  12px 0px 20px -2px #003333;
     -webkit-box-shadow:  5px 5px 20px -2px #003333;

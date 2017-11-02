@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block pagetitle %}图库{% endblock %} {% block css %} {% load staticfiles %} 
+<link href="/static/piclab/css/detailpic.css" rel="stylesheet"> {% endblock %} {% block content %}
+
+
+<div class="container-fluid">
+       
+    <div class="row">
+        <div class="col-md-9"> 
+            
+                    
+            
+        </div> 
+    </div>
+    <!-- main top end-->
+
+    <div class="container-fluid b-color container-pics">
+               
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                    <form id="csrftocken_form" >{% csrf_token %}
+                            <input type="file"   id="inputImage" multiple=""  name="pic" accept="image/*">
+                            
+                    </form>   
+                    <button class="btn btn-primary btn-upload"  >上传</button>
+                <div class="f30"> 图库：</div>
+            </div>
+        </div>
+        <div class="row">
+            {% for pic in pics  %}
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <img class="detail-img" src="{{mediaroot}}{{pic.url}}" />
+                <textarea class="detail-url"> {{mediaroot}}{{pic.url}} </textarea>
+                 
+            </div>
+            {% endfor %}
+        </div>
+    </div> {% endblock %} {% block js %} 
+    <script src="/static/piclab/js/detailpic.js" rel="stylesheet"></script>
+
+    {% endblock %}

@@ -1,28 +1,31 @@
-{% extends 'base.html' %}
-
+ 
+{% load comment_hierarchy %}
 {% block css %}
 <link href="/static/comment/css/comment.css" rel="stylesheet">
 {% endblock %}
 
+{% block menu %}{% endblock %}
 {% block content %}
+
 <div class="com_edit">
-    <div class="star">
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
+    
+    <div class="star"><!-- 星级 -->
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
     </div>
 
-    <form class="edit_text text-center">
-            {%csrf_token%} 
-        <textarea></textarea> 
+    <form class="edit_text text-center"><!-- 评论文字 -->
+        {%csrf_token%}
+        <textarea id="com_textarea" class="form-control"></textarea>
     </form>
     <button class="btn btn-primary publish" type="button">发表</button>
 </div>
 <div id="comment">
-    <!-- 评论筛选菜单 -->
-    <ul class="nav nav-tabs">
+    
+    <ul class="nav nav-tabs"><!-- 评论筛选菜单 -->
         <li role="presentation" class="active">
             <a href="#">全部(<span id="all_num"></span>)</a>
         </li>
@@ -35,58 +38,68 @@
         <li role="presentation">
             <a href="#">差评</a>
         </li>
-    </ul>
-    <!-- 评论筛选菜单 end-->
-
-    <!--评论内容-->
-    <div class="com_content">
+    </ul><!-- 评论筛选菜单 end-->
     
-        <div class="col-md-1 col-sm-1 user-img ">
-            <img src='/static/img/ic2.png' />
+    {% for comment in comments %}
+        
+        <div class="com_content"><!--评论内容-->
+            
+            <div class="col-xs-3 col-md-1 col-sm-2 col-lg-1 user-img text-center">
+                <img src='{{comment.user.thumbnail_portait}}' />
+            </div>
+        
+            <div class="col-xs-9 col-md-11 col-sm-10 col-lg-11 com_con_detail">
+                <div class="pull-left">
+                    <span class="user-name"> {{comment.user.username}}</span>
+                    <span class="rating red_star" data-rating="{{comment.rating}}"></span>
+                </div>
+        
+                <div class="pull-right grey_font"> {{comment.date| date:"Y-m-d"}}</div>
+        
+                <div class="com_con_txt">{{comment.content}}</div>
+                                  <!-- 下面是缩略图查看 -->
+                                <!-- <ul class="thumbnail_list">
+                                    <li>
+                                        <a href="#" class="thumbnail">
+                                            <img src="/static/img/list3.jpg" alt="缩略图">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="thumbnail">
+                                            <img src="/static/img/list1.jpg" alt="缩略图">
+                                        </a>
+                                    </li>
+                                </ul>
+        
+                                <div class="img_magnify">
+                                    <img id="big_img" src="" />
+                                </div> -->
+        
+                <div class="commenting grey_font clearfix" commentid="{{comment.id}}">
+                    <div class="pull-left">型号：购买日期2017-09-20</div>
+        
+                    <i class="fa fa-commenting fa-pull-right" aria-hidden="true">
+                        <span>10</span>
+                    </i>
+                </div>
+                {% if comment.adaptorpagecomment_set.all %} 
+                {{comment|comment_hierarchy|safe}} 
+                {% endif %}
+           
+        
+                <div class="reply">
+                    <textarea class="reply_textarea form-control" rows="2" placeholder=""></textarea>
+                    <button class="reply_btn" type="button">提交</button>
+                </div>
+            </div>
+            <!--  end com_con_detail -->
+        
         </div>
-    
-        <div class="col-md-11 col-sm-11 com_con_detail">
-    
-            <div class="pull-left">
-                <div class="user-name">用户昵称</div>
-                <div class="rating">★★★★★</div>
-            </div>
-            <div class="pull-right msg">2017-09-20</div>
-    
-            <div class="pull-left">评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容 评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容
-            </div>
-    
-            <ul class="thumbnail_list">
-                <li>
-                    <a href="#" class="thumbnail">
-                        <img src="/static/img/list3.jpg" alt="缩略图">
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="thumbnail">
-                        <img src="/static/img/list1.jpg" alt="缩略图">
-                    </a>
-                </li>
-            </ul>
-            <div class="img_magnify">
-                <img id="big_img" src="" />
-            </div>
-    
-            <div class="thumbs-up msg">
-                <div class="pull-left">型号：购买日期2017-09-20</div>
-                <i class="fa fa-thumbs-up fa-pull-right" aria-hidden="true">
-                    <span class="msg">10</span>
-                </i>
-                <i class="fa fa-commenting fa-pull-right" aria-hidden="true">20</i>
-            </div>
-    
-        </div>
-    </div>
-    <!--评论内容 end-->
-    
-    </div>
+        <!--评论内容 end com_content-->
+    {% endfor %} 
+</div>
 {% endblock %}
 
 {% block js %}
-<script src="/static/comment/js/comment.js"></script>
-{% endblock %}
+<script type="text/javascript" src="/static/comment/js/comment.js"></script>
+{% endblock %}{% block footer %}{% endblock %}

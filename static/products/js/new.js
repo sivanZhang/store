@@ -49,6 +49,7 @@ $('.submit button').click(function() {
 
     var detail = tinymce.get("detail").getContent();
     var categoryid = $('#sel-category').val();
+    var taobaourl = $('#taobaourl').val();
 
     var obj = {};
     var rules = Array();
@@ -81,16 +82,20 @@ $('.submit button').click(function() {
         'title': title,
         'description': desc,
         'detail': detail,
+        'taobaourl' :taobaourl,
         'rules': JSON.stringify(rules),
         'parameters': JSON.stringify(parameters),
         'status': $(this).attr('status'),
         'csrfmiddlewaretoken': getCookie('csrftoken'),
     };
+    /*2017年11月1日18:00:35
+    
     if (product.length > 0){
         //3
         data['id'] = product.val();
         data['method'] = 'put'; //修改产品
     }
+    */
 
     var html = '<div class="alert alert-danger" role="alert">####</div>';
     $.ajax({

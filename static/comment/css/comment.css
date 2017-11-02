@@ -1,5 +1,5 @@
 /* 
- *评论编辑
+ *评价编辑
  */
 
 .com_edit{
@@ -15,22 +15,28 @@ button.publish{
     line-height:1.5;
     padding:6px 14px;
     }
-    .star{
-        color: #bbb;
-        margin-bottom: 15px;
-    }
-textarea{
-    width: 100%;
+.star{
+    color: #bbb;
+    margin-bottom: 15px;
+}
+.red_star{
+    color:rgb(201,22,35);
+}
+#com_textarea{
     min-height: 100px;
-    border: 1px solid #ddd;
-    outline: none;
-    color:#333;
+    width: 100%;
+}
+textarea{
+    margin: 5px auto;
+}
+.star .fa-star,.fa-commenting,.txt_commenting,.txt_delete{
+    cursor:pointer;
 }
 /* 
  *评论列表
  */
 .com_content {
-    padding: 10px 0px 0px;
+    padding: 10px 0px;
     border-bottom: 1px solid #ddd;
     background-color: #fff;
     overflow: hidden;
@@ -39,37 +45,35 @@ textarea{
     margin-left:-15px; 
 }
 .user-img img {
-    width: 66px;
-    height: 66px;
+    width:50px;
+    height: 50px;
     border-radius: 50%;
 }
 
 .user-name {
-    font-size: 14px;
-    font-weight: 600;
+    color:#2196f3;
 }
 
-.thumbs-up {
+.txt_commenting,.txt_delete{
+    color:#bbb;
+    padding: 0 5px;
+    font-size:12px 
+}
+.txt_commenting:hover,.txt_commenting:active,.txt_delete:hover,.txt_delete:active{
+    color:#2196f3;
+}
+.commenting {
     overflow: hidden;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
 }
 
-.thumbs-up i {
-    margin-right: 6px;
-}
-
-
-.msg {
-    color: #666;
-    padding: 2px 0 8px;
+.grey_font {
+    color: #999;
     font-size: 12px;
 }
-.thumbs-up {
-    overflow: hidden;
-}
 
-.thumbs-up i {
-    margin-right: 6px;
-}
+/* 图片显示（完了换类名）
 .thumbnail{
     width: 68px;
     height: 68px;
@@ -86,8 +90,8 @@ textarea{
 .thumbnail_list li,.com_content li{
 display: inline-block;
 vertical-align:middle;
-}
-.img_magnify{
+} */
+/* .img_magnify{
     width:30%;
 }
 #big_img{
@@ -99,14 +103,33 @@ vertical-align:middle;
     box-shadow: 0 4px 8px rgba(0, 0, 0, .2),0 5px 10px rgba(0, 0, 0, .1);
     margin-top: 10px;
     margin-bottom: 10px;
-}
-.fa-thumbs-up:hover{
-    color:rgb(201,22,35);
-}
-.fa-thumbs-up,.fa-star{
-    cursor:pointer;
-}
+} */
 
-.red_star{
-    color:rgb(201,22,35);
+
+
+.reply{
+    display: none;
+}
+.com_con_txt{
+    margin: 5px auto;
+    clear: both;
+}
+.reply_list li{
+    display: inline-block;
+}
+ul.reply_list{
+    margin-left:20px; 
+    line-height: 1.5;
+}
+.reply_btn{
+    outline: none;
+    border: 1px solid #306efe;
+    background-color: transparent;
+    color: #306efe;
+    border-radius:4px; 
+}
+.reply_btn:hover{
+    background-color: #306efe;
+    color: #fff;
+    background-color: #0d59ff;
 }

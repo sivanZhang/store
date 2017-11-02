@@ -37,7 +37,7 @@ for (var i = 0; i < aProducts.length; i++) {
         $(aList[i]).find('.product_name').text(aProducts[i].name);
         $(aList[i]).find('.product_rull').text(aProducts[i].rule);
         $(aList[i]).find('.product_price').text(aProducts[i].Price);
-        $(aList[i]).find('#sum_number').text('x' + aProducts[i].num + '件');
+        $(aList[i]).find('.product_numb').text('x' + aProducts[i].num + '件');
 
     };
     if (aProducts[i]) {

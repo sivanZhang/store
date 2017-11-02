@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^address/', include('address.urls', namespace="address")),
     url(r'^area/', include('area.urls', namespace="area")),
     url(r'^comment/', include('comment.urls', namespace="comment")),
+    url(r'^pic/', include('piclab.urls', namespace="piclab")),
     url(r'^apis/', include('apis.urls', namespace="apis")),
     
     url(r'^$', views.home, name='home'),

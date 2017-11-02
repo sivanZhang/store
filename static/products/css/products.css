@@ -55,7 +55,7 @@ li.active {
     position: relative;
     font-size: 16px;
 }
-/*箭头选中效果  */
+/*选中效果--箭头状 */
 
 li.active:after {
     border-style: solid;
@@ -110,7 +110,7 @@ div.item_name {
 }
 
 #main {
-    background-color:#efefef;
+    background-color:#f6f6f6; 
 }
 
 .main-top {
@@ -194,42 +194,7 @@ footer div {
     padding: 0 10px;
 }
 
-.discuss {
-    padding: 10px 0px 0px;
-    border-bottom: 1px solid #ddd;
-    background-color: #fff;
-}
 
-.user-img img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
-
-.comment {
-    margin-left: 50px;
-}
-
-.rating {
-    color: rgb(201,22,35);
-}
-
-.clear {
-    clear: both;
-}
-
-.user-name {
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.thumbs-up {
-    overflow: hidden;
-}
-
-.thumbs-up i {
-    margin-right: 6px;
-}
 
 table {
     margin-bottom: 0px;
@@ -323,8 +288,10 @@ svg.list-btn {
     position: fixed;
     bottom: -100%; 
 }
-
-.thumbnail{
+.illustrate{
+    width: 100%;
+}
+.hide_box_thumbnail{
     padding: 0px;
     width: 25%;
     position: absolute;
@@ -374,7 +341,7 @@ margin-right: 10px;
     margin-top: 20px;
     height: 50px;
 }
-.red{
+.red_msg{
     color:rgb(201,22,35);
 }
 

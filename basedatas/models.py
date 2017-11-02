@@ -15,4 +15,4 @@ class Pic(models.Model):
     name = models.CharField(max_length=4096, default='') 
     class Meta:
         abstract = True
-        db_table = 'pic'
+        

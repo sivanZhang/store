@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'apis',
     'sitecontent',
     'comment',
+    'piclab',
 ]
 
 MIDDLEWARE = [

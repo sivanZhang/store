@@ -51,6 +51,7 @@ $('.submit button').click(function () {
     var title = $('#title').val();
     var desc = $('#desc').val();
     var detail = tinymce.get("detail").getContent();
+    var taobaourl = $('#taobaourl').val();
     var obj = {};
     var rules = Array();
     var product = $('#productid');
@@ -92,6 +93,7 @@ $('.submit button').click(function () {
         'title': title,
         'description': desc,
         'detail': detail,
+        'taobaourl' :taobaourl,
         'rules': JSON.stringify(rules),
         'parameters': JSON.stringify(parameters),
         'status': $(this).attr('status'),
