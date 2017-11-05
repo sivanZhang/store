@@ -170,6 +170,8 @@ class ProductView(View):
                 return render(request, 'm_pic.html', content)
             else:
                 return render(request, 'pic.html', content)
+        if 'manage' in request.GET: 
+            return render(request, 'lists.html', content)
         else:
             if isMble:
                 return render(request, 'm_lists.html', content)

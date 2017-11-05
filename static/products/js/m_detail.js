@@ -209,7 +209,8 @@ $('#myTab a').click(function (e) {
   var total_price=$('#total_price').text()-0;
   $('#total_price').text(total_price.toFixed(2));
   var comReload=$('#com_wrap');
-  $('#com_wrap').on('click','.publish',function(){location.reload();
+  $('#com_wrap').on('click','.publish',function(){
+    window.location.reload();
   })
 
   var mySwiper = new Swiper('.swiper-container', {

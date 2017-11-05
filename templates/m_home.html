@@ -141,15 +141,23 @@
                     <img src="/static/img/if19.png"> 获取省级json数据
                 </div>
             </a>
-
+            
 
         </div>
 
     </div>
-    <div class="swiper-pagination2 pagination-2"></div>
+    <!-- <div class="swiper-pagination2 pagination-2"></div>   这是轮播图的点点-->
+    
 </div>
 <!-- swiper2 end-->
-
+<div class="text-center">
+        <img class="recommend_title" src="/static/img/tuijian.jpg">
+</div>
+<!-- 推荐商品 -->
+<section>
+    <div></div>
+    <div></div>
+</section>
 <div class="aj"> {% if request.user.is_anonymous %}未登录{%else%} {{request.user.username}}{% endif%}</div>
 
 {% endblock %} {% block menuhome %} menu-act{% endblock %} {% block js %}

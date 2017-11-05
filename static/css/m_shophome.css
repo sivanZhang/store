@@ -1,11 +1,13 @@
 header {
     position: fixed;
     top: 5px;
-    z-index: 100;
+    z-index: 10;
     color: #fff;
     width: 100%;
 }
-
+body{
+    background-color:#f6f6f6;
+}
 .submenu {
     width: 20%;
     text-align: center;
@@ -41,8 +43,8 @@ header {
     border-top-left-radius: 20px;
     position: relative;
     top: -20px;
-    z-index: 10;
-    background-color: #fff;
+    z-index: 100;
+    background-color: #f6f6f6; 
 }
 
 .search input {
@@ -55,4 +57,7 @@ header {
 
 .col-xs-2 {
     padding: 0px;
+}
+.recommend_title{
+    width: 50%;
 }

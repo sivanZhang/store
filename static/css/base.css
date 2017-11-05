@@ -19,10 +19,6 @@ header ul li,nav ul li {
     display: inline-block;
 }
 
-ul {
-    padding-left: 0px;
-    margin-bottom: 0px;
-}
 
 a {
     color: inherit;

@@ -1,18 +1,19 @@
 {% extends 'base.html' %} {% block css %} {% load hierarchy %}
 <link href="/static/plugins/easy-tree/easyTree.css" rel="stylesheet">
 <link href="/static/category/css/category.css" rel="stylesheet"> {% endblock %} {% block content %}
-
-<div class='easy-tree'>
-    <ul>
-        {% for unit in categories %} {{unit|hierarchy|safe}} {% endfor %}
-    </ul>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class='easy-tree'>
+                <ul>
+                    {% for unit in categories %} {{unit|hierarchy|safe}} {% endfor %}
+                </ul>
+            </div>
+            <input type="hidden" value="" id="categoryid" />
+        </div>
+    </div>
 </div>
-<input type="hidden" value="" id="categoryid" />
-
-</span> {% endblock %} {% block js %}
-<script type="text/javascript " src="/static/js/shop.js "></script>
-
+{% endblock %} {% block js %}
 <script type="text/javascript " src="/static/plugins/easy-tree/easyTree.js "></script>
-
-<script type="text/javascript " src="/static/category/css/category.js "></script>
+<script type="text/javascript " src="/static/category/js/category.js "></script>
 {% endblock %}

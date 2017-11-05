@@ -1,0 +1,56 @@
+{% extends 'base.html' %}{% block pagetitle%}商品列表{% endblock%} {% block css %}
+{% load staticfiles %}
+<link href="/static/products/css/list.css" rel="stylesheet"> {% endblock %} {% block content %}
+<section>
+    <!-- 路径导航 -->
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li class="active">商品列表</li>
+        <div class="title">商品列表 </div>
+    </ol>
+    <div class="table-wrap">
+        <table class="table table-hover">
+            {% for product in products %}
+            <tr>
+                <td><a href="{% url 'product:detail' product.id %}">{{product.id}}</a></td>
+                <td rowspan="2"><a href="{% url 'product:detail' product.id %}">
+                    <img src="{{mediaroot}}{{product.thumbnail}}" class="thumbnail" /></a>
+                </td>
+                <td> 价格：{{product.adaptorrule_set.all.0.price}}<br/>库存：{{product.adaptorrule_set.all.0.real_inventory}}</td>
+                <td> </td>
+
+                <td> {{product.desc}}</td>
+                <td>
+                    <a href="{% url 'product:change' product.id %}">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'product:change' product.id %}?pic">
+                        编辑图片
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                    <td> </td>
+                     
+                    <td> <a href="{% url 'product:detail' product.id %}">{{product.title|truncatechars:'40'}}</a> </td>
+                    <td> </td>
+    
+                    <td> {{product.desc}}</td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</section>
+{% endblock %} {% block js %}
+<script type="text/javascript" src="/static/js/swiper-3.4.2.jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/list.js"></script>
+
+{% endblock %}
