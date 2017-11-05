@@ -7,4 +7,5 @@
 /media/
 *.json
 */docs/*
+/store/*
 docs/通用商城设计文档.docx
